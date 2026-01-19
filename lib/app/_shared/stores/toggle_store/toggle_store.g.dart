@@ -42,18 +42,6 @@ mixin _$ToggleStore on _ToggleStore, Store {
   }
 
   @override
-  void setValue(bool newValue) {
-    final _$actionInfo = _$_ToggleStoreActionController.startAction(
-      name: '_ToggleStore.setValue',
-    );
-    try {
-      return super.setValue(newValue);
-    } finally {
-      _$_ToggleStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 value: ${value}

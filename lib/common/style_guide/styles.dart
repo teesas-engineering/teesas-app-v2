@@ -25,7 +25,7 @@ class AllStyles {
     fontSize: 45,
     fontWeight: FontWeight.w700, // Bold
     height: 1.15, // 52/45
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -34,7 +34,7 @@ class AllStyles {
     fontSize: 36,
     fontWeight: FontWeight.w700,
     height: 1.22, // 44/36
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -48,7 +48,7 @@ class AllStyles {
     fontSize: 32,
     fontWeight: FontWeight.w600, // SemiBold
     height: 1.25, // 40/32
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -57,7 +57,7 @@ class AllStyles {
     fontSize: 28,
     fontWeight: FontWeight.w600,
     height: 1.28, // 36/28
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -66,7 +66,7 @@ class AllStyles {
     fontSize: 24,
     fontWeight: FontWeight.w600,
     height: 1.33, // 32/24
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -80,7 +80,7 @@ class AllStyles {
     fontSize: 22,
     fontWeight: FontWeight.w500, // Medium
     height: 1.27, // 28/22
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUI,
     color: AllColors.textPrimaryDark,
   );
@@ -176,7 +176,7 @@ class AllStyles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
     height: 1.5,
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );
@@ -185,7 +185,7 @@ class AllStyles {
     fontSize: 14,
     fontWeight: FontWeight.w500,
     height: 1.43,
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );
@@ -194,7 +194,7 @@ class AllStyles {
     fontSize: 12,
     fontWeight: FontWeight.w500,
     height: 1.33,
-    letterSpacing: 0.0,
+    letterSpacing: 0,
     fontFamily: fontFamilyUISecondary,
     color: AllColors.textSecondaryDark,
   );
@@ -203,8 +203,8 @@ class AllStyles {
   static const statValue = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w700, // Bold
-    height: 1.0,
-    letterSpacing: -1.0, // Tight tracking for numbers
+    height: 1,
+    letterSpacing: -1, // Tight tracking for numbers
     fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );

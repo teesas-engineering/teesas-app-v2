@@ -46,7 +46,9 @@ mixin FormMixin {
 
   /// Normalizes a phone number or email string.
   String getActualPhoneNumberOrEmail(String input) {
-    if (isValidEmailAddress(input) == null) return input;
+    if (isValidEmailAddress(input) == null) {
+      return input;
+    }
 
     var number = input.startsWith('+') ? input.substring(1) : input;
     if (number.startsWith('234')) {
@@ -59,14 +61,18 @@ mixin FormMixin {
 
   /// Checks if a string contains only digits.
   bool allInputsAreNumbers(String input) {
-    if (input.isEmpty) return false;
+    if (input.isEmpty) {
+      return false;
+    }
     return RegExp(r'^\d+$').hasMatch(input);
   }
 
   /// Validates and saves form on submit.
   bool validateAndSaveOnSubmit(BuildContext context) {
     final form = Form.of(context);
-    if (!form.validate()) return false;
+    if (!form.validate()) {
+      return false;
+    }
     form.save();
     return true;
   }

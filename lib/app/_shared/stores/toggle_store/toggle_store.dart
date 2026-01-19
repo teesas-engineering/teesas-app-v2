@@ -12,9 +12,4 @@ abstract class _ToggleStore with Store {
   void toggle() {
     value = !value;
   }
-
-  @action
-  void setValue(bool newValue) {
-    value = newValue;
-  }
 }

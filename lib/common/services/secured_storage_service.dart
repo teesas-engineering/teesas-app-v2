@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -37,11 +38,16 @@ class SecureStorageService {
       value: jsonEncode(value),
     );
   }
+
   Future<void> saveCurrentCourse(Map<String, dynamic> value) async {
-    await _storage.write(key: StorageKeys.currentCourse, value: jsonEncode(value));
+    await _storage.write(
+      key: StorageKeys.currentCourse,
+      value: jsonEncode(value),
+    );
   }
 
-  Future<Map<String, dynamic>?> getCurrentCourse() => get(StorageKeys.currentCourse);
+  Future<Map<String, dynamic>?> getCurrentCourse() =>
+      get(StorageKeys.currentCourse);
 
   Future<void> writeJson(String key, Map<String, dynamic> json) async {
     await write(key, jsonEncode(json));
@@ -59,7 +65,11 @@ class SecureStorageService {
     await _storage.deleteAll();
   }
 
-  Future<String?> getToken() async {}
+  Future<String?> getToken() async {
+    return _storage.read(key: StorageKeys.token);
+  }
 
-  void saveToken(String token) {}
+  void saveToken(String token) {
+    unawaited(_storage.write(key: StorageKeys.token, value: token));
+  }
 }

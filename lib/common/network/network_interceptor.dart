@@ -7,18 +7,18 @@ import '../services/secured_storage_service.dart';
 
 @lazySingleton
 class NetworkInterceptor extends Interceptor {
-  final SecureStorageService _secureStorageService;
 
   NetworkInterceptor(this._secureStorageService);
+  final SecureStorageService _secureStorageService;
 
   @override
-  void onRequest(
+  Future<void> onRequest(
       RequestOptions options,
       RequestInterceptorHandler handler,
       ) async {
-    String? token = await _secureStorageService.getToken();
+    final String? token = await _secureStorageService.getToken();
     if (token != null) {
-      options.headers["Authorization"] = "Bearer $token";
+      options.headers['Authorization'] = 'Bearer $token';
     }
 
     super.onRequest(options, handler);
@@ -41,13 +41,13 @@ class NetworkInterceptor extends Interceptor {
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
-    String errorMessage = "Something went wrong";
+    String errorMessage = 'Something went wrong';
     String? errorType;
-    int? statusCode = err.response?.statusCode;
+    final int? statusCode = err.response?.statusCode;
 
     if (err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout) {
-      errorMessage = "Connection timeout, please try again.";
+      errorMessage = 'Connection timeout, please try again.';
     } else if (err.type == DioExceptionType.badResponse) {
       try {
         final json = err.response?.data as Map<String, dynamic>;
@@ -57,22 +57,17 @@ class NetworkInterceptor extends Interceptor {
         errorType = errorJson['errorType'] as String?;
         switch (statusCode) {
           case 400:
-            errorMessage = message ?? "Bad request. Please check your input.";
-            break;
+            errorMessage = message ?? 'Bad request. Please check your input.';
           case 401:
-            errorMessage = message ?? "Unauthorized. Please log in again.";
-            break;
+            errorMessage = message ?? 'Unauthorized. Please log in again.';
           case 403:
-            errorMessage = message ?? "Forbidden access.";
-            break;
+            errorMessage = message ?? 'Forbidden access.';
           case 404:
-            errorMessage = message ?? "Resource not found.";
-            break;
+            errorMessage = message ?? 'Resource not found.';
           case 500:
-            errorMessage = message ?? "Internal server error. Try again later.";
-            break;
+            errorMessage = message ?? 'Internal server error. Try again later.';
           default:
-            errorMessage = message ?? "Unexpected error occurred.";
+            errorMessage = message ?? 'Unexpected error occurred.';
         }
       } catch (e) {
         errorMessage = e.toString();
@@ -83,10 +78,10 @@ class NetworkInterceptor extends Interceptor {
 
       //What does the  mean?
     } else if (err.type == DioExceptionType.cancel) {
-      errorMessage = "Request was cancelled.";
+      errorMessage = 'Request was cancelled.';
     } else if (err.type == DioExceptionType.unknown) {
       debugPrintStack(stackTrace: err.stackTrace);
-      errorMessage = "No internet connection.";
+      errorMessage = 'No internet connection.';
     }
 
     handler.reject(

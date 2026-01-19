@@ -27,23 +27,6 @@ mixin _$IndexStore on _IndexStore, Store {
     });
   }
 
-  late final _$_IndexStoreActionController = ActionController(
-    name: '_IndexStore',
-    context: context,
-  );
-
-  @override
-  void setIndex(int index) {
-    final _$actionInfo = _$_IndexStoreActionController.startAction(
-      name: '_IndexStore.setIndex',
-    );
-    try {
-      return super.setIndex(index);
-    } finally {
-      _$_IndexStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

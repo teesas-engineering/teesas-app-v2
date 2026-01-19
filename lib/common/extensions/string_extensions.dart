@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'num_extension.dart';
 
 extension StringExtensions on String {
   String capitalizeFirst() {
