@@ -8,6 +8,8 @@
 .build/
 .buildlog/
 .history
+.env
+prompt_rules.txt
 .svn/
 .swiftpm/
 migrate_working_dir/
