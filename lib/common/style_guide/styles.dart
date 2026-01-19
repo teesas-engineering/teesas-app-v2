@@ -3,8 +3,9 @@ part of 'style_guide.dart';
 class AllStyles {
   AllStyles._();
 
-  static const String fontFamilyUI = 'Manrope';
-  static const String fontFamilyCode = 'JetBrains Mono';
+  static const String fontFamilyUI = 'Plus Jakarta Sans';
+  static const String fontFamilyUISecondary = 'Plus Jakarta Sans';
+  static const String fontFamilyPrimary = 'BalooBhaijaan2';
 
   // ===========================================================================
   // DISPLAY STYLES (Hero Headers, Splash Text)
@@ -176,7 +177,7 @@ class AllStyles {
     fontWeight: FontWeight.w500,
     height: 1.5,
     letterSpacing: 0.0,
-    fontFamily: fontFamilyCode,
+    fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );
 
@@ -185,7 +186,7 @@ class AllStyles {
     fontWeight: FontWeight.w500,
     height: 1.43,
     letterSpacing: 0.0,
-    fontFamily: fontFamilyCode,
+    fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );
 
@@ -194,7 +195,7 @@ class AllStyles {
     fontWeight: FontWeight.w500,
     height: 1.33,
     letterSpacing: 0.0,
-    fontFamily: fontFamilyCode,
+    fontFamily: fontFamilyUISecondary,
     color: AllColors.textSecondaryDark,
   );
       
@@ -204,7 +205,7 @@ class AllStyles {
     fontWeight: FontWeight.w700, // Bold
     height: 1.0,
     letterSpacing: -1.0, // Tight tracking for numbers
-    fontFamily: fontFamilyCode,
+    fontFamily: fontFamilyUISecondary,
     color: AllColors.textPrimaryDark,
   );
 }
