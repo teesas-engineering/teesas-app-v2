@@ -1,0 +1,4 @@
+keyAlias=teesas
+keyPassword=teesasappentus
+storeFile=../release.jks
+storePassword=teesasappentus

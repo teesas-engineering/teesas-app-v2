@@ -1,0 +1,251 @@
+{
+  "project_info": {
+    "project_number": "718122574249",
+    "firebase_url": "https://teesas-8a056.firebaseio.com",
+    "project_id": "teesas-8a056",
+    "storage_bucket": "teesas-8a056.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718122574249:android:5771273d8f2660b07c64b8",
+        "android_client_info": {
+          "package_name": "app.teesas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718122574249-575aq83sojem1keun5hnf2plqjt1i31q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesas",
+            "certificate_hash": "90f2428eb54b4132fe0d1cc385ecaf46d09de7be"
+          }
+        },
+        {
+          "client_id": "718122574249-67s62soqvol00824seje62ck81sn0clp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesas",
+            "certificate_hash": "26790aceb024f55d1cf1a25813ab0fd74e2b54bc"
+          }
+        },
+        {
+          "client_id": "718122574249-8kj5ne2k50p6hof7cspb6fo7s9f95iit.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesas",
+            "certificate_hash": "257ca61685baaa6fda2089dbec85bf2ff77d994a"
+          }
+        },
+        {
+          "client_id": "718122574249-cs91h65df04vg1adcjkqlreruriq5in5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesas",
+            "certificate_hash": "b9c68e3e6325e863d666241426008ccd8e4a9abd"
+          }
+        },
+        {
+          "client_id": "718122574249-graoup3ad4h1goi8qmt99oqjod5gejv5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesas",
+            "certificate_hash": "197015512949b991f968350b373b4b02ca65d18a"
+          }
+        },
+        {
+          "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSlDxvyUQ0h4JmQEaOpvRs8M6cwpwwTOs"
+        },
+        {
+          "current_key": "AIzaSyCQFPXlwxabPK-B5ZMR7QUSA0LIaH8NL_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Teesas",
+                "app_store_id": "1595847520"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718122574249:android:db5051589596401f7c64b8",
+        "android_client_info": {
+          "package_name": "app.teesasparent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718122574249-hl4i5cntogk1gokqp583n3pts1msbifc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesasparent",
+            "certificate_hash": "1a484e82e2c2599aaec6331dc35dc1ed93cfa0f6"
+          }
+        },
+        {
+          "client_id": "718122574249-jp3q2jrv449t7tv9for4d718cp6q1te3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesasparent",
+            "certificate_hash": "9296446e171708c474bd92bf10bb231af5d2b0ec"
+          }
+        },
+        {
+          "client_id": "718122574249-nr6cisijor9ils315jvjslfn91j5bt49.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesasparent",
+            "certificate_hash": "2e44d54055a4aadf9c8737cc7cf4c34c7d6797ec"
+          }
+        },
+        {
+          "client_id": "718122574249-vv0fcosv6ohgtqkmrji7d8uqc3pnittp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesasparent",
+            "certificate_hash": "90f2428eb54b4132fe0d1cc385ecaf46d09de7be"
+          }
+        },
+        {
+          "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSlDxvyUQ0h4JmQEaOpvRs8M6cwpwwTOs"
+        },
+        {
+          "current_key": "AIzaSyCQFPXlwxabPK-B5ZMR7QUSA0LIaH8NL_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Teesas",
+                "app_store_id": "1595847520"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718122574249:android:ea245e3790fa742a7c64b8",
+        "android_client_info": {
+          "package_name": "app.teesasteacher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718122574249-rqgm1bsvi6lammoeb88rf7eehh71nm9u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.teesasteacher",
+            "certificate_hash": "d2a286e8c916b520fbeb60e5a69ef614b25cd02b"
+          }
+        },
+        {
+          "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSlDxvyUQ0h4JmQEaOpvRs8M6cwpwwTOs"
+        },
+        {
+          "current_key": "AIzaSyCQFPXlwxabPK-B5ZMR7QUSA0LIaH8NL_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Teesas",
+                "app_store_id": "1595847520"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718122574249:android:80e78065f16efb7d7c64b8",
+        "android_client_info": {
+          "package_name": "com.teesas_parent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSlDxvyUQ0h4JmQEaOpvRs8M6cwpwwTOs"
+        },
+        {
+          "current_key": "AIzaSyCQFPXlwxabPK-B5ZMR7QUSA0LIaH8NL_c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718122574249-8pur4ulbufuf2dgoonrkgmnbvo3s8b75.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Teesas",
+                "app_store_id": "1595847520"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

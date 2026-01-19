@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.718122574249-1o82daqga3et05ccs5oiuq9sl320pqg5</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>718122574249-575aq83sojem1keun5hnf2plqjt1i31q.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDqljHfzCIzHSHNUVXNQD67ro9gpbphERk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>718122574249</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Teesas</string>
+	<key>PROJECT_ID</key>
+	<string>teesas-8a056</string>
+	<key>STORAGE_BUCKET</key>
+	<string>teesas-8a056.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:718122574249:ios:c13be528286b0c9c7c64b8</string>
+	<key>DATABASE_URL</key>
+	<string>https://teesas-8a056.firebaseio.com</string>
+</dict>
+</plist>
