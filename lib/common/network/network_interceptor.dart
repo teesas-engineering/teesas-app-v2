@@ -2,21 +2,23 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 
+import '../constants/app_constants.dart';
 import '../exceptions/app_exception.dart';
 import '../services/secured_storage_service.dart';
 
 @lazySingleton
 class NetworkInterceptor extends Interceptor {
-
   NetworkInterceptor(this._secureStorageService);
+
   final SecureStorageService _secureStorageService;
 
   @override
   Future<void> onRequest(
-      RequestOptions options,
-      RequestInterceptorHandler handler,
-      ) async {
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
     final String? token = await _secureStorageService.getToken();
+    options.headers['x-api-key'] = AppConstant.apiKey;
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }

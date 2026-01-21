@@ -37,8 +37,6 @@ class _AppThemeState extends State<AppTheme> {
     scaffoldBackgroundColor: const Color(0xfff8F8F8),
     iconTheme: const IconThemeData(size: 24, color: AllColors.iconsPrimary),
     highlightColor: Colors.transparent,
-
-    splashColor: AllColors.bgButtonPrimarySplash,
     appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: false,

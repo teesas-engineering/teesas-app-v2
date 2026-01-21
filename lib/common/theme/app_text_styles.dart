@@ -38,11 +38,6 @@ class AppStyles {
   TextStyle get headlineSmall =>
       AllStyles.headlineSmall.copyWith(color: colors.textPrimary);
 
-  // ===========================================================================
-  // TITLE STYLES (Card Titles, List Items)
-  // Font: Manrope (UI)
-  // ===========================================================================
-
   TextStyle get titleLarge =>
       AllStyles.titleLarge.copyWith(color: colors.textPrimary);
 
@@ -51,11 +46,6 @@ class AppStyles {
 
   TextStyle get titleSmall =>
       AllStyles.titleSmall.copyWith(color: colors.textPrimary);
-
-  // ===========================================================================
-  // BODY STYLES (Paragraphs, Descriptions)
-  // Font: Manrope (UI)
-  // ===========================================================================
 
   TextStyle get bodyLarge =>
       AllStyles.bodyLarge.copyWith(color: colors.textSecondary);
@@ -80,21 +70,4 @@ class AppStyles {
   TextStyle get labelSmall =>
       AllStyles.labelSmall.copyWith(color: colors.textTertiary);
 
-  // ===========================================================================
-  // CODE & DATA STYLES (Snippets, Stats, Pollen Count)
-  // Font: JetBrains Mono (Code) -- The "Dev" Vibe
-  // ===========================================================================
-
-  TextStyle get codeLarge =>
-      AllStyles.codeLarge.copyWith(color: colors.textPrimary);
-
-  TextStyle get codeMedium =>
-      AllStyles.codeMedium.copyWith(color: colors.textPrimary);
-
-  TextStyle get codeSmall =>
-      AllStyles.codeSmall.copyWith(color: colors.textSecondary);
-
-  // Special Style for "Pollen Count" and "Streaks" (Bold & Mono)
-  TextStyle get statValue =>
-      AllStyles.statValue.copyWith(color: colors.textPrimary);
 }
