@@ -1,0 +1,13 @@
+primary button
+input field
+drop down field
+radio chip
+otp field
+app primary card -> should have status(active,true/false), background color, pressable
+progress bar
+back button
+appbar
+dialog parent
+modal parent
+option dialog
+app tabview
