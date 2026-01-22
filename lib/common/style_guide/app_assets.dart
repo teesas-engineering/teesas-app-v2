@@ -16,5 +16,12 @@ class AppAssets {
   static const onboardingImage5 = '${_images}onboarding-image2.png';
   static const successImage = '${_images}success-image.png';
   static const emailImage = '${_images}email-image.png';
-  static const welcomeIMage = '${_images}welcome-image.png';
+  static const welcomeImage = '${_images}welcome-image.png';
+  static const videoImage = '${_images}video-image.png';
+  static const testImage = '${_images}test-image.png';
+  static const streakIcon = '${_icons}streak-icon.svg';
+  static const pointsIcon = '${_icons}points.svg';
+  static const notificationIcon = '${_icons}notification.svg';
+  static const radioUnChecked = '${_icons}radio-unchecked.svg';
+  static const radioChecked = '${_icons}radio-checked.svg';
 }

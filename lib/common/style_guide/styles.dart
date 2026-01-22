@@ -3,9 +3,9 @@ part of 'style_guide.dart';
 class AllStyles {
   AllStyles._();
 
-  static const String fontFamilyUI = 'Plus Jakarta Sans';
+  static const String fontFamilyUI = 'BalooBhaijaan2';
   static const String fontFamilyUISecondary = 'Plus Jakarta Sans';
-  static const String fontFamilyPrimary = 'BalooBhaijaan2';
+  static const String balooBhaijaan = 'BalooBhaijaan2';
 
 
   static const displayLarge = TextStyle(

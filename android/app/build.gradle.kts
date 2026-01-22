@@ -44,10 +44,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-//    kotlinOptions {
-//        jvmTarget = "17"
-//        freeCompilerArgs = freeCompilerArgs + listOf("-Xjsr305=strict", "-Xsam-conversions=class")
-//    }
+    kotlinOptions {
+        jvmTarget = "17"
+        freeCompilerArgs = freeCompilerArgs + listOf("-Xjsr305=strict", "-Xsam-conversions=class")
+    }
 
     sourceSets {
         getByName("main").java.srcDirs("src/main/kotlin")
@@ -79,7 +79,7 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("release")
-            multiDexEnabled = false
+            multiDexEnabled = true
         }
     }
 

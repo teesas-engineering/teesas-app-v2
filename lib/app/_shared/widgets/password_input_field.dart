@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 import '../../../common/theme/app_theme.dart';
@@ -9,7 +10,7 @@ import 'app_input_field.dart';
 
 class PasswordInputField extends StatelessWidget {
   const PasswordInputField({
-    required this.controller,
+     this.controller,
     super.key,
     this.validator,
     this.onChanged,
@@ -17,7 +18,7 @@ class PasswordInputField extends StatelessWidget {
     this.toggleStore,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
@@ -43,13 +44,13 @@ class PasswordInputField extends StatelessWidget {
 
 class _PasswordInputFieldContent extends StatelessWidget {
   const _PasswordInputFieldContent({
-    required this.controller,
+     this.controller,
     this.validator,
     this.onChanged,
     this.inputFormatters,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
@@ -74,8 +75,9 @@ class _PasswordInputFieldContent extends StatelessWidget {
           inputFormatters: inputFormatters,
           suffixIcon: IconButton(
             icon: Icon(
-              isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+              isPasswordVisible ? FontAwesomeIcons.eye: FontAwesomeIcons.eyeSlash,
               color: appColors.iconsSecondary,
+              size: 16,
             ),
             onPressed: store.toggle,
           ),

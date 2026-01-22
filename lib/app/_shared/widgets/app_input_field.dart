@@ -6,7 +6,7 @@ import '../../../common/theme/app_theme.dart';
 
 class AppInputField extends StatelessWidget {
   const AppInputField({
-    required this.controller,
+     this.controller,
     super.key,
     this.hintText,
     this.labelText,
@@ -33,7 +33,7 @@ class AppInputField extends StatelessWidget {
     this.padding,
   });
 
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final String? hintText;
   final String? labelText;
   final bool obscureText;

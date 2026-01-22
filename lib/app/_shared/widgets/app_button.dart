@@ -1,213 +1,165 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../../common/dimens/app_dimens.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
 import '../../../common/theme/app_theme.dart';
-
-enum _AppButtonVariant { primary, secondary, custom }
+import '../enum/button_type.dart';
 
 class AppButton extends StatelessWidget {
-  const AppButton._({
-    required this.onPressed,
+  const AppButton({
     required this.text,
-    required this.variant,
-    super.key,
-    this.isEnabled = true,
-    this.height,
-    this.width,
-    this.borderColor,
-    this.backgroundColor,
-    this.textColor,
-    this.iconColor,
-    this.borderRadius,
-    this.padding,
+    required this.onPressed,
+    this.buttonType = ButtonType.primary,
     this.leadingIcon,
     this.trailingIcon,
+    this.isDisabled = false,
+    this.isFullWidth = true,
+    this.backgroundColor,
+    this.isLoading = false,
+    this.textColor,
+    this.borderColor,
+    super.key,
   });
 
-  final VoidCallback? onPressed;
-  final String text;
-  final bool isEnabled;
-  final double? height;
-  final double? width;
-  final _AppButtonVariant variant;
-  final Color? borderColor;
-  final Color? backgroundColor;
-  final Color? textColor;
-  final Color? iconColor;
-  final BorderRadius? borderRadius;
-  final EdgeInsets? padding;
-  final Widget? leadingIcon;
-  final Widget? trailingIcon;
-
-  /// Primary button variant with green border and white background
-  factory AppButton.primary({
-    required VoidCallback? onPressed,
-    required String text,
-    bool isEnabled = true,
-    double? height,
-    double? width,
-    BorderRadius? borderRadius,
-    EdgeInsets? padding,
-    Widget? leadingIcon,
-    Widget? trailingIcon,
-    Key? key,
-  }) {
-    return AppButton._(
-      onPressed: onPressed,
-      text: text,
-      variant: _AppButtonVariant.primary,
-      isEnabled: isEnabled,
-      height: height,
-      width: width ?? double.infinity,
-      borderRadius: borderRadius,
-      padding: padding,
-      leadingIcon: leadingIcon,
-      trailingIcon: trailingIcon,
-      key: key,
-    );
-  }
-
-  /// Secondary button variant with customizable border and background
   factory AppButton.secondary({
-    required VoidCallback? onPressed,
     required String text,
-    bool isEnabled = true,
-    double? height,
-    double? width,
-    BorderRadius? borderRadius,
-    EdgeInsets? padding,
-    Widget? leadingIcon,
-    Widget? trailingIcon,
-    Color? borderColor,
-    Color? backgroundColor,
-    Color? textColor,
-    Color? iconColor,
-    Key? key,
+    required AsyncCallback onPressed,
+    bool isDisabled = false,
+    bool negativeBorder = false,
   }) {
-    return AppButton._(
-      onPressed: onPressed,
+    return AppButton(
       text: text,
-      variant: _AppButtonVariant.secondary,
-      isEnabled: isEnabled,
-      height: height,
-      width: width ?? double.infinity,
-      borderColor: borderColor,
-      backgroundColor: backgroundColor,
-      textColor: textColor,
-      iconColor: iconColor,
-      borderRadius: borderRadius,
-      padding: padding,
-      leadingIcon: leadingIcon,
-      trailingIcon: trailingIcon,
-      key: key,
+      onPressed: onPressed,
+      isDisabled: isDisabled,
+      borderColor: negativeBorder ? AllColors.bgNegative: AllColors.bgBrandSecondary,
+      buttonType: ButtonType.secondary,
+      backgroundColor:negativeBorder?AllColors.bgNegativeLight: AllColors.bgBrandSecondaryLight,
     );
   }
+
+  final ButtonType buttonType;
+  final bool isDisabled;
+  final IconData? leadingIcon;
+  final AsyncCallback onPressed;
+  final String text;
+  final Color? textColor;
+  final Color? backgroundColor;
+  final Color? borderColor;
+  final IconData? trailingIcon;
+  final bool isFullWidth;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
-    final appColors = context.appColors;
-    final appStyles = context.appStyles;
+    const verticalPadding = 15.0;
+    const horizontalPadding = 20.0;
 
-    final buttonHeight = height ?? Dimens.buttonHeight;
-    final buttonBorderRadius =
-        borderRadius ?? BorderRadius.circular(Dimens.defaultBorderRadius);
+    const padding = EdgeInsets.symmetric(
+      vertical: verticalPadding,
+      horizontal: horizontalPadding,
+    );
 
-    // Determine colors based on variant and enabled state
-    Color effectiveBorderColor;
-    Color effectiveBackgroundColor;
-    Color effectiveTextColor;
-    Color effectiveIconColor;
-
-    switch (variant) {
-      case _AppButtonVariant.primary:
-        effectiveBorderColor = isEnabled
-            ? (borderColor ?? appColors.borderBrand)
-            : appColors.borderDisabled;
-        effectiveBackgroundColor = backgroundColor ?? appColors.bgSecondary;
-        effectiveTextColor = isEnabled
-            ? (textColor ?? appColors.textPrimary)
-            : appColors.textDisabled;
-        effectiveIconColor = isEnabled
-            ? (iconColor ?? appColors.iconsPrimary)
-            : appColors.iconsDisabled;
-        break;
-      case _AppButtonVariant.secondary:
-        effectiveBorderColor = isEnabled
-            ? (borderColor ?? appColors.borderPrimary)
-            : appColors.borderDisabled;
-        effectiveBackgroundColor = backgroundColor ?? appColors.bgSecondary;
-        effectiveTextColor = isEnabled
-            ? (textColor ?? appColors.textPrimary)
-            : appColors.textDisabled;
-        effectiveIconColor = isEnabled
-            ? (iconColor ?? appColors.iconsPrimary)
-            : appColors.iconsDisabled;
-        break;
-      case _AppButtonVariant.custom:
-        effectiveBorderColor = isEnabled
-            ? (borderColor ?? appColors.borderBrand)
-            : appColors.borderDisabled;
-        effectiveBackgroundColor = backgroundColor ?? appColors.bgSecondary;
-        effectiveTextColor = isEnabled
-            ? (textColor ?? appColors.textPrimary)
-            : appColors.textDisabled;
-        effectiveIconColor = isEnabled
-            ? (iconColor ?? appColors.iconsPrimary)
-            : appColors.iconsDisabled;
-        break;
-    }
-
-    final buttonPadding =
-        padding ?? const EdgeInsets.symmetric(horizontal: Dimens.buttonPadding);
-
-    Widget buttonChild;
-    if (leadingIcon != null || trailingIcon != null) {
-      buttonChild = Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (leadingIcon != null) ...[
-            IconTheme(
-              data: IconThemeData(color: effectiveIconColor, size: 20),
-              child: leadingIcon!,
-            ),
-            const SizedBox(width: 8),
-          ],
-          Text(
-            text,
-            style: appStyles.labelLarge.copyWith(color: effectiveTextColor),
-          ),
-          if (trailingIcon != null) ...[
-            const SizedBox(width: 8),
-            IconTheme(
-              data: IconThemeData(color: effectiveIconColor, size: 20),
-              child: trailingIcon!,
-            ),
-          ],
-        ],
-      );
-    } else {
-      buttonChild = Text(
-        text,
-        style: appStyles.labelLarge.copyWith(color: effectiveTextColor),
-      );
-    }
-
-    return SizedBox(
-      height: buttonHeight,
-      width: width ?? double.infinity,
-      child: OutlinedButton(
-        onPressed: isEnabled ? onPressed : null,
-        style: OutlinedButton.styleFrom(
-          backgroundColor: effectiveBackgroundColor,
-          foregroundColor: effectiveTextColor,
-          side: BorderSide(color: effectiveBorderColor, width: 2),
-          shape: RoundedRectangleBorder(borderRadius: buttonBorderRadius),
-          padding: buttonPadding,
-          elevation: 0,
+    return InkWell(
+      highlightColor: Colors.transparent,
+      onTap: isDisabled || isLoading
+          ? null
+          : () {
+              unawaited(HapticFeedback.mediumImpact());
+              unawaited(onPressed());
+            },
+      splashColor: backgroundColor ?? buttonType.getSplashColor(context),
+      borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+      child: Ink(
+        padding: padding,
+        decoration: BoxDecoration(
+          color: isDisabled
+              ? buttonType.getDisabledButtonColor(context)
+              : (backgroundColor ??
+                    buttonType.getButtonColor(
+                      context,
+                      buttonColor: backgroundColor,
+                    )),
+          borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+          border: buttonType.getBorder(context, borderColor: borderColor),
         ),
-        child: buttonChild,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            if (isLoading)
+              _getLoader(context)
+            else
+              Row(
+                mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (leadingIcon != null) ...[
+                    Icon(
+                      leadingIcon,
+                      color: isDisabled
+                          ? context.appColors.iconsButtonDisabled
+                          : buttonType.getIconColor(context),
+                      size: buttonType.getIconSize(context),
+                    ),
+                    const SizedBox(width: 8),
+                  ],
+                  Flexible(child: _getTextWidget(context)),
+                  if (trailingIcon != null) ...[
+                    const SizedBox(width: 8),
+                    Icon(
+                      trailingIcon,
+                      color: isDisabled
+                          ? context.appColors.iconsButtonDisabled
+                          : buttonType.getIconColor(context),
+                      size: buttonType.getIconSize(context),
+                    ),
+                  ],
+                ],
+              ),
+          ],
+        ),
       ),
+    );
+  }
+
+  Widget _getTextWidget(BuildContext context) {
+    final appColors = context.appColors;
+    final textStyle = buttonType.getButtonTextStyle(context);
+
+    return Text(
+      text,
+      textAlign: TextAlign.center,
+      style: textStyle.copyWith(
+        fontFamily: AllStyles.balooBhaijaan,
+        color:
+            textColor ??
+            (isDisabled
+                ? appColors.textButtonDisabled
+                : buttonType.getTextColor(context)),
+        fontWeight: buttonType==ButtonType.secondary?FontWeight.w400:FontWeight.w800,
+        fontSize: buttonType==ButtonType.secondary?14:16,
+      ),
+    );
+  }
+
+  Widget _getLoader(BuildContext context) {
+    final color = buttonType.getTextColor(context);
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 24,
+          width: 24,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(color),
+          ),
+        ),
+      ],
     );
   }
 }

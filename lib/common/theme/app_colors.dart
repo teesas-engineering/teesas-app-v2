@@ -1,4 +1,3 @@
-
 part of 'app_theme.dart';
 
 class AppColors {
@@ -7,7 +6,7 @@ class AppColors {
   final bool isDark;
 
   // Backgrounds
-  Color get bgPrimary =>  AllColors.bgPrimary;
+  Color get bgPrimary => AllColors.bgPrimary;
   Color get bgSecondary => AllColors.bgSecondary;
   Color get bgBrand => AllColors.bgBrand;
   Color get bgBrandLight => AllColors.bgBrandLight;
@@ -17,15 +16,17 @@ class AppColors {
   Color get bgButtonPrimary => AllColors.bgButtonPrimary;
   Color get bgButtonDisabled => AllColors.bgButtonDisabled;
   Color get bgButtonSecondary => AllColors.bgSecondary; // Assuming secondary bg
+  Color get bgButtonPrimarySplash => AllColors.bgButtonPrimarySplash;
+  Color get bgButtonSecondarySplash => AllColors.bgButtonSecondarySplash;
 
   // Semantic Backgrounds
   Color get bgNegative => AllColors.bgNegative;
-  Color get bgWarning =>  AllColors.bgWarning;
+  Color get bgWarning => AllColors.bgWarning;
   Color get bgPositive => AllColors.bgPositive;
-  Color get bgInfo =>  AllColors.bgInfo;
+  Color get bgInfo => AllColors.bgInfo;
 
   // Accents (Mapped to Pollenair Tracks)
-  Color get bgAccent =>  AllColors.bgAccent;
+  Color get bgAccent => AllColors.bgAccent;
   Color get bgAccentAmber => AllColors.bgAccentAmber;
   Color get bgAccentOrchid => AllColors.bgAccentOrchid;
   Color get bgAccentRosewood => AllColors.bgAccentRosewood;
@@ -48,34 +49,34 @@ class AppColors {
   Color get textNegative => AllColors.textNegative;
   Color get textWarning => AllColors.textWarning;
   Color get textPositive => AllColors.textPositive;
-  Color get textInfo =>  AllColors.textInfo;
+  Color get textInfo => AllColors.textInfo;
   Color get textDisabled => AllColors.textDisabled;
 
   // Icons
   Color get iconsPrimary => AllColors.iconsPrimary;
   Color get iconsSecondary => AllColors.iconsSecondary;
   Color get iconsTertiary => AllColors.iconsTertiary;
-  Color get iconsBrand =>AllColors.iconsBrand;
+  Color get iconsBrand => AllColors.iconsBrand;
   Color get iconsInvert => AllColors.iconsInvert;
 
   Color get iconsButtonPrimary => AllColors.iconsButtonPrimary;
   Color get iconsButtonSecondary => AllColors.iconsButtonSecondary;
-  Color get iconsButtonDisabled =>AllColors.iconsButtonDisabled;
+  Color get iconsButtonDisabled => AllColors.iconsButtonDisabled;
 
   Color get iconsNegative => AllColors.iconsNegative;
-  Color get iconsWarning =>AllColors.iconsWarning;
+  Color get iconsWarning => AllColors.iconsWarning;
   Color get iconsPositive => AllColors.iconsPositive;
   Color get iconsInfo => AllColors.iconsInfo;
-  Color get iconsDisabled =>AllColors.iconsDisabled;
+  Color get iconsDisabled => AllColors.iconsDisabled;
 
   // Icon Accents
   Color get iconsAccentAmber => AllColors.iconsAccentAmber;
-  Color get iconsAccentOrchid =>AllColors.iconsAccentOrchid;
+  Color get iconsAccentOrchid => AllColors.iconsAccentOrchid;
   Color get iconsAccentRosewood => AllColors.iconsAccentRosewood;
   Color get iconsAccentTeal => AllColors.iconsAccentTeal;
   Color get iconsAccentIndigo => AllColors.iconsAccentIndigo;
   Color get iconsAccentSage => AllColors.iconsAccentSage;
-  Color get iconsAccentMulberry =>AllColors.iconsAccentMulberry;
+  Color get iconsAccentMulberry => AllColors.iconsAccentMulberry;
 
   // Borders
   Color get borderPrimary => AllColors.borderPrimary;
@@ -87,8 +88,8 @@ class AppColors {
   Color get borderButtonDisabled => AllColors.borderButtonDisabled;
 
   Color get borderNegative => AllColors.borderNegative;
-  Color get borderWarning =>AllColors.borderWarning;
+  Color get borderWarning => AllColors.borderWarning;
   Color get borderPositive => AllColors.borderPositive;
-  Color get borderInfo =>AllColors.borderInfo;
+  Color get borderInfo => AllColors.borderInfo;
   Color get borderDisabled => AllColors.borderDisabled;
 }
