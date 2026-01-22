@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/theme/app_theme.dart';
-
 class BaseDialogParent extends StatelessWidget {
+
+  const BaseDialogParent(
+      {required this.child, super.key, this.height, this.verticalMargin,this.canPop=true});
   final double? height;
   final double? verticalMargin;
   final Widget child;
   final bool canPop;
-
-  const BaseDialogParent(
-      {super.key, this.height, this.verticalMargin, required this.child,this.canPop=true});
 
   @override
   Widget build(BuildContext context) {

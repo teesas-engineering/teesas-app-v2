@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
-import '../../../common/theme/app_theme.dart';
 
 class AppChip extends StatelessWidget {
   const AppChip({

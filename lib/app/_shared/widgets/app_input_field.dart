@@ -103,27 +103,27 @@ class AppInputField extends StatelessWidget {
         contentPadding: inputPadding,
         border: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: unfocusedBorderColor, width: 1),
+          borderSide: BorderSide(color: unfocusedBorderColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: unfocusedBorderColor, width: 1),
+          borderSide: BorderSide(color: unfocusedBorderColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: focusedBorder, width: 1),
+          borderSide: BorderSide(color: focusedBorder),
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderDisabled, width: 1),
+          borderSide: BorderSide(color: appColors.borderDisabled),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderNegative, width: 1),
+          borderSide: BorderSide(color: appColors.borderNegative),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderNegative, width: 1),
+          borderSide: BorderSide(color: appColors.borderNegative),
         ),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
