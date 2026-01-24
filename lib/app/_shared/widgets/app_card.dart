@@ -37,12 +37,12 @@ class AppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final allBorder = BorderSide(
-      color: borderColor ?? AllColors.cardBorder,
+      color: borderColor ?? AppColors.cardBorder,
     );
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: backgroundColor ?? AllColors.white,
+        color: backgroundColor ?? AppColors.white,
         borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
         border: Border(
           top: allBorder,
@@ -51,6 +51,7 @@ class AppCard extends StatelessWidget {
           bottom: allBorder.copyWith(width: borderBottomWidth),
         ),
       ),
+      child: child,
     );
   }
 }

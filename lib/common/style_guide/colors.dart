@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AllColors {
-  AllColors._();
+class AppColors {
+  AppColors._();
 
   static const bgPrimary = Color(0xF5F5F5F5); // Lab Slate
   static const bgSecondary = Color(0xFFFFFFFF); // Pure White Cards
@@ -18,7 +18,7 @@ class AllColors {
   static const bgButtonSecondarySplash = Color(0xFFF1F5F9);
 
   // Semantic Backgrounds
-  static const bgNegative = Color(0xFFFEF2F2);
+  static const bgNegative = Color(0xFFFEF2F2); //#
   static const bgWarning = Color(0xFFFFFBEB);
   static const bgPositive = Color(0xFFF0FDF4);
   static const bgInfo = Color(0xFFF0F9FF);
@@ -39,7 +39,8 @@ class AllColors {
   static const textPrimary = Color(0xFF252526); // Deep Navy
   static const textSecondary = Color(0xFF828282); // Slate
   static const textTertiary = Color(0xFFA7A7A7); // Muted
-  static const textBrand = Color(0xFF16A34A);
+  static const textBrand = Color(0xFF76BB08);
+  static const textBrandDark = Color(0xFF03492A); //#03492A
   static const textInvert = Color(0xFFFFFFFF);
 
   static const textButtonPrimary = Color(0xFF1E1C1C);
@@ -110,4 +111,5 @@ class AllColors {
   static Color white = const Color(0xFFFFFFFF);
   static Color transparent = Colors.transparent;
   static Color cardBorder = const Color(0xffD9E8E8);
+  static Color onboardingIndicatorInActive = const Color(0xFFE4E4E4);
 }

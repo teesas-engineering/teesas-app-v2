@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/theme/app_theme.dart';
+import '../../../common/style_guide/colors.dart';
 import '../stores/toggle_store/toggle_store.dart';
 import 'app_input_field.dart';
 
@@ -57,7 +57,6 @@ class _PasswordInputFieldContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appColors = context.appColors;
     final store = Provider.of<ToggleStore>(context);
 
     return Observer(
@@ -66,7 +65,7 @@ class _PasswordInputFieldContent extends StatelessWidget {
 
         return AppInputField(
           controller: controller,
-          hintText: 'Password',
+          labelText: 'Password',
           obscureText: !isPasswordVisible,
           keyboardType: TextInputType.visiblePassword,
           textInputAction: TextInputAction.done,
@@ -76,7 +75,7 @@ class _PasswordInputFieldContent extends StatelessWidget {
           suffixIcon: IconButton(
             icon: Icon(
               isPasswordVisible ? FontAwesomeIcons.eye: FontAwesomeIcons.eyeSlash,
-              color: appColors.iconsSecondary,
+              color: AppColors.iconsSecondary,
               size: 16,
             ),
             onPressed: store.toggle,

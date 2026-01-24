@@ -5,5 +5,5 @@ class Dimens{
   static const double buttonHeight = 48;
   static const double buttonHeightMin = 40;
   static const double buttonPadding = 12;
-  static const double pagePadding = 15;
+  static const double pagePadding = 24;
 }

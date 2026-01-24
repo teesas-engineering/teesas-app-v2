@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../common/theme/app_theme.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
 
 class AppAppBar extends StatefulWidget implements PreferredSizeWidget {
   const AppAppBar({
@@ -31,26 +32,30 @@ class AppAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _AppAppBarState extends State<AppAppBar> {
   @override
   Widget build(BuildContext context) {
-    final appColors = context.appColors;
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: false,
-      backgroundColor: Colors.transparent,
+      backgroundColor: AppColors.white,
       title: Row(
         children: [
           if (!widget.showLeadingIcon) const SizedBox(width: 20),
           if (widget.titleWidget != null)
             widget.titleWidget!
           else if (widget.title.isNotEmpty)
-            Text(widget.title, style: context.appStyles.titleLarge),
+            Text(
+              widget.title,
+              style: AppTypography.titleLarge.copyWith(
+                color: AppColors.textPrimary,
+              ),
+            ),
         ],
       ),
 
       leading: widget.showLeadingIcon
           ? widget.leading ?? IconButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.arrow_back,
-                color: appColors.iconsPrimary,
+                color: AppColors.iconsPrimary,
               ),
               onPressed:
                   widget.onLeadingIconPressed ??

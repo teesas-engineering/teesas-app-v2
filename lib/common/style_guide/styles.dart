@@ -1,7 +1,7 @@
 part of 'style_guide.dart';
 
-class AllStyles {
-  AllStyles._();
+class AppTypography {
+  AppTypography._();
 
   static const String fontFamilyUI = 'BalooBhaijaan2';
   static const String fontFamilyUISecondary = 'Plus Jakarta Sans';

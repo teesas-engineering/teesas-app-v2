@@ -1,79 +1,73 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/theme/app_theme.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
 
-enum ButtonType {
-  primary,
-  secondary,
-}
+enum ButtonType { primary, secondary }
 
 extension ButtonTypeExtension on ButtonType {
-  Color getButtonColor(BuildContext context,{Color? buttonColor}) {
-    final appColors = context.appColors;
+  Color getButtonColor(BuildContext context, {Color? buttonColor}) {
     switch (this) {
       case ButtonType.primary:
-        return appColors.bgSecondary;
+        return AppColors.bgBrandSecondaryLight;
       case ButtonType.secondary:
         return Colors.transparent;
     }
   }
 
   Color getTextColor(BuildContext context) {
-    final appColors = context.appColors;
     switch (this) {
       case ButtonType.primary:
-        return appColors.textButtonPrimary;
+        return AppColors.textButtonPrimary;
       case ButtonType.secondary:
-        return appColors.textButtonSecondary;
+        return AppColors.textButtonSecondary;
     }
   }
 
   Color getIconColor(BuildContext context) {
-    final appColors = context.appColors;
     switch (this) {
       case ButtonType.primary:
       case ButtonType.secondary:
-        return appColors.iconsButtonSecondary;
+        return AppColors.iconsButtonSecondary;
     }
   }
 
   Color getSplashColor(BuildContext context) {
-    final appColors = context.appColors;
     switch (this) {
       case ButtonType.primary:
-        return appColors.bgButtonPrimarySplash;
+        return AppColors.bgButtonPrimarySplash;
       case ButtonType.secondary:
-        return appColors.bgButtonSecondarySplash;
+        return AppColors.bgButtonSecondarySplash;
     }
   }
 
   TextStyle getButtonTextStyle(BuildContext context) {
-    final appStyles = context.appStyles;
     switch (this) {
       case ButtonType.primary:
       case ButtonType.secondary:
-        return appStyles.titleMedium.copyWith(fontSize: 18);
+        return AppTypography.titleMedium.copyWith(fontSize: 18);
     }
   }
 
   Color getDisabledButtonColor(BuildContext context) {
-    final appColors = context.appColors;
     switch (this) {
       case ButtonType.primary:
-        return appColors.bgButtonDisabled;
+        return AppColors.bgButtonDisabled;
       case ButtonType.secondary:
         return Colors.transparent;
     }
   }
 
   Border? getBorder(BuildContext context, {Color? borderColor}) {
-    final appColors = context.appColors;
     if (this == ButtonType.secondary) {
-      return Border.all(color: borderColor??appColors.borderButtonSecondary,width: .25);
+      return Border.all(
+        color: borderColor ?? AppColors.borderButtonSecondary,
+        width: .25,
+      );
     }
-    final otherBorder = BorderSide(color: appColors.bgButtonPrimary,width: .5);
+    final otherBorder = BorderSide(color: AppColors.bgButtonPrimary, width: .5);
     return Border(
-      bottom: BorderSide(color: appColors.bgButtonPrimary, width: 5),
+      bottom: BorderSide(color: AppColors.bgButtonPrimary, width: 5),
       top: otherBorder,
       left: otherBorder,
       right: otherBorder,

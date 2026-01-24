@@ -1,8 +1,8 @@
 1. avoid using stateful widget unless it is necessary
 2. avoid having multiple widget classes in the same file, create a new file for each widget, under the /widget folder
 3. avoid using a function component
-4. all textstyles should come from the app context.appStyles
-5. All colors should come from the context.appColors
+4. all textstyles should come from the app AppTypography
+5. All colors should come from the AppColors
 6. when creating a Modal, use the standard modal approach from the project
 7. Wrap the Modal with the BaseModalParent class
 8. All modals should be a stateless widget unless it is necessary to be otherwise

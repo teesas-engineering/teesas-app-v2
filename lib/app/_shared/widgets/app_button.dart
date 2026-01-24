@@ -7,10 +7,9 @@ import 'package:flutter/services.dart';
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
-import '../../../common/theme/app_theme.dart';
 import '../enum/button_type.dart';
 
-class AppButton extends StatelessWidget {
+class AppButton extends StatefulWidget {
   const AppButton({
     required this.text,
     required this.onPressed,
@@ -36,9 +35,13 @@ class AppButton extends StatelessWidget {
       text: text,
       onPressed: onPressed,
       isDisabled: isDisabled,
-      borderColor: negativeBorder ? AllColors.bgNegative: AllColors.bgBrandSecondary,
+      borderColor: negativeBorder
+          ? AppColors.borderNegative
+          : AppColors.bgBrandSecondary,
       buttonType: ButtonType.secondary,
-      backgroundColor:negativeBorder?AllColors.bgNegativeLight: AllColors.bgBrandSecondaryLight,
+      backgroundColor: negativeBorder
+          ? AppColors.bgNegativeLight
+          : AppColors.bgBrandSecondaryLight,
     );
   }
 
@@ -55,6 +58,13 @@ class AppButton extends StatelessWidget {
   final bool isLoading;
 
   @override
+  State<AppButton> createState() => _AppButtonState();
+}
+
+class _AppButtonState extends State<AppButton> {
+  bool _isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
     const verticalPadding = 15.0;
     const horizontalPadding = 20.0;
@@ -64,90 +74,115 @@ class AppButton extends StatelessWidget {
       horizontal: horizontalPadding,
     );
 
-    return InkWell(
-      highlightColor: Colors.transparent,
-      onTap: isDisabled || isLoading
+    final buttonColor = widget.isDisabled
+        ? widget.buttonType.getDisabledButtonColor(context)
+        : (widget.backgroundColor ??
+              widget.buttonType.getButtonColor(
+                context,
+                buttonColor: widget.backgroundColor,
+              ));
+
+    return GestureDetector(
+      onTapDown: widget.isDisabled || widget.isLoading
+          ? null
+          : (_) {
+              setState(() {
+                _isPressed = true;
+              });
+            },
+      onTapUp: widget.isDisabled || widget.isLoading
+          ? null
+          : (_) {
+              setState(() {
+                _isPressed = false;
+              });
+              unawaited(HapticFeedback.mediumImpact());
+              unawaited(widget.onPressed());
+            },
+      onTapCancel: widget.isDisabled || widget.isLoading
           ? null
           : () {
-              unawaited(HapticFeedback.mediumImpact());
-              unawaited(onPressed());
+              setState(() {
+                _isPressed = false;
+              });
             },
-      splashColor: backgroundColor ?? buttonType.getSplashColor(context),
-      borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-      child: Ink(
-        padding: padding,
-        decoration: BoxDecoration(
-          color: isDisabled
-              ? buttonType.getDisabledButtonColor(context)
-              : (backgroundColor ??
-                    buttonType.getButtonColor(
-                      context,
-                      buttonColor: backgroundColor,
-                    )),
-          borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-          border: buttonType.getBorder(context, borderColor: borderColor),
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            if (isLoading)
-              _getLoader(context)
-            else
-              Row(
-                mainAxisSize: isFullWidth ? MainAxisSize.max : MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (leadingIcon != null) ...[
-                    Icon(
-                      leadingIcon,
-                      color: isDisabled
-                          ? context.appColors.iconsButtonDisabled
-                          : buttonType.getIconColor(context),
-                      size: buttonType.getIconSize(context),
-                    ),
-                    const SizedBox(width: 8),
+      child: Transform.scale(
+        scale: _isPressed ? 0.98 : 1.0,
+        child: Container(
+          padding: padding,
+          decoration: BoxDecoration(
+            color: _isPressed ? buttonColor.withOpacity(0.9) : buttonColor,
+            borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+            border: widget.buttonType.getBorder(
+              context,
+              borderColor: widget.borderColor,
+            ),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              if (widget.isLoading)
+                _getLoader(context)
+              else
+                Row(
+                  mainAxisSize: widget.isFullWidth
+                      ? MainAxisSize.max
+                      : MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (widget.leadingIcon != null) ...[
+                      Icon(
+                        widget.leadingIcon,
+                        color: widget.isDisabled
+                            ? AppColors.iconsButtonDisabled
+                            : widget.buttonType.getIconColor(context),
+                        size: widget.buttonType.getIconSize(context),
+                      ),
+                      const SizedBox(width: 8),
+                    ],
+                    Flexible(child: _getTextWidget(context)),
+                    if (widget.trailingIcon != null) ...[
+                      const SizedBox(width: 8),
+                      Icon(
+                        widget.trailingIcon,
+                        color: widget.isDisabled
+                            ? AppColors.iconsButtonDisabled
+                            : widget.buttonType.getIconColor(context),
+                        size: widget.buttonType.getIconSize(context),
+                      ),
+                    ],
                   ],
-                  Flexible(child: _getTextWidget(context)),
-                  if (trailingIcon != null) ...[
-                    const SizedBox(width: 8),
-                    Icon(
-                      trailingIcon,
-                      color: isDisabled
-                          ? context.appColors.iconsButtonDisabled
-                          : buttonType.getIconColor(context),
-                      size: buttonType.getIconSize(context),
-                    ),
-                  ],
-                ],
-              ),
-          ],
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
 
   Widget _getTextWidget(BuildContext context) {
-    final appColors = context.appColors;
-    final textStyle = buttonType.getButtonTextStyle(context);
+    final textStyle = widget.buttonType.getButtonTextStyle(context);
 
     return Text(
-      text,
+      widget.text,
       textAlign: TextAlign.center,
       style: textStyle.copyWith(
-        fontFamily: AllStyles.balooBhaijaan,
+        fontFamily: AppTypography.balooBhaijaan,
         color:
-            textColor ??
-            (isDisabled
-                ? appColors.textButtonDisabled
-                : buttonType.getTextColor(context)),
-        fontWeight: buttonType==ButtonType.secondary?FontWeight.w400:FontWeight.w800,
-        fontSize: buttonType==ButtonType.secondary?14:16,
+            widget.textColor ??
+            (widget.isDisabled
+                ? AppColors.textButtonDisabled
+                : widget.buttonType.getTextColor(context)),
+        fontWeight: widget.buttonType == ButtonType.secondary
+            ? FontWeight.w400
+            : FontWeight.w800,
+        fontSize: widget.buttonType == ButtonType.secondary ? 14 : 16,
       ),
     );
   }
 
   Widget _getLoader(BuildContext context) {
-    final color = buttonType.getTextColor(context);
+    final color = widget.buttonType.getTextColor(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

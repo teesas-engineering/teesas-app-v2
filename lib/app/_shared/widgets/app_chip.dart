@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
@@ -24,21 +23,29 @@ class AppChip extends StatelessWidget {
       height: 52,
       padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
       decoration: BoxDecoration(
-        color: isActive ? AllColors.white : AllColors.borderPrimaryChip,
+        color: isActive ? AppColors.white : AppColors.borderPrimaryChip,
         borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
         border: isActive
-            ? const Border(bottom: BorderSide(color: AllColors.borderBrandLargeLight,width: 5))
-            : Border.all(color: AllColors.borderChip, width: 2),
+            ? const Border(
+                bottom: BorderSide(color: AppColors.borderBrandLargeLight),
+              )
+            : Border.all(color: AppColors.borderChip, width: 2),
+        boxShadow: const [
+          BoxShadow(
+            color: AppColors.borderBrandLargeLight,
+            offset: Offset(0, 4),
+          ),
+        ],
       ),
       child: Row(
         children: [
           Expanded(
             child: Text(
               text,
-              style: AllStyles.titleSmall.copyWith(
+              style: AppTypography.titleSmall.copyWith(
                 color: isActive
-                    ? AllColors.textButtonPrimary
-                    : AllColors.textTertiary,
+                    ? AppColors.textButtonPrimary
+                    : AppColors.textTertiary,
                 fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
               ),
             ),

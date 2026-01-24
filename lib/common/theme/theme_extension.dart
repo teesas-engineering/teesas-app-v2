@@ -1,8 +1,6 @@
 part of 'app_theme.dart';
 
 extension AppThemeContext on BuildContext {
-  AppStyles get appStyles => AppTheme.of(this).appStyles(this);
-  AppColors get appColors => AppTheme.of(this).appColors(this);
   bool get isDark => MediaQuery.of(this).platformBrightness == Brightness.dark;
 
   Size get size => MediaQuery.of(this).size;

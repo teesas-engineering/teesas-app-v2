@@ -15,7 +15,7 @@ class AppRouterWrapper extends StatelessWidget {
         return FutureBuilder(
           future: preference.isLoggedIn(),
           builder: (_, state) {
-            return const SplashScreen();
+            return  SplashScreen();
           },
         );
       },

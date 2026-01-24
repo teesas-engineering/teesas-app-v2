@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../common/theme/app_theme.dart';
+import '../../../common/style_guide/colors.dart';
 
 
 class AppProgressBar extends StatefulWidget {
@@ -74,12 +74,11 @@ class _AppProgressBarState extends State<AppProgressBar>
 
   @override
   Widget build(BuildContext context) {
-    final appColorTheme = context.appColors;
     final borderRadius =
         widget.borderRadius ?? const BorderRadius.all(Radius.circular(20));
     final backgroundColor =
-        widget.backgroundColor ?? appColorTheme.borderPrimary;
-    final progressColor = widget.progressColor ?? appColorTheme.bgAccent;
+        widget.backgroundColor ?? AppColors.borderPrimary;
+    final progressColor = widget.progressColor ?? AppColors.bgAccent;
     final borderColor = widget.borderColor;
     final borderWidth = widget.borderWidth;
     final margin = widget.margin ?? const EdgeInsets.symmetric(horizontal: 10);

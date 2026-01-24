@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../common/dimens/app_dimens.dart';
-import '../../../common/theme/app_theme.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
 
 class AppInputField extends StatelessWidget {
   const AppInputField({
-     this.controller,
+    this.controller,
     super.key,
     this.hintText,
     this.labelText,
@@ -60,12 +62,9 @@ class AppInputField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appColors = context.appColors;
-    final appStyles = context.appStyles;
-
     final inputBorderRadius =
         borderRadius ?? BorderRadius.circular(Dimens.borderRadiusMin);
-    final inputBackgroundColor = backgroundColor ?? appColors.bgSecondary;
+    final inputBackgroundColor = backgroundColor ?? AppColors.bgSecondary;
     final inputPadding =
         padding ??
         const EdgeInsets.symmetric(
@@ -73,8 +72,8 @@ class AppInputField extends StatelessWidget {
           vertical: Dimens.buttonPadding,
         );
 
-    final unfocusedBorderColor = borderColor ?? appColors.borderPrimary;
-    final focusedBorder = focusedBorderColor ?? appColors.borderBrand;
+    final unfocusedBorderColor = borderColor ?? AppColors.borderPrimary;
+    final focusedBorder = focusedBorderColor ?? AppColors.borderBrand;
 
     return TextFormField(
       controller: controller,
@@ -89,15 +88,20 @@ class AppInputField extends StatelessWidget {
       onFieldSubmitted: onSubmitted,
       onTap: onTap,
       maxLines: maxLines,
+      cursorColor: AppColors.bgBrand,
       maxLength: maxLength,
       inputFormatters: inputFormatters,
       autofocus: autofocus,
-      style: appStyles.bodyLarge,
+      style: AppTypography.bodyLarge.copyWith(color: AppColors.textSecondary),
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,
-        hintStyle: appStyles.bodySmall,
-        labelStyle: appStyles.bodySmall,
+        hintStyle: AppTypography.bodySmall.copyWith(
+          color: AppColors.textTertiary,
+        ),
+        labelStyle: AppTypography.bodySmall.copyWith(
+          color: AppColors.textTertiary,
+        ),
         filled: true,
         fillColor: inputBackgroundColor,
         contentPadding: inputPadding,
@@ -115,17 +119,22 @@ class AppInputField extends StatelessWidget {
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderDisabled),
+          borderSide: BorderSide(color: AppColors.borderDisabled),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderNegative),
+          borderSide: BorderSide(color: AppColors.borderNegative),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: appColors.borderNegative),
+          borderSide: BorderSide(color: AppColors.borderNegative),
         ),
-        suffixIcon: suffixIcon,
+        suffixIcon: keyboardType == TextInputType.emailAddress
+            ? IconButton(
+                onPressed: () {},
+                icon: SvgPicture.asset(AppAssets.email, width: 16, height: 16),
+              )
+            : suffixIcon,
         prefixIcon: prefixIcon,
         counterText: '',
       ),

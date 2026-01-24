@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../../common/dimens/app_dimens.dart';
+import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
-import '../../../../common/theme/app_theme.dart';
 import '../../../../common/utils/dialog_helper.dart';
 import '../../enum/button_type.dart';
 import '../../widgets/app_button.dart';
@@ -63,9 +63,6 @@ class ConfirmationDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appStyles = context.appStyles;
-    final appColors = context.appColors;
-
     // Default values
     final dialogTitle = title ?? 'Delete User!';
     final dialogSubtitle =
@@ -93,7 +90,9 @@ class ConfirmationDialog extends StatelessWidget {
           // Title
           Text(
             dialogTitle,
-            style: appStyles.headlineMedium,
+            style: AppTypography.headlineMedium.copyWith(
+              color: AppColors.textPrimary,
+            ),
             textAlign: TextAlign.center,
           ),
 
@@ -102,7 +101,9 @@ class ConfirmationDialog extends StatelessWidget {
           // Subtitle
           Text(
             dialogSubtitle,
-            style: appStyles.bodyLarge,
+            style: AppTypography.bodyLarge.copyWith(
+              color: AppColors.textSecondary,
+            ),
             textAlign: TextAlign.center,
           ),
 
@@ -113,7 +114,8 @@ class ConfirmationDialog extends StatelessWidget {
             children: [
               // Primary button (left) - Delete button with pink background
               Expanded(
-                child: AppButton(
+                child: AppButton.secondary(
+                  negativeBorder: true,
                   onPressed: () async {
                     await onPrimaryPressed?.call();
                     if (context.mounted) {
@@ -121,9 +123,6 @@ class ConfirmationDialog extends StatelessWidget {
                     }
                   },
                   text: primaryText,
-                  buttonType: ButtonType.secondary,
-                  backgroundColor: appColors.bgNegative,
-                  textColor: appColors.textInvert,
                 ),
               ),
 

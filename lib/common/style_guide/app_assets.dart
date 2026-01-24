@@ -24,4 +24,7 @@ class AppAssets {
   static const notificationIcon = '${_icons}notification.svg';
   static const radioUnChecked = '${_icons}radio-unchecked.svg';
   static const radioChecked = '${_icons}radio-checked.svg';
+  static const nigerianFlag = '${_icons}ngn.svg';
+  static const maleStudent = '${_images}male-student.png';
+  static const femaleStudent = '${_images}female-student.png';
 }

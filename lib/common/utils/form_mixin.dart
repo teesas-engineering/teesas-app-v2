@@ -36,8 +36,9 @@ mixin FormMixin {
     if (value?.trim().isEmpty ?? true) {
       return 'This field is required';
     }
-    final emailRegex =
-    RegExp(r"^[\w!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$");
+    final emailRegex = RegExp(
+      r"^[\w!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$",
+    );
     if (!emailRegex.hasMatch(value!)) {
       return 'Please enter a valid email';
     }
@@ -65,6 +66,19 @@ mixin FormMixin {
       return false;
     }
     return RegExp(r'^\d+$').hasMatch(input);
+  }
+
+  /// Validates phone number format.
+  String? phoneValid(String? value) {
+    if (value?.trim().isEmpty ?? true) {
+      return 'This field is required';
+    }
+    // Nigerian phone number validation (10-11 digits after country code)
+    final phoneRegex = RegExp(r'^\+?234[0-9]{10}$|^0?[0-9]{10}$');
+    if (!phoneRegex.hasMatch(value!.replaceAll(RegExp(r'[\s-]'), ''))) {
+      return 'Please enter a valid phone number';
+    }
+    return null;
   }
 
   /// Validates and saves form on submit.

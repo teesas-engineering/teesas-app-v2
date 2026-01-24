@@ -19,32 +19,36 @@ class AppSecondaryChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      curve: Curves.easeInOut,
-      height: 50,
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      decoration: BoxDecoration(
-        color: AllColors.bgSecondary,
-        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
-        border: Border.all(color: AllColors.borderTertiary, width: .5),
-      ),
-      duration: const Duration(milliseconds: 800),
-      child: Row(
-        children: [
-          SvgPicture.asset(
-            isActive ? AppAssets.radioChecked : AppAssets.radioUnChecked,
-            width: 16,
-            height: 16,
-          ),
-          const SizedBox(width: 8),
-          Text(
-            text,
-            style: AllStyles.titleSmall.copyWith(
-              color: AllColors.textButtonSecondary,
-              fontWeight: FontWeight.w400,
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        curve: Curves.easeInOut,
+
+        height: 50,
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          color: AppColors.bgSecondary,
+          borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
+          border: Border.all(color: AppColors.borderTertiary, width: .5),
+        ),
+        duration: const Duration(milliseconds: 800),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              isActive ? AppAssets.radioChecked : AppAssets.radioUnChecked,
+              width: 16,
+              height: 16,
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Text(
+              text,
+              style: AppTypography.titleSmall.copyWith(
+                color: AppColors.textButtonSecondary,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

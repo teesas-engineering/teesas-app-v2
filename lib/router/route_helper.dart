@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,6 +16,22 @@ class RouteHelper {
 
   void showSplashScreen() {
     mainRouter.router.go(MainRouter.splashScreen);
+  }
+
+  void showOnboardingRoot({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.onboardingRoot);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.onboardingRoot);
+    }
+  }
+
+  void showLoginScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.loginScreen);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.loginScreen);
+    }
   }
 
   OverlayEntry showOverlay(Widget child, BuildContext context) {

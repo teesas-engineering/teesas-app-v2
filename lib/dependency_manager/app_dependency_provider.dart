@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../app/onboarding/presentation/stores/onboarding_store.dart';
+import '../dependency_manager/injectable.dart';
+import '../router/route_helper.dart';
 
 class AppDependencyProvider extends StatelessWidget {
   const AppDependencyProvider({required this.child, super.key});
@@ -9,9 +12,13 @@ class AppDependencyProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return child;
     return MultiProvider(
       providers: [
+        Provider<OnboardingStore>(
+          create: (_) => OnboardingStore(),
+          dispose: (_, store) => store.dispose(),
+        ),
+        Provider<RouteHelper>(create: (_) => getIt<RouteHelper>()),
       ],
       child: child,
     );
