@@ -1,9 +1,12 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../common/utils/api_result.dart';
 import '../../../../common/utils/api_result_wrapper.dart';
 import '../../data/dto/login_dto.dart';
 import '../../data/model/login_response_model.dart';
 import '../../data/source/auth_source.dart';
 
+@lazySingleton
 class AuthRepository {
   AuthRepository(this._source);
 
