@@ -7,9 +7,8 @@ class AppTypography {
   static const String fontFamilyUISecondary = 'Plus Jakarta Sans';
   static const String balooBhaijaan = 'BalooBhaijaan2';
 
-
   static const displayLarge = TextStyle(
-    fontSize: 57, 
+    fontSize: 57,
     fontWeight: FontWeight.w800, // ExtraBold for impact
     height: 1.12, // 64/57
     letterSpacing: -0.25,
@@ -132,5 +131,4 @@ class AppTypography {
     letterSpacing: 0.5,
     fontFamily: fontFamilyUI,
   );
-
 }

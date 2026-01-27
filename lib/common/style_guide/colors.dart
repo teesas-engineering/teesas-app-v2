@@ -82,6 +82,8 @@ class AppColors {
   static const iconsAccentIndigo = Color(0xFF4F46E5);
   static const iconsAccentSage = Color(0xFF16A34A);
   static const iconsAccentMulberry = Color(0xFFBE185D);
+  static const iconsAccentBlue = Color(0xFF3A94E7);
+  static const iconsAccentOrange = Color(0xFFE55438);
 
   // ===========================================================================
   // BORDER COLORS
@@ -105,6 +107,7 @@ class AppColors {
   static const borderPositive = Color(0xFF16A34A);
   static const borderInfo = Color(0xFF0284C7);
   static const borderDisabled = Color(0xFFF1F5F9);
+  static const dividerColor = Color(0xFFC7C7C7);
 
   // Helpers
   static Color black = const Color(0xFF000000);
