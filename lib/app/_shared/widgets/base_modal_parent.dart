@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/extensions/num_extension.dart';
 import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
 class BaseModalParent extends StatelessWidget {
   const BaseModalParent({required this.child, super.key,this.title,this.description,this.showBack=true});
   final String? title;
@@ -36,13 +37,18 @@ class BaseModalParent extends StatelessWidget {
                     children: [
                       Text(
                         title!,
-                        style: const TextStyle(fontSize: 18, color: AppColors.textPrimary,fontWeight: FontWeight.bold),
+                        style: AppTypography.titleLarge.copyWith(
+                          color: AppColors.textPrimary,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       if(description!=null)
                      ...[ 8.height,
                       Text(
                         description!,
-                        style: const TextStyle(fontSize: 14, color: AppColors.textModalSecondary),
+                        style: AppTypography.bodyMedium.copyWith(
+                          color: AppColors.textModalSecondary,
+                        ),
                       )],
                     ],
                   )),
@@ -61,9 +67,10 @@ class BaseModalParent extends StatelessWidget {
               16.height,
               const Divider(thickness: 1,color: AppColors.c7Grey,),16.height
             ],
-          child
+          Expanded(child: child)
         ],
       )
     );
   }
 }
+

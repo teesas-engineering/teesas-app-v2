@@ -11,6 +11,7 @@ import '../../../_shared/enum/gender.dart';
 import '../../../_shared/widgets/clickable_drop_down_button.dart';
 import '../../../_shared/widgets/user_avatar.dart';
 import '../modal/account_modal.dart';
+import '../modal/category_selection_modal.dart';
 import 'app_bar_action.dart';
 
 class DashboardAppBar extends StatefulWidget implements PreferredSizeWidget {
@@ -82,7 +83,9 @@ class _DashboardAppBarState extends State<DashboardAppBar> {
                 ),
               ),
               4.width,
-              ClickableDropdownButton(text: 'Grade 1', onTap: () {}),
+              ClickableDropdownButton(text: 'Grade 1', onTap: () {
+                CategorySelectionModal.show(context);
+              }),
             ],
           ),
         ],
