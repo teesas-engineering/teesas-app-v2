@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
 import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../../../dependency_manager/injectable.dart';
+import '../../../../router/route_helper.dart';
 import '../../../_shared/widgets/app_card.dart';
 import '../../../_shared/widgets/top_stats_header.dart';
 
@@ -26,7 +29,7 @@ class MoreTab extends StatelessWidget {
               _MenuItem(
                 icon: AppAssets.icAccounts,
                 title: 'Manage Accounts',
-                onTap: () {},
+                onTap: () => getIt<RouteHelper>().showManageAccounts(),
               ),
               _MenuItem(
                 icon: AppAssets.icReferAndEarn,
@@ -167,6 +170,7 @@ class _MenuItem extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 12),
       child: GestureDetector(
         onTap: onTap,
+        behavior: HitTestBehavior.opaque,
         child: AppCard.tertiary(
           backgroundColor: AppColors.white,
           child: Row(

@@ -44,6 +44,10 @@ class RouteHelper {
     }
   }
 
+  void showManageAccounts() {
+    unawaited(mainRouter.router.pushNamed(MainRouter.manageAccounts));
+  }
+
   OverlayEntry showOverlay(Widget child, BuildContext context) {
     final overlay = OverlayEntry(builder: (context) => child);
     final navigator = Navigator.of(context);

@@ -33,6 +33,7 @@ class AppAssets {
   static const String icPoints = '$_svgsDir/ic_points.svg';
   static const String icStreak = '$_svgsDir/ic_streak.svg';
   static const String icNotification = '$_svgsDir/ic_notification.svg';
+  static const String icArrowBack = '$_svgsDir/ic_arrow_back.svg';
 
   // PNGS
   static const String splashLogoDark = '$_pngsDir/splash_logo_dark.png';

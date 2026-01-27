@@ -11,6 +11,7 @@ class AppCard extends StatelessWidget {
     this.borderColor,
     this.hasBorder,
     this.borderRadius,
+    this.padding,
   });
 
   factory AppCard.primary({
@@ -18,11 +19,13 @@ class AppCard extends StatelessWidget {
     Color? backgroundColor,
     Color? borderColor,
     double? borderBottomWidth,
+    EdgeInsets? padding,
   }) {
     return AppCard._(
       backgroundColor: backgroundColor,
       borderBottomWidth: borderBottomWidth ?? 5,
       borderColor: borderColor,
+      padding: padding,
       child: child,
     );
   }
@@ -48,12 +51,13 @@ class AppCard extends StatelessWidget {
   final double? borderBottomWidth;
   final bool? hasBorder;
   final double? borderRadius;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
     final allBorder = BorderSide(color: borderColor ?? AppColors.cardBorder);
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: padding ?? const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.white,
         borderRadius: BorderRadius.circular(
