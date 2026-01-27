@@ -1,8 +1,10 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-import 'app_router_wrapper.dart';
+
+import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
+import 'app_router_wrapper.dart';
 
 @singleton
 class MainRouter {
@@ -17,6 +19,7 @@ class MainRouter {
   static const String onboardingScreen = '/onboarding';
   static const String onboardingRoot = '/onboarding-root';
   static const String learning = '/learning';
+  static const String homeShell = '/home-shell';
 
   GoRouter get router => _router;
 
@@ -38,6 +41,11 @@ class MainRouter {
         path: loginScreen,
         name: loginScreen,
         builder: (context, state) => const LoginScreen(),
+      ),
+      GoRoute(
+        path: homeShell,
+        name: homeShell,
+        builder: (context, state) => const HomeShellScreen(),
       ),
     ],
   );

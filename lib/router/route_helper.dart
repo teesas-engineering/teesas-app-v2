@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -31,6 +33,14 @@ class RouteHelper {
       mainRouter.router.replaceNamed(MainRouter.loginScreen);
     } else {
       mainRouter.router.pushNamed(MainRouter.loginScreen);
+    }
+  }
+
+  void showHomeShell({bool replace = false}) {
+    if (replace) {
+      unawaited(mainRouter.router.replaceNamed(MainRouter.homeShell));
+    } else {
+      unawaited(mainRouter.router.pushNamed(MainRouter.homeShell));
     }
   }
 
