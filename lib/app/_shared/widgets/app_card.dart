@@ -9,6 +9,8 @@ class AppCard extends StatelessWidget {
     this.backgroundColor,
     this.borderBottomWidth,
     this.borderColor,
+    this.hasBorder,
+    this.borderRadius,
   });
 
   factory AppCard.primary({
@@ -19,7 +21,7 @@ class AppCard extends StatelessWidget {
   }) {
     return AppCard._(
       backgroundColor: backgroundColor,
-      borderBottomWidth: borderBottomWidth??5,
+      borderBottomWidth: borderBottomWidth ?? 5,
       borderColor: borderColor,
       child: child,
     );
@@ -29,27 +31,42 @@ class AppCard extends StatelessWidget {
     return AppCard._(backgroundColor: backgroundColor, child: child);
   }
 
+  factory AppCard.tertiary({required Widget child, Color? backgroundColor}) {
+    return AppCard._(
+      backgroundColor: backgroundColor,
+      borderBottomWidth: 1,
+      borderColor: AppColors.cardBorder,
+      hasBorder: false,
+      borderRadius: 12,
+      child: child,
+    );
+  }
+
   final Widget child;
   final Color? borderColor;
   final Color? backgroundColor;
   final double? borderBottomWidth;
+  final bool? hasBorder;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
-    final allBorder = BorderSide(
-      color: borderColor ?? AppColors.cardBorder,
-    );
+    final allBorder = BorderSide(color: borderColor ?? AppColors.cardBorder);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.white,
-        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
-        border: Border(
-          top: allBorder,
-          left: allBorder,
-          right: allBorder,
-          bottom: allBorder.copyWith(width: borderBottomWidth),
+        borderRadius: BorderRadius.circular(
+          borderRadius ?? Dimens.defaultBorderRadius / 2,
         ),
+        border: hasBorder == false
+            ? null
+            : Border(
+                top: allBorder,
+                left: allBorder,
+                right: allBorder,
+                bottom: allBorder.copyWith(width: borderBottomWidth),
+              ),
       ),
       child: child,
     );
