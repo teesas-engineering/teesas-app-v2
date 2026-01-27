@@ -25,6 +25,11 @@ class AppAssets {
   static const radioUnChecked = '${_icons}radio-unchecked.svg';
   static const radioChecked = '${_icons}radio-checked.svg';
   static const nigerianFlag = '${_icons}ngn.svg';
-  static const maleStudent = '${_images}male-student.png';
-  static const femaleStudent = '${_images}female-student.png';
+  static const maleStudent = '${_images}male_student.png';
+  static const femaleStudent = '${_images}female_student.png';
+  static const moreIcon = '${_icons}more.svg';
+  static const liveclassesIcon = '${_icons}liveclasses.svg';
+  static const leaderboard = '${_icons}leaderboard.svg';
+  static const homeIcon = '${_icons}home.svg';
+  static const favorites = '${_icons}favorites.svg';
 }

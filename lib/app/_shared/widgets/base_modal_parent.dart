@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/constants/app_constants.dart';
+import '../../../common/dimens/app_dimens.dart';
 import '../../../common/extensions/num_extension.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
+import '../../../common/utils/modal_helper.dart';
 class BaseModalParent extends StatelessWidget {
-  const BaseModalParent({super.key,required this.child,this.title,this.showBack=true});
+  const BaseModalParent({required this.child, super.key,this.title,this.description,this.showBack=true});
   final String? title;
 
+  final String? description;
   final bool showBack;
   final Widget child;
   @override
@@ -18,15 +24,47 @@ class BaseModalParent extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 20),
+      padding:  const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
           10.height,
+          if(title!=null)
+            ...[
+              Row(
+                children: [
+                  Expanded(child: Column(
+                    children: [
+                      Text(
+                        title!,
+                        style: const TextStyle(fontSize: 18, color: AppColors.textPrimary,fontWeight: FontWeight.bold),
+                      ),
+                      if(description!=null)
+                     ...[ 8.height,
+                      Text(
+                        description!,
+                        style: const TextStyle(fontSize: 14, color: AppColors.textModalSecondary),
+                      )],
+                    ],
+                  )),
+                  if(showBack)
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child:  const Icon(
+                        color: AppColors.iconsPrimary,
+                        Icons.cancel_outlined,
+                      ),
+                    )
+                ],
+              ),
+              20.height
+            ],
           child
         ],
-      ),
+      )
     );
   }
 }

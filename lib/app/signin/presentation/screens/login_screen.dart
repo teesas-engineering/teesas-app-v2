@@ -11,7 +11,6 @@ import '../../../_shared/widgets/app_bar.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/password_input_field.dart';
 import '../../../_shared/widgets/phone_email_input_field.dart';
-import '../../../onboarding/presentation/widgets/footer.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -65,7 +64,7 @@ class LoginScreen extends StatelessWidget {
                     Center(
                       child: Text.rich(
                         TextSpan(
-                          text: 'I don\'t have an account? ',
+                          text: "I don't have an account? ",
                           style: AppTypography.bodyLarge.copyWith(
                             color: AppColors.textButtonSecondary,
                           ),

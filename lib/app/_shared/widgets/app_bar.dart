@@ -11,10 +11,12 @@ class AppAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.leading,
     this.onLeadingIconPressed,
     this.actions = const [],
+    this.centerTitle=false,
     this.showLeadingIcon = true,
     super.key,
   });
 
+  final bool centerTitle;
   final String title;
   final Widget? titleWidget;
   final Widget? leading;
@@ -34,7 +36,7 @@ class _AppAppBarState extends State<AppAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      centerTitle: false,
+      centerTitle: widget.centerTitle,
       backgroundColor: AppColors.white,
       title: Row(
         children: [

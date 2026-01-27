@@ -38,10 +38,12 @@ class AppColors {
   // Light Theme Text
   static const textPrimary = Color(0xFF252526); // Deep Navy
   static const textSecondary = Color(0xFF828282); // Slate
+  static const textModalSecondary = Color(0xff0A0A0A);
   static const textTertiary = Color(0xFFA7A7A7); // Muted
   static const textBrand = Color(0xFF76BB08);
   static const textBrandDark = Color(0xFF03492A); //#03492A
-  static const textInvert = Color(0xFFFFFFFF);
+  static const textInvert = Color(0xFFFFFFFF); //#03492A
+  static const textSecondaryActive = Color(0xFF98A2B3);
 
   static const textButtonPrimary = Color(0xFF1E1C1C);
   static const textButtonSecondary = Color(0xFF171818);
@@ -58,7 +60,7 @@ class AppColors {
   // ===========================================================================
 
   // Light Theme Icons
-  static const iconsPrimary = Color(0xFF0F172A);
+  static const iconsPrimary = Color(0xFF808080);
   static const iconsSecondary = Color(0xFF475569);
   static const iconsTertiary = Color(0xFF94A3B8);
   static const iconsBrand = Color(0xFF16A34A);
@@ -105,6 +107,11 @@ class AppColors {
   static const borderPositive = Color(0xFF16A34A);
   static const borderInfo = Color(0xFF0284C7);
   static const borderDisabled = Color(0xFFF1F5F9);
+
+  static const homeCardBackgroundColor2 = Color(0xFFF5C78D);
+  static const homeCardBackgroundColor1 = Color(0xFF60A9FF);
+  static const homeCardBorderColor2 = Color(0xFFFFF2E2);
+  static const homeCardBorderColor1 = Color(0xFFF5F9FB);
 
   // Helpers
   static Color black = const Color(0xFF000000);
