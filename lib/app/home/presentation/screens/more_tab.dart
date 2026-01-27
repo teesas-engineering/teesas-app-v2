@@ -180,16 +180,7 @@ class _MenuItem extends StatelessWidget {
                 width: 16,
               ),
               12.width,
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.textPrimary,
-                  ),
-                ),
-              ),
+              Expanded(child: Text(title, style: AppTypography.bodyMedium)),
               const Icon(
                 Icons.arrow_forward_ios,
                 size: 16,
