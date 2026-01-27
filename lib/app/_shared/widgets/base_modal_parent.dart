@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/constants/app_constants.dart';
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/extensions/num_extension.dart';
 import '../../../common/style_guide/colors.dart';
-import '../../../common/style_guide/style_guide.dart';
-import '../../../common/utils/modal_helper.dart';
 class BaseModalParent extends StatelessWidget {
   const BaseModalParent({required this.child, super.key,this.title,this.description,this.showBack=true});
   final String? title;
@@ -35,6 +32,7 @@ class BaseModalParent extends StatelessWidget {
               Row(
                 children: [
                   Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title!,
@@ -60,7 +58,8 @@ class BaseModalParent extends StatelessWidget {
                     )
                 ],
               ),
-              20.height
+              16.height,
+              const Divider(thickness: 1,color: AppColors.c7Grey,),16.height
             ],
           child
         ],

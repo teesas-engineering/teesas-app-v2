@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'app/_shared/enum/button_type.dart';
 import 'app/_shared/screen/otp_screen.dart';
 import 'app/_shared/widgets/app_button.dart';
 import 'app/_shared/widgets/app_card.dart';
@@ -11,7 +9,6 @@ import 'app/_shared/widgets/password_input_field.dart';
 import 'app/_shared/widgets/phone_email_input_field.dart';
 import 'app/_shared/widgets/secondary_chip.dart';
 import 'app/dashboard/presentation/screens/dashboard_screen.dart';
-import 'app/onboarding/presentation/screens/welcome_screen.dart';
 import 'common/extensions/num_extension.dart';
 import 'common/style_guide/colors.dart';
 

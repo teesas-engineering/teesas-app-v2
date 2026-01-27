@@ -9,6 +9,7 @@ class AppCard extends StatelessWidget {
     this.backgroundColor,
     this.borderBottomWidth,
     this.borderColor,
+    this.padding,
   });
 
   factory AppCard.primary({
@@ -19,26 +20,33 @@ class AppCard extends StatelessWidget {
   }) {
     return AppCard._(
       backgroundColor: backgroundColor,
-      borderBottomWidth: borderBottomWidth??5,
+      borderBottomWidth: borderBottomWidth ?? 5,
       borderColor: borderColor,
       child: child,
     );
   }
 
-  factory AppCard.secondary({required Widget child, Color? backgroundColor}) {
-    return AppCard._(backgroundColor: backgroundColor, child: child);
+  factory AppCard.secondary({
+    required Widget child,
+    Color? backgroundColor,
+    EdgeInsets? padding,
+  }) {
+    return AppCard._(
+      backgroundColor: backgroundColor,
+      padding: padding,
+      child: child,
+    );
   }
 
   final Widget child;
   final Color? borderColor;
   final Color? backgroundColor;
   final double? borderBottomWidth;
+  final EdgeInsets? padding;
 
   @override
   Widget build(BuildContext context) {
-    final allBorder = BorderSide(
-      color: borderColor ?? AppColors.cardBorder,
-    );
+    final allBorder = BorderSide(color: borderColor ?? AppColors.cardBorder);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(

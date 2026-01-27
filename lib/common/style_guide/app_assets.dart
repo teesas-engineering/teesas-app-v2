@@ -5,7 +5,7 @@ class AppAssets {
 
   static const _icons = 'assets/svgs/';
   static const _images = 'assets/images/';
-  static const email = '${_icons}email.svg'; //icon example
+  static const email = '${_icons}email.svg';
   static const splashLogoDark =
       '${_images}splash_logo_dark.png'; //image example
   static const onboardingImage1 = '${_images}onboarding-image1.png';
@@ -15,7 +15,11 @@ class AppAssets {
   static const onboardingImage4 = '${_images}onboarding-image3.png';
   static const onboardingImage5 = '${_images}onboarding-image2.png';
   static const successImage = '${_images}success-image.png';
+  static const eBook = '${_images}e-book.png';
   static const emailImage = '${_images}email-image.png';
+  static const banner1 = '${_images}banner_1.png';
+  static const banner2 = '${_images}banner_2.png';
+  static const banner3 = '${_images}banner_3.png';
   static const welcomeImage = '${_images}welcome-image.png';
   static const videoImage = '${_images}video-image.png';
   static const testImage = '${_images}test-image.png';
@@ -32,4 +36,10 @@ class AppAssets {
   static const leaderboard = '${_icons}leaderboard.svg';
   static const homeIcon = '${_icons}home.svg';
   static const favorites = '${_icons}favorites.svg';
+  static const arrowDown = '${_icons}arrow-down.svg';
+  static const subscriptionBadge = '${_images}subscription-badge.png';
+  static const math = '${_images}math.png';
+  static const clipVideo = '${_images}clip-video.png';
+  static const thumbnailSample = '${_images}thumbnail-sample.png';
+  static const shareIcon = '${_images}shareIcon.png';
 }

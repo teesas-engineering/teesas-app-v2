@@ -12,6 +12,7 @@ class AppColors {
   static const bgInvert = Color(0xFF0F172A); // Space Navy (Text on Light)
 
   static const bgButtonPrimary = Color(0xFF16A34A);
+  static const bgButtonSecondary = Color(0xFFF4FBF7);
   static const buttonTextSecondary = Color(0xFF171818);
   static const bgButtonDisabled = Color(0xFFCBD5E1);
   static const bgButtonPrimarySplash = Color(0xFF15803D);
@@ -50,6 +51,7 @@ class AppColors {
   static const textButtonDisabled = Color(0xFF94A3B8);
 
   static const textNegative = Color(0xFFDC2626);
+  static const c7Grey = Color(0xC7C7C7C7);
   static const textWarning = Color(0xFFD97706);
   static const textPositive = Color(0xFF16A34A);
   static const textInfo = Color(0xFF0284C7);
