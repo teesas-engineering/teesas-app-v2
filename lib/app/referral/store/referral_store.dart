@@ -78,4 +78,35 @@ abstract class _ReferralStore with Store {
 
   @action
   Future<void> inviteFriend() async {}
+
+  @observable
+  String withdrawAccountNumber = '';
+
+  @observable
+  String withdrawBankName = '';
+
+  @observable
+  String withdrawAccountName = 'James Aderibigbe'; // Mocked auto-fill
+
+  @computed
+  bool get canWithdraw =>
+      withdrawAccountNumber.isNotEmpty && withdrawBankName.isNotEmpty;
+
+  @action
+  void setWithdrawAccountNumber(String value) {
+    withdrawAccountNumber = value;
+  }
+
+  @action
+  void setWithdrawBankName(String? value) {
+    if (value != null) {
+      withdrawBankName = value;
+    }
+  }
+
+  @action
+  Future<void> withdrawEarnings() async {
+    // API call simulation
+    await Future.delayed(const Duration(seconds: 1));
+  }
 }

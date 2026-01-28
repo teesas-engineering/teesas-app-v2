@@ -124,7 +124,8 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                         totalEarnings: _store.totalEarnings,
                         currentEarnings: _store.currentEarnings,
                         totalWithdrawal: _store.totalWithdrawal,
-                        onWithdraw: () {},
+                        onWithdraw: () =>
+                            context.push(MainRouter.withdrawEarnings),
                       ),
                     ),
                     SizedBox(

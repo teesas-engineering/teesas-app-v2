@@ -6,6 +6,8 @@ import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/referral/presentation/screens/invite_list_screen.dart';
 import '../app/referral/presentation/screens/refer_and_earn_screen.dart';
+import '../app/referral/presentation/screens/withdraw_earnings_screen.dart';
+import '../app/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -26,6 +28,8 @@ class MainRouter {
   static const String manageAccounts = '/manage-accounts';
   static const String referAndEarn = '/refer-and-earn';
   static const String inviteList = '/refer-and-earn/invite-list';
+  static const String withdrawEarnings = '/refer-and-earn/withdraw';
+  static const String withdrawSuccess = '/refer-and-earn/withdraw/success';
 
   GoRouter get router => _router;
 
@@ -67,6 +71,16 @@ class MainRouter {
         path: inviteList,
         name: inviteList,
         builder: (context, state) => const InviteListScreen(),
+      ),
+      GoRoute(
+        path: withdrawEarnings,
+        name: withdrawEarnings,
+        builder: (context, state) => const WithdrawEarningsScreen(),
+      ),
+      GoRoute(
+        path: withdrawSuccess,
+        name: withdrawSuccess,
+        builder: (context, state) => const WithdrawSuccessScreen(),
       ),
     ],
   );
