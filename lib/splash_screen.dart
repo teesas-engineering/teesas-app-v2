@@ -11,7 +11,6 @@ import 'app/_shared/widgets/password_input_field.dart';
 import 'app/_shared/widgets/phone_email_input_field.dart';
 import 'app/_shared/widgets/secondary_chip.dart';
 import 'app/onboarding/presentation/screens/welcome_screen.dart';
-import 'app/referral/presentation/screens/refer_and_earn_screen.dart';
 import 'common/extensions/num_extension.dart';
 import 'common/style_guide/colors.dart';
 
@@ -21,7 +20,7 @@ class SplashScreen extends StatelessWidget {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return ReferAndEarnScreen();
+    return const WelcomeScreen();
     return OtpScreen(
       controller: controller,
       onResend: () {},

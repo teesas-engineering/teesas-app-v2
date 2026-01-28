@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../../dependency_manager/injectable.dart';
+import '../../../../router/main_router.dart';
 import '../../../../router/route_helper.dart';
 import '../../../_shared/widgets/app_card.dart';
+import '../../../_shared/widgets/invite_friends_sheet.dart';
 import '../../../_shared/widgets/top_stats_header.dart';
 
 class MoreTab extends StatelessWidget {
@@ -34,7 +37,7 @@ class MoreTab extends StatelessWidget {
               _MenuItem(
                 icon: AppAssets.icReferAndEarn,
                 title: 'Refer & Earn',
-                onTap: () {},
+                onTap: () => context.push(MainRouter.referAndEarn),
               ),
               _MenuItem(
                 icon: AppAssets.icSubscriptions,
@@ -61,7 +64,15 @@ class MoreTab extends StatelessWidget {
               _MenuItem(
                 icon: AppAssets.icShare,
                 title: 'Share The App',
-                onTap: () {},
+                onTap: () async {
+                  await showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) =>
+                        const InviteFriendsSheet(referralCode: 'OJUY\$%TE'),
+                  );
+                },
               ),
               8.height,
               const Divider(height: 1, color: AppColors.dividerColor),
