@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/extensions/num_extension.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
+
 class DraggableSheet extends StatefulWidget {
   final double? initialChildSize;
-  final Widget Function(ScrollController scrollController) headerWidget;
+  final String? description;
+  final String? title;
+  final bool showBack;
+  final Widget? cta;
   final Widget Function(ScrollController scrollController) child;
+
   const DraggableSheet({
     super.key,
     this.initialChildSize = 0.7,
     required this.child,
-    required this.headerWidget,
+
+    this.title,
+    this.description,
+    this.showBack = true,
+    this.cta,
   });
 
   @override
@@ -34,28 +46,87 @@ class _DraggableSheetState extends State<DraggableSheet> {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: sheetSize,
-      builder: (BuildContext context, double value, Widget? child) {
+      builder: (context, value, child) {
         return DraggableScrollableSheet(
-            shouldCloseOnMinExtent: false,
-            initialChildSize: value,
-            maxChildSize: 0.9,
-            expand: true,
-            minChildSize: .2,
-            builder: (BuildContext context, scrollController) {
-              return Container(
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(16),
-                        topLeft: Radius.circular(16))),
-                child: Column(
-                  children: [
-                    widget.headerWidget(scrollController),
-                    Expanded(child: widget.child(scrollController))
-                  ],
+          initialChildSize: value,
+          maxChildSize: 0.95,
+          minChildSize: .3,
+          builder: (context, scrollController) {
+            return DecoratedBox(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20),
+                  topLeft: Radius.circular(20),
                 ),
-              );
-            });
+              ),
+              child: Column(
+                children: [
+                  if (widget.title != null) ...[
+                    Padding(
+                      padding: const EdgeInsetsGeometry.symmetric(
+                        horizontal: 24,
+                        vertical: 16,
+                      ),
+
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.title!,
+                                  style: AppTypography.titleLarge.copyWith(
+                                    color: AppColors.textPrimary,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                if (widget.description != null) ...[
+                                  8.height,
+                                  Text(
+                                    widget.description!,
+                                    style: AppTypography.bodyMedium.copyWith(
+                                      color: AppColors.textModalSecondary,
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            ),
+                          ),
+                          if (widget.showBack)
+                            InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Icon(
+                                color: AppColors.iconsPrimary,
+                                Icons.cancel_outlined,
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                    16.height,
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Divider(thickness: 1, color: AppColors.c7Grey),
+                    ),
+                    16.height,
+                  ],
+                  Expanded(child: widget.child(scrollController)),
+                  if (widget.cta != null) ...[
+                    16.height,
+                    widget.cta!,
+                    24.height,
+                  ],
+                ],
+              ),
+            );
+          },
+        );
       },
     );
   }

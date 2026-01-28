@@ -6,7 +6,6 @@ import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
-import '../../../_shared/widgets/app_card.dart';
 
 class ContinueWatching extends StatelessWidget {
   const ContinueWatching({super.key});

@@ -11,8 +11,9 @@ class AppAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.leading,
     this.onLeadingIconPressed,
     this.actions = const [],
-    this.centerTitle=false,
+    this.centerTitle = false,
     this.showLeadingIcon = true,
+    this.bottom,
     super.key,
   });
 
@@ -23,6 +24,7 @@ class AppAppBar extends StatefulWidget implements PreferredSizeWidget {
   final void Function()? onLeadingIconPressed;
   final List<Widget> actions;
   final bool showLeadingIcon;
+  final PreferredSizeWidget? bottom;
 
   @override
   State<AppAppBar> createState() => _AppAppBarState();
@@ -38,7 +40,9 @@ class _AppAppBarState extends State<AppAppBar> {
       automaticallyImplyLeading: false,
       centerTitle: widget.centerTitle,
       backgroundColor: AppColors.white,
+      bottom: widget.bottom,
       title: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (!widget.showLeadingIcon) const SizedBox(width: 20),
           if (widget.titleWidget != null)
@@ -52,25 +56,18 @@ class _AppAppBarState extends State<AppAppBar> {
             ),
         ],
       ),
-
       leading: widget.showLeadingIcon
-          ? widget.leading ?? IconButton(
-              icon: const Icon(
-                Icons.arrow_back,
-                color: AppColors.iconsPrimary,
-              ),
-              onPressed:
-                  widget.onLeadingIconPressed ??
-                  () => context.pop(),
-            )
+          ? widget.leading ??
+                IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: AppColors.iconsPrimary,
+                  ),
+                  onPressed: widget.onLeadingIconPressed ?? () => context.pop(),
+                )
           : null,
       actions: [
-        Row(
-          children: [
-            ...widget.actions,
-            const SizedBox(width: 8),
-          ],
-        ),
+        Row(children: [...widget.actions, const SizedBox(width: 8)]),
       ],
     );
   }
