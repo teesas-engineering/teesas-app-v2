@@ -64,7 +64,7 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
                       keyboardType: TextInputType.number,
                     ),
                     16.height,
-                    _buildBankDropdown(context),
+                    _BankDropdown(store: _store),
                     16.height,
                     Observer(
                       builder: (_) => AppInputField(
@@ -112,8 +112,15 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
       ),
     );
   }
+}
 
-  Widget _buildBankDropdown(BuildContext context) {
+class _BankDropdown extends StatelessWidget {
+  const _BankDropdown({required this.store});
+
+  final ReferralStore store;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,9 +134,9 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
-                value: _store.withdrawBankName.isEmpty
+                value: store.withdrawBankName.isEmpty
                     ? null
-                    : _store.withdrawBankName,
+                    : store.withdrawBankName,
                 isExpanded: true,
                 hint: Text(
                   'Bank Name',
@@ -155,7 +162,7 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
                       );
                     })
                     .toList(),
-                onChanged: _store.setWithdrawBankName,
+                onChanged: store.setWithdrawBankName,
               ),
             ),
           ),
