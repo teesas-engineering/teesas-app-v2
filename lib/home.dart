@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'common/constants/app_constants.dart';
 import 'common/theme/app_theme.dart';
@@ -13,12 +14,19 @@ class AppHome extends StatelessWidget {
   Widget build(BuildContext context) {
     final mainRouter = getIt.get<MainRouter>();
     return AppDependencyProvider(
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        locale: const Locale('en', 'UK'),
-        title: AppConstant.appName,
-        theme: AppTheme.of(context).lightTheme,
-        routerConfig: mainRouter.router,
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (context, child) {
+          return MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            locale: const Locale('en', 'UK'),
+            title: AppConstant.appName,
+            theme: AppTheme.of(context).lightTheme,
+            routerConfig: mainRouter.router,
+          );
+        },
       ),
     );
   }

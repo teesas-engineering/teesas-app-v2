@@ -22,6 +22,7 @@ class AppColors {
   static const bgWarning = Color(0xFFFFFBEB);
   static const bgPositive = Color(0xFFF0FDF4);
   static const bgInfo = Color(0xFFF0F9FF);
+  static const buttonBg = Color(0xFFF3F8F8);
 
   // Accents (Mapped to Career Tracks)
   static const bgAccent = Color(0xFFFF9F1C);
@@ -42,6 +43,7 @@ class AppColors {
   static const textBrand = Color(0xFF76BB08);
   static const textBrandDark = Color(0xFF03492A); //#03492A
   static const textInvert = Color(0xFFFFFFFF);
+  static const textPrimaryDark = Color(0xFF0A0A0A);
 
   static const textButtonPrimary = Color(0xFF1E1C1C);
   static const textButtonSecondary = Color(0xFF171818);
@@ -82,6 +84,8 @@ class AppColors {
   static const iconsAccentIndigo = Color(0xFF4F46E5);
   static const iconsAccentSage = Color(0xFF16A34A);
   static const iconsAccentMulberry = Color(0xFFBE185D);
+  static const iconsAccentBlue = Color(0xFF3A94E7);
+  static const iconsAccentOrange = Color(0xFFE55438);
 
   // ===========================================================================
   // BORDER COLORS
@@ -105,11 +109,12 @@ class AppColors {
   static const borderPositive = Color(0xFF16A34A);
   static const borderInfo = Color(0xFF0284C7);
   static const borderDisabled = Color(0xFFF1F5F9);
+  static const dividerColor = Color(0xFFC7C7C7);
 
   // Helpers
   static Color black = const Color(0xFF000000);
   static Color white = const Color(0xFFFFFFFF);
   static Color transparent = Colors.transparent;
-  static Color cardBorder = const Color(0xffD9E8E8);
+  static Color cardBorder = const Color(0xFFD9E8E8);
   static Color onboardingIndicatorInActive = const Color(0xFFE4E4E4);
 }
