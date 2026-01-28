@@ -30,8 +30,16 @@ class AppCard extends StatelessWidget {
     );
   }
 
-  factory AppCard.secondary({required Widget child, Color? backgroundColor}) {
-    return AppCard._(backgroundColor: backgroundColor, child: child);
+  factory AppCard.secondary({
+    required Widget child,
+    Color? backgroundColor,
+    double? borderRadius,
+  }) {
+    return AppCard._(
+      backgroundColor: backgroundColor,
+      borderRadius: borderRadius,
+      child: child,
+    );
   }
 
   factory AppCard.tertiary({required Widget child, Color? backgroundColor}) {

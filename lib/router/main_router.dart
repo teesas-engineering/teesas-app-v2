@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
+import '../app/referral/presentation/screens/refer_and_earn_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -22,6 +23,7 @@ class MainRouter {
   static const String learning = '/learning';
   static const String homeShell = '/home-shell';
   static const String manageAccounts = '/manage-accounts';
+  static const String referAndEarn = '/refer-and-earn';
 
   GoRouter get router => _router;
 
@@ -53,6 +55,11 @@ class MainRouter {
         path: manageAccounts,
         name: manageAccounts,
         builder: (context, state) => const ManageAccountsScreen(),
+      ),
+      GoRoute(
+        path: referAndEarn,
+        name: referAndEarn,
+        builder: (context, state) => const ReferAndEarnScreen(),
       ),
     ],
   );

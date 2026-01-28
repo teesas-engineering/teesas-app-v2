@@ -57,4 +57,6 @@ class AppAssets {
   static const String testImage = '$_pngsDir/test-image.png';
   static const String videoImage = '$_pngsDir/video-image.png';
   static const String welcomeImage = '$_pngsDir/welcome-image.png';
+
+  static const String imgReferralBanner = '$_pngsDir/img_referral_banner.png';
 }
