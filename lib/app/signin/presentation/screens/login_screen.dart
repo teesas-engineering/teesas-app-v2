@@ -46,7 +46,11 @@ class LoginScreen extends StatelessWidget {
                         splashColor: AppColors.borderBrandLargeLight.withValues(
                           alpha: .5,
                         ),
-                        onTap: () {},
+                        onTap: () {
+                          context.read<RouteHelper>().showHomeShell(
+                            replace: true,
+                          );
+                        },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 5),
                           child: Text(
@@ -59,7 +63,14 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     48.height,
-                    AppButton(text: 'Login', onPressed: () async {}),
+                    AppButton(
+                      text: 'Login',
+                      onPressed: () async {
+                        context.read<RouteHelper>().showHomeShell(
+                          replace: true,
+                        );
+                      },
+                    ),
                     16.height,
                     Center(
                       child: Text.rich(

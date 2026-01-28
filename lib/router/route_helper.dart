@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -32,6 +34,18 @@ class RouteHelper {
     } else {
       mainRouter.router.pushNamed(MainRouter.loginScreen);
     }
+  }
+
+  void showHomeShell({bool replace = false}) {
+    if (replace) {
+      unawaited(mainRouter.router.replaceNamed(MainRouter.homeShell));
+    } else {
+      unawaited(mainRouter.router.pushNamed(MainRouter.homeShell));
+    }
+  }
+
+  void showManageAccounts() {
+    unawaited(mainRouter.router.pushNamed(MainRouter.manageAccounts));
   }
 
   OverlayEntry showOverlay(Widget child, BuildContext context) {

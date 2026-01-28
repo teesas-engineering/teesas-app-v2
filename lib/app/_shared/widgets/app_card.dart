@@ -9,6 +9,8 @@ class AppCard extends StatelessWidget {
     this.backgroundColor,
     this.borderBottomWidth,
     this.borderColor,
+    this.hasBorder,
+    this.borderRadius,
     this.padding,
   });
 
@@ -16,43 +18,52 @@ class AppCard extends StatelessWidget {
     required Widget child,
     Color? backgroundColor,
     Color? borderColor,
+    EdgeInsets? padding,
     double? borderBottomWidth,
   }) {
     return AppCard._(
+      padding: padding,
       backgroundColor: backgroundColor,
-      borderBottomWidth: borderBottomWidth ?? 5,
+      borderBottomWidth: borderBottomWidth??5,
       borderColor: borderColor,
       child: child,
     );
   }
 
-  factory AppCard.secondary({
-    required Widget child,
-    Color? backgroundColor,
-    EdgeInsets? padding,
-  }) {
+  factory AppCard.secondary({required Widget child, Color? backgroundColor}) {
+    return AppCard._(backgroundColor: backgroundColor, child: child);
+  }
+  factory AppCard.tertiary({required Widget child, Color? backgroundColor}) {
     return AppCard._(
       backgroundColor: backgroundColor,
-      padding: padding,
+      borderBottomWidth: 1,
+      borderColor: AppColors.cardBorder,
+      hasBorder: false,
+      borderRadius: 12,
       child: child,
     );
-  }
-
+  }  final bool? hasBorder;
+  final double? borderRadius;
   final Widget child;
   final Color? borderColor;
   final Color? backgroundColor;
   final double? borderBottomWidth;
   final EdgeInsets? padding;
 
+
   @override
   Widget build(BuildContext context) {
     final allBorder = BorderSide(color: borderColor ?? AppColors.cardBorder);
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: padding ?? const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: backgroundColor ?? AppColors.white,
-        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
-        border: Border(
+        borderRadius: BorderRadius.circular(
+          borderRadius ?? Dimens.defaultBorderRadius / 2,
+        ),
+        border: hasBorder == false
+            ? null
+            : Border(
           top: allBorder,
           left: allBorder,
           right: allBorder,

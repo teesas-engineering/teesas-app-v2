@@ -22,6 +22,7 @@ class AppColors {
   static const bgNegative = Color(0xFFFEF2F2); //#
   static const bgWarning = Color(0xFFFFFBEB);
   static const bgPositive = Color(0xFFF0FDF4);
+  static const buttonBg = Color(0xFFF3F8F8);
   static const bgInfo = Color(0xFFF0F9FF);
 
   // Accents (Mapped to Career Tracks)
@@ -83,6 +84,8 @@ class AppColors {
   static const iconsAccentOrchid = Color(0xFF9333EA);
   static const iconsAccentRosewood = Color(0xFFEA580C);
   static const iconsAccentTeal = Color(0xFF0D9488);
+  static const iconsAccentBlue = Color(0xFF3A94E7);
+  static const iconsAccentOrange = Color(0xFFE55438);
   static const iconsAccentIndigo = Color(0xFF4F46E5);
   static const iconsAccentSage = Color(0xFF16A34A);
   static const iconsAccentMulberry = Color(0xFFBE185D);
@@ -106,6 +109,8 @@ class AppColors {
   static const borderNegative = Color(0xFFE12F4F);
   static const bgNegativeLight = Color(0xFFFFF9F9);
   static const borderWarning = Color(0xFFD97706);
+  static const dividerColor = Color(0xFFC7C7C7);
+
   static const borderPositive = Color(0xFF16A34A);
   static const borderInfo = Color(0xFF0284C7);
   static const borderDisabled = Color(0xFFF1F5F9);
