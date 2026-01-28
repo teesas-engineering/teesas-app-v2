@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
 import '../../../../common/dimens/app_dimens.dart';
-import '../../../../common/extensions/num_extension.dart';
-import '../../../_shared/components/page_padding.dart';
 import '../../data/dto/question_data.dart';
 import '../../data/dto/section_data.dart';
 import 'favorite_question_card.dart';

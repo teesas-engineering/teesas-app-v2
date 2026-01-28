@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/stores/tab_store/index_store.dart';
 import '../../../_shared/widgets/app_tab_bar.dart';

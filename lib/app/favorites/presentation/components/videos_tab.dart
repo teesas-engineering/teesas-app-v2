@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
-import '../../data/dto/section_data.dart';
 import '../../data/dto/video_data.dart';
-import 'favorite_section.dart';
 import 'favorite_video_card.dart';
 
 class VideosTab extends StatelessWidget {

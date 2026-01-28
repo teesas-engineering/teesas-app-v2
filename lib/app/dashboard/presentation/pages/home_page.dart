@@ -8,6 +8,7 @@ import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/stores/tab_store/index_store.dart';
 import '../component/continue_watching.dart';
+import '../component/dashboard_app_bar.dart';
 import '../component/home_card_option_card.dart';
 import '../component/recommended_videos.dart';
 import '../component/small_button.dart';
@@ -38,135 +39,146 @@ class _HomePageContent extends StatelessWidget {
       AppAssets.banner3,
     ];
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          // Continue Lesson Section
-          const ContinueWatching(),
-          24.height,
-          // Feature Cards
-          PagePadding(
-            child: Row(
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      body: SafeArea(
+        child: Scaffold(
+          appBar: const DashboardAppBar(),
+          body: SingleChildScrollView(
+            child: Column(
               children: [
-                Expanded(
-                  child: HomeCardOptionCard(
-                    onclick: () {},
-                    backgroundColor: AppColors.homeCardBorderColor1,
-                    boarderColor: AppColors.homeCardBackgroundColor1,
-                    asset: AppAssets.videoImage,
-                    name: 'Video Tutorial',
-                  ),
-                ),
-                16.width,
-                Expanded(
-                  child: HomeCardOptionCard(
-                    onclick: () {},
-                    backgroundColor: AppColors.homeCardBorderColor2,
-                    boarderColor: AppColors.homeCardBackgroundColor2,
-                    asset: AppAssets.testImage,
-                    name: 'Mock Practice',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          16.height,
-          const SubscriptionComponent(),
-          16.height,
-          CarouselSlider(
-            options: CarouselOptions(
-              height: 132,
-              autoPlay: true,
-              viewportFraction: 1,
-              autoPlayInterval: const Duration(seconds: 2),
-              onPageChanged: (index, reason) {
-                store.setIndex(index);
-              },
-            ),
-            items: bannerSlides.map((e) {
-              return SizedBox(
-                width: double.infinity,
-
-                child: Image.asset(
-                  e,
-                  fit: BoxFit.cover,
-                  height: 165,
-                  width: double.infinity,
-                ),
-              );
-            }).toList(),
-          ),
-          8.height,
-          Observer(
-            builder: (_) {
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(bannerSlides.length, (index) {
-                  final isActive = index == store.currentIndex;
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 100),
-                    curve: Curves.easeInOut,
-                    margin: EdgeInsets.only(
-                      right: index < bannerSlides.length - 1 ? 8 : 0,
-                    ),
-                    width: isActive ? 24 : 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: isActive
-                          ? AppColors.bgAccent
-                          : AppColors.onboardingIndicatorInActive,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                  );
-                }),
-              );
-            },
-          ),
-          24.height,
-          const SubjectSection(),
-          24.height,
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 24),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: AppColors.white,
-            ),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset(AppAssets.shareIcon, width: 36, height: 36),
-                14.width,
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                // Continue Lesson Section
+                const ContinueWatching(),
+                24.height,
+                // Feature Cards
+                PagePadding(
+                  child: Row(
                     children: [
-                      Text(
-                        'Share the learning love! 🎓📚',
-                        style: AppTypography.titleMedium.copyWith(
-                          color: AppColors.textPrimary,
-                          fontWeight: FontWeight.w600,
+                      Expanded(
+                        child: HomeCardOptionCard(
+                          onclick: () {},
+                          backgroundColor: AppColors.homeCardBorderColor1,
+                          boarderColor: AppColors.homeCardBackgroundColor1,
+                          asset: AppAssets.videoImage,
+                          name: 'Video Tutorial',
                         ),
                       ),
-                      8.height,
-                      Text(
-                        'Invite your friends & family to join you on Teesas Education so you can learn, grow, and succeed together. Tap Share App to send it now.❤️',
-                        style: AppTypography.bodySmall.copyWith(
-                          color: AppColors.textSecondary,
+                      16.width,
+                      Expanded(
+                        child: HomeCardOptionCard(
+                          onclick: () {},
+                          backgroundColor: AppColors.homeCardBorderColor2,
+                          boarderColor: AppColors.homeCardBackgroundColor2,
+                          asset: AppAssets.testImage,
+                          name: 'Mock Practice',
                         ),
                       ),
-                      12.height,
-                      const SmallButton(text: 'Share App', onPressed: null),
                     ],
                   ),
                 ),
+                16.height,
+                const SubscriptionComponent(),
+                16.height,
+                CarouselSlider(
+                  options: CarouselOptions(
+                    height: 132,
+                    autoPlay: true,
+                    viewportFraction: 1,
+                    autoPlayInterval: const Duration(seconds: 2),
+                    onPageChanged: (index, reason) {
+                      store.setIndex(index);
+                    },
+                  ),
+                  items: bannerSlides.map((e) {
+                    return SizedBox(
+                      width: double.infinity,
+
+                      child: Image.asset(
+                        e,
+                        fit: BoxFit.cover,
+                        height: 165,
+                        width: double.infinity,
+                      ),
+                    );
+                  }).toList(),
+                ),
+                8.height,
+                Observer(
+                  builder: (_) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: List.generate(bannerSlides.length, (index) {
+                        final isActive = index == store.currentIndex;
+                        return AnimatedContainer(
+                          duration: const Duration(milliseconds: 100),
+                          curve: Curves.easeInOut,
+                          margin: EdgeInsets.only(
+                            right: index < bannerSlides.length - 1 ? 8 : 0,
+                          ),
+                          width: isActive ? 24 : 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: isActive
+                                ? AppColors.bgAccent
+                                : AppColors.onboardingIndicatorInActive,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        );
+                      }),
+                    );
+                  },
+                ),
+                24.height,
+                const SubjectSection(),
+                24.height,
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: AppColors.white,
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(AppAssets.shareIcon, width: 36, height: 36),
+                      14.width,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Share the learning love! 🎓📚',
+                              style: AppTypography.titleMedium.copyWith(
+                                color: AppColors.textPrimary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            8.height,
+                            Text(
+                              'Invite your friends & family to join you on Teesas Education so you can learn, grow, and succeed together. Tap Share App to send it now.❤️',
+                              style: AppTypography.bodySmall.copyWith(
+                                color: AppColors.textSecondary,
+                              ),
+                            ),
+                            12.height,
+                            const SmallButton(
+                              text: 'Share App',
+                              onPressed: null,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                16.height,
+                const RecommendedVideos(),
+                48.height,
               ],
             ),
           ),
-          16.height,
-         const RecommendedVideos(),
-          48.height,
-        ],
+        ),
       ),
     );
   }
