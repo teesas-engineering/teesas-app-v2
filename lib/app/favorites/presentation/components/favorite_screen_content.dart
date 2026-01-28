@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/stores/tab_store/index_store.dart';
 import '../../../_shared/widgets/app_tab_bar.dart';
-import '../components/favorite_search_box.dart';
-import '../components/questions_tab.dart';
-import '../components/videos_tab.dart';
+import 'favorite_search_box.dart';
+import 'questions_tab.dart';
+import 'videos_tab.dart';
 
-class FavoriteScreen extends StatelessWidget {
-  const FavoriteScreen({super.key});
-
+class FavoriteScreenContent extends StatelessWidget {
+  const FavoriteScreenContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,27 +20,17 @@ class FavoriteScreen extends StatelessWidget {
 
     return Column(
       children: [
-       Container(
-         padding: EdgeInsets.only(top:MediaQuery.paddingOf(context).top + kToolbarHeight ),
-         color: AppColors.white,
-         child: Column(
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Center(
-               child: Text('Favourites',style: AppTypography.titleLarge.copyWith(fontSize: 20,color: AppColors.textSecondary),),
-             ),
-             16.verticalSpace,
-             Observer(
-               builder: (_) {
-                 return AppTabBar(
-                   onTap: tabStore.setIndex,
-                   tabs: const ['Videos', 'Questions'],
-                 );
-               },
-             )
-           ],
-         ),
-       ),
+        SizedBox(
+          height: MediaQuery.paddingOf(context).top + kToolbarHeight,
+        ),
+        Observer(
+          builder: (_) {
+            return AppTabBar(
+              onTap: tabStore.setIndex,
+              tabs: const ['Videos', 'Questions'],
+            );
+          },
+        ),
         PagePadding(
           child: Column(
             children: [

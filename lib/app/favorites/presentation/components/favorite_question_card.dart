@@ -17,10 +17,13 @@ class FavoriteQuestionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppCard.primary(
+    return Padding(padding:const  EdgeInsets.symmetric(vertical: 4),
+    child: AppCard.primary(
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Row(),
           Text(
             title,
             style: AppTypography.titleSmall.copyWith(
@@ -37,6 +40,6 @@ class FavoriteQuestionCard extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ),);
   }
 }

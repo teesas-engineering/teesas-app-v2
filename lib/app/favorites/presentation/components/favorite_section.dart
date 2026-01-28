@@ -22,12 +22,6 @@ class FavoriteSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppChip(
-          text: category,
-          isActive: false,
-          onTap: null,
-        ),
-        8.height,
         Text(
           title,
           style: AppTypography.titleMedium.copyWith(

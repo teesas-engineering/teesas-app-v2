@@ -14,11 +14,12 @@ class AppTabBar extends StatelessWidget implements PreferredSizeWidget  {
     return DefaultTabController(
       length: tabs.length,
       child: TabBar(
-        labelColor: AppColors.textPrimary,
-        unselectedLabelColor: AppColors.textSecondary,
-        labelStyle: AppTypography.labelLarge,
+        labelColor: AppColors.textBrand,
+        unselectedLabelColor: AppColors.textTertiary,
+        labelStyle: AppTypography.titleMedium,
         unselectedLabelStyle: AppTypography.bodyMedium,
         indicatorColor: AppColors.borderBrand,
+        dividerColor: AppColors.c7Grey,
         indicatorSize: TabBarIndicatorSize.tab,
         tabs: tabs.map((e) => Tab(text: e)).toList(),
         onTap: onTap,

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../../_shared/widgets/app_input_field.dart';
 import '../../../dashboard/presentation/modal/filter_modal.dart';
 
 class FavoriteSearchBox extends StatelessWidget {
@@ -11,56 +14,43 @@ class FavoriteSearchBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
-          child: Container(
-            height: 48,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            decoration: BoxDecoration(
-              color: AppColors.borderPrimary,
-              borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.search,
-                  color: AppColors.iconsSecondary,
-                  size: 20,
-                ),
-                12.width,
-                Expanded(
-                  child: Text(
-                    'Search',
-                    style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textTertiary,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        12.width,
-        InkWell(
-          onTap: () => FilterModal.show(context),
-          borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-          child: Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppColors.borderPrimary,
-              borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-            ),
-            child: Center(
-              child: Icon(
-                Icons.tune,
-                color: AppColors.textBrand,
-                size: 20,
+        Row(
+          children: [
+            Expanded(
+              child: AppInputField(
+                backgroundColor: AppColors.bgPrimary,
+                borderColor: AppColors.borderTertiary,
+                borderRadius: BorderRadius.circular(8),
+                hintText: 'Search',
+                prefixIcon: IconButton(onPressed: (){}, icon: SvgPicture.asset(
+                  AppAssets.search,
+                  width: 24,
+                  height: 24,
+                )),
               ),
             ),
-          ),
+            12.width,
+            InkWell(
+              onTap: () => FilterModal.show(context),
+              borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius/2),
+                ),
+                child: const Center(
+                  child: Icon(Icons.tune, color: AppColors.textBrand, size: 20),
+                ),
+              ),
+            ),
+          ],
         ),
+        16.verticalSpace,
       ],
     );
   }
