@@ -117,4 +117,6 @@ class AppColors {
   static Color transparent = Colors.transparent;
   static Color cardBorder = const Color(0xFFD9E8E8);
   static Color onboardingIndicatorInActive = const Color(0xFFE4E4E4);
+  static Color registeredBg = const Color(0xFFFCF7EA);
+  static Color subscribedBg = const Color(0xFFEFFFCE);
 }

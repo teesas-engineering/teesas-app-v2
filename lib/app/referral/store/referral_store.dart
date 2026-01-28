@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
+import '../data/model/referral_invitee.dart';
 
 part 'referral_store.g.dart';
 
@@ -19,13 +20,62 @@ abstract class _ReferralStore with Store {
   @observable
   double totalWithdrawal = 10000;
 
-  @action
-  Future<void> copyReferralCode() async {
-    // Logic to copy to clipboard (handled in UI usually or via service)
+  @observable
+  ObservableList<ReferralInvitee> invitees = ObservableList.of([
+    const ReferralInvitee(
+      id: '1',
+      name: 'James Aderibigbe',
+      date: '20-10-2023',
+      amountEarned: 0,
+      status: ReferralStatus.registered,
+    ),
+    const ReferralInvitee(
+      id: '2',
+      name: 'James Aderibigbe',
+      date: '20-10-2023',
+      amountEarned: 200,
+      status: ReferralStatus.subscribed,
+    ),
+    const ReferralInvitee(
+      id: '3',
+      name: 'James Aderibigbe',
+      date: '20-10-2023',
+      amountEarned: 1000,
+      status: ReferralStatus.subscribed,
+    ),
+    const ReferralInvitee(
+      id: '4',
+      name: 'James Aderibigbe',
+      date: '20-10-2023',
+      amountEarned: 1800,
+      status: ReferralStatus.subscribed,
+    ),
+  ]);
+
+  @observable
+  String searchQuery = '';
+
+  @computed
+  List<ReferralInvitee> get filteredInvitees {
+    if (searchQuery.isEmpty) {
+      return invitees;
+    }
+    return invitees
+        .where(
+          (element) =>
+              element.name.toLowerCase().contains(searchQuery.toLowerCase()),
+        )
+        .toList();
   }
 
   @action
-  Future<void> inviteFriend() async {
-    // Logic to share
+  void setSearchQuery(String query) {
+    searchQuery = query;
   }
+
+  @action
+  Future<void> copyReferralCode() async {}
+
+  @action
+  Future<void> inviteFriend() async {}
 }
