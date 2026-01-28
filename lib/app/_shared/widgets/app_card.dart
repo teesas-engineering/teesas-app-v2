@@ -18,14 +18,14 @@ class AppCard extends StatelessWidget {
     required Widget child,
     Color? backgroundColor,
     Color? borderColor,
-    double? borderBottomWidth,
     EdgeInsets? padding,
+    double? borderBottomWidth,
   }) {
     return AppCard._(
-      backgroundColor: backgroundColor,
-      borderBottomWidth: borderBottomWidth ?? 5,
-      borderColor: borderColor,
       padding: padding,
+      backgroundColor: backgroundColor,
+      borderBottomWidth: borderBottomWidth??5,
+      borderColor: borderColor,
       child: child,
     );
   }
@@ -33,7 +33,6 @@ class AppCard extends StatelessWidget {
   factory AppCard.secondary({required Widget child, Color? backgroundColor}) {
     return AppCard._(backgroundColor: backgroundColor, child: child);
   }
-
   factory AppCard.tertiary({required Widget child, Color? backgroundColor}) {
     return AppCard._(
       backgroundColor: backgroundColor,
@@ -43,15 +42,14 @@ class AppCard extends StatelessWidget {
       borderRadius: 12,
       child: child,
     );
-  }
-
+  }  final bool? hasBorder;
+  final double? borderRadius;
   final Widget child;
   final Color? borderColor;
   final Color? backgroundColor;
   final double? borderBottomWidth;
-  final bool? hasBorder;
-  final double? borderRadius;
   final EdgeInsets? padding;
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +64,11 @@ class AppCard extends StatelessWidget {
         border: hasBorder == false
             ? null
             : Border(
-                top: allBorder,
-                left: allBorder,
-                right: allBorder,
-                bottom: allBorder.copyWith(width: borderBottomWidth),
-              ),
+          top: allBorder,
+          left: allBorder,
+          right: allBorder,
+          bottom: allBorder.copyWith(width: borderBottomWidth),
+        ),
       ),
       child: child,
     );

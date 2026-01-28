@@ -79,16 +79,14 @@ class AppTypography {
   static const titleSmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    height: 1.43, // 20/14
-    letterSpacing: 0.1,
+    height: 1.43,
     fontFamily: fontFamilyUI,
   );
 
   static const bodyLarge = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w400, // Regular
-    height: 1.5, // 24/16
-    letterSpacing: 0.5,
+    height: 1.5,
     fontFamily: fontFamilyUI,
   );
 

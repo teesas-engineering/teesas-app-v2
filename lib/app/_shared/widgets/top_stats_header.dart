@@ -1,54 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
 import '../../../common/dimens/app_dimens.dart';
-import '../../../common/extensions/num_extension.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
+import '../../dashboard/presentation/component/app_bar_action.dart';
 
-class TopStatsHeader extends StatelessWidget implements PreferredSizeWidget {
-  const TopStatsHeader({super.key});
+class TopStatsHeader extends StatelessWidget implements PreferredSizeWidget{
+  const TopStatsHeader({super.key,this.includePadding=true});
+
+  final bool includePadding;
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: AppColors.white,
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      automaticallyImplyLeading: false,
-      titleSpacing: 0,
-      title: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset(AppAssets.icPoints, width: 16, height: 19),
-                6.width,
-                Text(
-                  '234',
-                  style: AppTypography.titleMedium.copyWith(
-                    color: AppColors.iconsAccentBlue,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                SvgPicture.asset(AppAssets.icStreak, width: 16, height: 19),
-                6.width,
-                Text(
-                  '12',
-                  style: AppTypography.titleMedium.copyWith(
-                    color: AppColors.iconsAccentOrange,
-                  ),
-                ),
-              ],
-            ),
-            SvgPicture.asset(AppAssets.icNotification, width: 16, height: 19),
-          ],
-        ),
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding).copyWith(bottom: includePadding?20:0),
+      color: AppColors.white,
+      child:  Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const AppBarAction(asset: AppAssets.pointsIcon, value: '224'),
+          const AppBarAction(
+            asset: AppAssets.streakIcon,
+            width: 16,
+            height: 19,
+            value: '12',
+          ),
+          AppBarAction(asset: AppAssets.notificationIcon, onClick: () {}),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 class Dimens{
 
+  Dimens._();
   static const double defaultBorderRadius = 16;
   static const double borderRadiusMin = 6;
   static const double buttonHeight = 48;

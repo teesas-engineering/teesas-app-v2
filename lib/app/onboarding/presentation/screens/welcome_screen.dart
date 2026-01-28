@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
