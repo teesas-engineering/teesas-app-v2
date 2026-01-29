@@ -54,7 +54,7 @@ class MoreTab extends StatelessWidget {
                 icon: AppAssets.icDownloads,
                 title: 'Downloaded Video',
                 iconColor: AppColors.textSecondary,
-                onTap: () {},
+                onTap: () => context.push(MainRouter.downloadedVideos),
               ),
               _MenuItem(
                 icon: AppAssets.icPerformanceReport,

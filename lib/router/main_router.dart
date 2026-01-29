@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
+import '../app/downloads/presentation/screens/downloaded_videos_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
@@ -30,6 +31,7 @@ class MainRouter {
   static const String inviteList = '/refer-and-earn/invite-list';
   static const String withdrawEarnings = '/refer-and-earn/withdraw';
   static const String withdrawSuccess = '/refer-and-earn/withdraw/success';
+  static const String downloadedVideos = '/downloaded-videos';
 
   GoRouter get router => _router;
 
@@ -81,6 +83,11 @@ class MainRouter {
         path: withdrawSuccess,
         name: withdrawSuccess,
         builder: (context, state) => const WithdrawSuccessScreen(),
+      ),
+      GoRoute(
+        path: downloadedVideos,
+        name: downloadedVideos,
+        builder: (context, state) => const DownloadedVideosScreen(),
       ),
     ],
   );

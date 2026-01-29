@@ -55,6 +55,7 @@ class AppColors {
   static const textInfo = Color(0xFF0284C7);
   static const textDisabled = Color(0xFFCBD5E1);
   static const textInfoDark = Color(0xFF011739);
+  static const textCategory = Color(0xFF51666F);
 
   // ===========================================================================
   // ICON COLORS
