@@ -43,7 +43,7 @@ class ReferralStatsCard extends StatelessWidget {
             onPressed: () async => onWithdraw(),
             backgroundColor: AppColors.white,
             borderColor: AppColors.bgBrand,
-            textColor: AppColors.textPrimaryDark,
+            textColor: AppColors.textModalSecondary,
             isFullWidth: false,
           ),
         ],
@@ -68,7 +68,7 @@ class ReferralStatsCard extends StatelessWidget {
             _formatNumber(value),
             textAlign: TextAlign.center,
             style: AppTypography.titleSmall.copyWith(
-              color: AppColors.textPrimaryDark,
+              color: AppColors.textModalSecondary,
               fontWeight: FontWeight.w700,
             ),
           ),

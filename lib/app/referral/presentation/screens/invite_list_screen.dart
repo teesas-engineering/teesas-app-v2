@@ -50,7 +50,7 @@ class _InviteListScreenState extends State<InviteListScreen> {
                     Text(
                       'View the following details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textModalSecondary,
                         fontWeight: FontWeight.w400,
                       ),
                     ),

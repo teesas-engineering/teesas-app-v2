@@ -65,7 +65,7 @@ class DownloadedVideoCard extends StatelessWidget {
                       video.title,
                       style: AppTypography.bodyMedium.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textModalSecondary,
                       ),
                     ),
                     8.height,

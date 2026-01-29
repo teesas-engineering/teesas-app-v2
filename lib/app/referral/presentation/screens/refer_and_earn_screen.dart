@@ -55,7 +55,7 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                     Text(
                       'View the following details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textModalSecondary,
                       ),
                     ),
                     24.height,
@@ -73,7 +73,7 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                       '''Earn ₦50k or more per week, when you refer friends to MATRIC on the Teesas Education App! '''
                       '''Get ₦200 [Basic] - ₦1000 [Premium] - ₦1,800 [Premium +] for each referral who subscribes to any of the MATRIC plans, plus many other incentives and benefits.''',
                       style: AppTypography.bodySmall.copyWith(
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textModalSecondary,
                       ),
                     ),
                     Divider(color: AppColors.dividerColor, height: 32.h),
@@ -112,7 +112,7 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                           buttonType: ButtonType.secondary,
                           backgroundColor: AppColors.white,
                           borderColor: AppColors.bgBrand,
-                          textColor: AppColors.textPrimaryDark,
+                          textColor: AppColors.textModalSecondary,
                           isFullWidth: false,
                         ),
                       ],

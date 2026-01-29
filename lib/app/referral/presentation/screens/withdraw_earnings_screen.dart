@@ -53,7 +53,7 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
                     Text(
                       'Enter the appropriate details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textModalSecondary,
                       ),
                     ),
                     24.height,
