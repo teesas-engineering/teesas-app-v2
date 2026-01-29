@@ -7,6 +7,6 @@ class OnboardingScaffold extends StatelessWidget {
   final String? description;
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return const Scaffold();
   }
 }

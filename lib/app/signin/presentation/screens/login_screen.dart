@@ -75,7 +75,7 @@ class LoginScreen extends StatelessWidget {
                     Center(
                       child: Text.rich(
                         TextSpan(
-                          text: 'I don\'t have an account? ',
+                          text: "I don't have an account? ",
                           style: AppTypography.bodyLarge.copyWith(
                             color: AppColors.textButtonSecondary,
                           ),

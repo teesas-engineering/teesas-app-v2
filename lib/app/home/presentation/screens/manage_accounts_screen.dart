@@ -50,7 +50,7 @@ class _ManageAccountsScreenState extends State<ManageAccountsScreen> {
                     Text(
                       "Today is a new day. It's your day. You shape it.\nSign in to start managing your projects.",
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textPrimaryDark,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                     24.height,

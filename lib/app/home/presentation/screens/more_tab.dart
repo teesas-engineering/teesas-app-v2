@@ -19,76 +19,78 @@ class MoreTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.bgPrimary,
-      appBar: const TopStatsHeader(),
+      backgroundColor: AppColors.white,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
-          child: Column(
-            children: [
-              24.height,
-              const _ProfileSection(),
-              24.height,
-              _MenuItem(
-                icon: AppAssets.icAccounts,
-                title: 'Manage Accounts',
-                onTap: () => getIt<RouteHelper>().showManageAccounts(),
-              ),
-              _MenuItem(
-                icon: AppAssets.icReferAndEarn,
-                title: 'Refer & Earn',
-                onTap: () => context.push(MainRouter.referAndEarn),
-              ),
-              _MenuItem(
-                icon: AppAssets.icSubscriptions,
-                title: 'Subscriptions',
-                onTap: () {},
-              ),
-              _MenuItem(
-                icon: AppAssets.icTeesasPortal,
-                title: 'Teesas Portal',
-                iconColor: AppColors.iconsInfo,
-                onTap: () {},
-              ),
-              _MenuItem(
-                icon: AppAssets.icDownloads,
-                title: 'Downloaded Video',
-                iconColor: AppColors.textSecondary,
-                onTap: () => context.push(MainRouter.downloadedVideos),
-              ),
-              _MenuItem(
-                icon: AppAssets.icPerformanceReport,
-                title: 'Performance Reports',
-                onTap: () {},
-              ),
-              _MenuItem(
-                icon: AppAssets.icShare,
-                title: 'Share The App',
-                onTap: () async {
-                  await showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (context) =>
-                        const InviteFriendsSheet(referralCode: 'OJUY\$%TE'),
-                  );
-                },
-              ),
-              8.height,
-              const Divider(height: 1, color: AppColors.dividerColor),
-              16.height,
-              _MenuItem(
-                icon: AppAssets.icSettings,
-                title: 'Settings',
-                onTap: () {},
-              ),
-              _MenuItem(
-                icon: AppAssets.icLogout,
-                title: 'Log Out',
-                onTap: () {},
-              ),
-              100.height, // Bottom padding for nav bar
-            ],
+        child: Scaffold(
+          appBar: const TopStatsHeader(),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
+            child: Column(
+              children: [
+                24.height,
+                const _ProfileSection(),
+                24.height,
+                _MenuItem(
+                  icon: AppAssets.icAccounts,
+                  title: 'Manage Accounts',
+                  onTap: () => getIt<RouteHelper>().showManageAccounts(),
+                ),
+                _MenuItem(
+                  icon: AppAssets.icReferAndEarn,
+                  title: 'Refer & Earn',
+                  onTap: () => context.push(MainRouter.referAndEarn),
+                ),
+                _MenuItem(
+                  icon: AppAssets.icSubscriptions,
+                  title: 'Subscriptions',
+                  onTap: () {},
+                ),
+                _MenuItem(
+                  icon: AppAssets.icTeesasPortal,
+                  title: 'Teesas Portal',
+                  iconColor: AppColors.iconsInfo,
+                  onTap: () {},
+                ),
+                _MenuItem(
+                  icon: AppAssets.icDownloads,
+                  title: 'Downloaded Video',
+                  iconColor: AppColors.textSecondary,
+                  onTap: () => context.push(MainRouter.downloadedVideos),
+                ),
+                _MenuItem(
+                  icon: AppAssets.icPerformanceReport,
+                  title: 'Performance Reports',
+                  onTap: () {},
+                ),
+                _MenuItem(
+                  icon: AppAssets.icShare,
+                  title: 'Share The App',
+                  onTap: () async {
+                    await showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) =>
+                          const InviteFriendsSheet(referralCode: 'OJUY\$%TE'),
+                    );
+                  },
+                ),
+                8.height,
+                const Divider(height: 1, color: AppColors.dividerColor),
+                16.height,
+                _MenuItem(
+                  icon: AppAssets.icSettings,
+                  title: 'Settings',
+                  onTap: () {},
+                ),
+                _MenuItem(
+                  icon: AppAssets.icLogout,
+                  title: 'Log Out',
+                  onTap: () {},
+                ),
+                100.height, // Bottom padding for nav bar
+              ],
+            ),
           ),
         ),
       ),

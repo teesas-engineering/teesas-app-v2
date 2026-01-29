@@ -5,7 +5,6 @@ import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../../common/utils/dialog_helper.dart';
-import '../../enum/button_type.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/base_dialog_parent.dart';
 
