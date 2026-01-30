@@ -60,9 +60,9 @@ class AppAssets {
   // =====================
   // PNG IMAGES
   // =====================
+  static const String icFilter = '$_svgsDir/ic_filter.svg';
 
-  static const String splashLogoDark =
-      '$_pngsDir/splash_logo_dark.png';
+  static const String splashLogoDark = '$_pngsDir/splash_logo_dark.png';
 
   static const String banner1 = '$_pngsDir/banner_1.png';
   static const String banner2 = '$_pngsDir/banner_2.png';
@@ -73,18 +73,12 @@ class AppAssets {
   static const String femaleStudent = '$_pngsDir/female_student.png';
   static const String maleStudent = '$_pngsDir/male_student.png';
 
-  static const String onboardingImage1 =
-      '$_pngsDir/onboarding-image1.png';
-  static const String onboardingImage2 =
-      '$_pngsDir/onboarding-image2.png';
-  static const String onboardingImage3 =
-      '$_pngsDir/onboarding-image3.png';
-  static const String onboardingImage4 =
-      '$_pngsDir/onboarding-image4.png';
-  static const String onboardingImage5 =
-      '$_pngsDir/onboarding-image5.png';
-  static const String onboardingImage6 =
-      '$_pngsDir/onboarding-image6.png';
+  static const String onboardingImage1 = '$_pngsDir/onboarding-image1.png';
+  static const String onboardingImage2 = '$_pngsDir/onboarding-image2.png';
+  static const String onboardingImage3 = '$_pngsDir/onboarding-image3.png';
+  static const String onboardingImage4 = '$_pngsDir/onboarding-image4.png';
+  static const String onboardingImage5 = '$_pngsDir/onboarding-image5.png';
+  static const String onboardingImage6 = '$_pngsDir/onboarding-image6.png';
 
   static const String successImage = '$_pngsDir/success-image.png';
   static const String testImage = '$_pngsDir/test-image.png';
@@ -96,12 +90,11 @@ class AppAssets {
   // =====================
 
   static const String eBook = '$_pngsDir/e-book.png';
-  static const String subscriptionBadge =
-      '$_pngsDir/subscription-badge.png';
+  static const String subscriptionBadge = '$_pngsDir/subscription-badge.png';
   static const String math = '$_pngsDir/math.png';
   static const String clipVideo = '$_pngsDir/clip-video.png';
-  static const String thumbnailSample =
-      '$_pngsDir/thumbnail-sample.png';
-  static const String shareIcon =
-      '$_pngsDir/shareIcon.png';
+  static const String thumbnailSample = '$_pngsDir/thumbnail-sample.png';
+  static const String shareIcon = '$_pngsDir/shareIcon.png';
+
+  static const String imgReferralBanner = '$_pngsDir/img_referral_banner.png';
 }

@@ -5,23 +5,22 @@ import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
 
 class DraggableSheet extends StatefulWidget {
+  const DraggableSheet({
+    required this.child,
+    super.key,
+    this.initialChildSize = 0.7,
+    this.title,
+    this.description,
+    this.showBack = true,
+    this.cta,
+  });
+
   final double? initialChildSize;
   final String? description;
   final String? title;
   final bool showBack;
   final Widget? cta;
   final Widget Function(ScrollController scrollController) child;
-
-  const DraggableSheet({
-    super.key,
-    this.initialChildSize = 0.7,
-    required this.child,
-
-    this.title,
-    this.description,
-    this.showBack = true,
-    this.cta,
-  });
 
   @override
   State<DraggableSheet> createState() => _DraggableSheetState();

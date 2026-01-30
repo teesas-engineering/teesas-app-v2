@@ -1,9 +1,14 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
+import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
+import '../app/more/referral/presentation/screens/invite_list_screen.dart';
+import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
+import '../app/more/referral/presentation/screens/withdraw_earnings_screen.dart';
+import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -22,6 +27,11 @@ class MainRouter {
   static const String learning = '/learning';
   static const String homeShell = '/home-shell';
   static const String manageAccounts = '/manage-accounts';
+  static const String referAndEarn = '/refer-and-earn';
+  static const String inviteList = '/refer-and-earn/invite-list';
+  static const String withdrawEarnings = '/refer-and-earn/withdraw';
+  static const String withdrawSuccess = '/refer-and-earn/withdraw/success';
+  static const String downloadedVideos = '/downloaded-videos';
 
   GoRouter get router => _router;
 
@@ -53,6 +63,31 @@ class MainRouter {
         path: manageAccounts,
         name: manageAccounts,
         builder: (context, state) => const ManageAccountsScreen(),
+      ),
+      GoRoute(
+        path: referAndEarn,
+        name: referAndEarn,
+        builder: (context, state) => const ReferAndEarnScreen(),
+      ),
+      GoRoute(
+        path: inviteList,
+        name: inviteList,
+        builder: (context, state) => const InviteListScreen(),
+      ),
+      GoRoute(
+        path: withdrawEarnings,
+        name: withdrawEarnings,
+        builder: (context, state) => const WithdrawEarningsScreen(),
+      ),
+      GoRoute(
+        path: withdrawSuccess,
+        name: withdrawSuccess,
+        builder: (context, state) => const WithdrawSuccessScreen(),
+      ),
+      GoRoute(
+        path: downloadedVideos,
+        name: downloadedVideos,
+        builder: (context, state) => const DownloadedVideosScreen(),
       ),
     ],
   );

@@ -57,6 +57,8 @@ class AppColors {
   static const textPositive = Color(0xFF16A34A);
   static const textInfo = Color(0xFF0284C7);
   static const textDisabled = Color(0xFFCBD5E1);
+  static const textInfoDark = Color(0xFF011739);
+  static const textCategory = Color(0xFF51666F);
 
   // ===========================================================================
   // ICON COLORS
@@ -126,4 +128,6 @@ class AppColors {
   static Color transparent = Colors.transparent;
   static Color cardBorder = const Color(0xffD9E8E8);
   static Color onboardingIndicatorInActive = const Color(0xFFE4E4E4);
+  static Color registeredBg = const Color(0xFFFCF7EA);
+  static Color subscribedBg = const Color(0xFFEFFFCE);
 }
