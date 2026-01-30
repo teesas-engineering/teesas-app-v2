@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
+import '../../../../../common/extensions/num_extension.dart';
+import '../../../../../common/style_guide/colors.dart';
+import '../../../../../common/style_guide/style_guide.dart';
 
 class ReferralCodeCard extends StatelessWidget {
   const ReferralCodeCard({required this.referralCode, super.key});

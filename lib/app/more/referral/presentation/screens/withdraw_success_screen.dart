@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../common/dimens/app_dimens.dart';
-import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
-import '../../../../router/main_router.dart';
-import '../../../_shared/widgets/app_button.dart';
+import '../../../../../common/dimens/app_dimens.dart';
+import '../../../../../common/extensions/num_extension.dart';
+import '../../../../../common/style_guide/colors.dart';
+import '../../../../../common/style_guide/style_guide.dart';
+import '../../../../../router/main_router.dart';
+import '../../../../_shared/widgets/app_button.dart';
 
 class WithdrawSuccessScreen extends StatelessWidget {
   const WithdrawSuccessScreen({super.key});

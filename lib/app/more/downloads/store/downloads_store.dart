@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
-import '../../../../common/style_guide/style_guide.dart';
+import '../../../../../common/style_guide/style_guide.dart';
 import '../data/model/downloaded_video.dart';
 
 part 'downloads_store.g.dart';
@@ -59,7 +59,7 @@ abstract class _DownloadsStore with Store {
       category: 'Primary',
       subCategory: 'Grade 1',
     ),
-     const DownloadedVideo(
+    const DownloadedVideo(
       id: '5',
       title: 'Alphabets',
       subject: 'English',
@@ -70,7 +70,7 @@ abstract class _DownloadsStore with Store {
       category: 'Leader In Me',
       subCategory: '7 Habits of a Parent',
     ),
-     const DownloadedVideo(
+    const DownloadedVideo(
       id: '6',
       title: 'Numbers 21 - 50',
       subject: 'Mathematics',
@@ -92,9 +92,11 @@ abstract class _DownloadsStore with Store {
   List<DownloadedVideo> get filteredVideos {
     if (searchQuery.isEmpty) return allVideos;
     return allVideos
-        .where((video) =>
-            video.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
-            video.subject.toLowerCase().contains(searchQuery.toLowerCase()))
+        .where(
+          (video) =>
+              video.title.toLowerCase().contains(searchQuery.toLowerCase()) ||
+              video.subject.toLowerCase().contains(searchQuery.toLowerCase()),
+        )
         .toList();
   }
 

@@ -19,8 +19,8 @@ import 'package:teesas/app/_shared/stores/category_store/category_store.dart'
     as _i440;
 import 'package:teesas/app/_shared/stores/dashboard_store/dashboard_store.dart'
     as _i161;
-import 'package:teesas/app/downloads/store/downloads_store.dart' as _i806;
-import 'package:teesas/app/referral/store/referral_store.dart' as _i367;
+import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i806;
+import 'package:teesas/app/more/referral/store/referral_store.dart' as _i367;
 import 'package:teesas/common/network/network_interceptor.dart' as _i362;
 import 'package:teesas/common/services/secured_storage_service.dart' as _i1056;
 import 'package:teesas/dependency_manager/modules/app_module.dart' as _i861;

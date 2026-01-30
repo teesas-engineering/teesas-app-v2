@@ -1,14 +1,14 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
-import '../app/downloads/presentation/screens/downloaded_videos_screen.dart';
+import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
-import '../app/referral/presentation/screens/invite_list_screen.dart';
-import '../app/referral/presentation/screens/refer_and_earn_screen.dart';
-import '../app/referral/presentation/screens/withdraw_earnings_screen.dart';
-import '../app/referral/presentation/screens/withdraw_success_screen.dart';
+import '../app/more/referral/presentation/screens/invite_list_screen.dart';
+import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
+import '../app/more/referral/presentation/screens/withdraw_earnings_screen.dart';
+import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 

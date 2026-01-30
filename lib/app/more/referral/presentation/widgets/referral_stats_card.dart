@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
-import '../../../_shared/widgets/app_button.dart';
-import '../../../_shared/widgets/app_card.dart';
+import '../../../../../common/extensions/num_extension.dart';
+import '../../../../../common/style_guide/colors.dart';
+import '../../../../../common/style_guide/style_guide.dart';
+import '../../../../_shared/widgets/app_button.dart';
+import '../../../../_shared/widgets/app_card.dart';
 
 class ReferralStatsCard extends StatelessWidget {
   const ReferralStatsCard({

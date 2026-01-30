@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import '../../../../common/dimens/app_dimens.dart';
-import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
-import '../../../../router/main_router.dart';
-import '../../../_shared/widgets/app_back_header.dart';
-import '../../../_shared/widgets/app_button.dart';
-import '../../../_shared/widgets/app_input_field.dart';
+import '../../../../../common/dimens/app_dimens.dart';
+import '../../../../../common/extensions/num_extension.dart';
+import '../../../../../common/style_guide/colors.dart';
+import '../../../../../common/style_guide/style_guide.dart';
+import '../../../../../router/main_router.dart';
+import '../../../../_shared/widgets/app_back_header.dart';
+import '../../../../_shared/widgets/app_button.dart';
+import '../../../../_shared/widgets/app_input_field.dart';
 import '../../store/referral_store.dart';
 
 class WithdrawEarningsScreen extends StatefulWidget {
