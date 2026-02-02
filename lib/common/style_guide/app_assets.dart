@@ -56,6 +56,20 @@ class AppAssets {
   static const String icLogout = '$_svgsDir/ic_logout.svg';
   static const String icArrowBack = '$_svgsDir/ic_arrow_back.svg';
   static const String arrowDown = '$_svgsDir/arrow-down.svg';
+  static const String icSecurity = '$_svgsDir/ic_security.svg';
+  static String icVideo = '$_svgsDir/ic_video.svg';
+  static String icTerms = '$_svgsDir/ic_terms.svg';
+  static String icContactUs = '$_svgsDir/ic_contact_us.svg';
+  static String icDarkMode = '$_svgsDir/ic_dark_mode.svg';
+  static String icPushNotification = '$_svgsDir/ic_push_notification.svg';
+  static String icFeedback = '$_svgsDir/ic_feedback.svg';
+  static String icCallUs = '$_svgsDir/ic_call_us.svg';
+  static String icChat = '$_svgsDir/ic_chat.svg';
+  static String icResolution = '$_svgsDir/ic_resolution.svg';
+  static String icChangePassword = '$_svgsDir/ic_change_password.svg';
+  static String ic2fa = '$_svgsDir/ic_2fa.svg';
+  static String icReminder = '$_svgsDir/ic_reminder.svg';
+  static const String icChevronUp = '$_svgsDir/ic_chevron_up.svg';
 
   // =====================
   // PNG IMAGES

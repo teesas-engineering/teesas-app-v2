@@ -81,7 +81,7 @@ class MoreTab extends StatelessWidget {
                 _MenuItem(
                   icon: AppAssets.icSettings,
                   title: 'Settings',
-                  onTap: () {},
+                  onTap: () => context.push(MainRouter.settings),
                 ),
                 _MenuItem(
                   icon: AppAssets.icLogout,
