@@ -110,7 +110,7 @@ class _ManageAccountsScreenState extends State<ManageAccountsScreen> {
                             Text(
                               'Add Another User',
                               style: AppTypography.bodyMedium.copyWith(
-                                color: AppColors.textButtonSecondary,
+                                color: AppColors.color171818,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),

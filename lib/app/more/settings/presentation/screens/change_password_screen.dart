@@ -57,7 +57,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       Text(
                         'Enter the appropriate details below.',
                         style: AppTypography.bodyMedium.copyWith(
-                          color: AppColors.textModalSecondary,
+                          color: AppColors.color0A0A0A,
                         ),
                       ),
                       32.height,

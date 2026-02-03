@@ -31,7 +31,7 @@ class SubscriptionPlanCard extends StatelessWidget {
           child: AppCard.primary(
             borderColor: isSelected
                 ? AppColors.bgBrandSecondary
-                : AppColors.borderChip,
+                : AppColors.colorEFF1F5,
             child: Row(
               children: [
                 Expanded(

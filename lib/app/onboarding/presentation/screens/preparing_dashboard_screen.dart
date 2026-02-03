@@ -98,7 +98,7 @@ class _PreparingDashboardScreenState extends State<PreparingDashboardScreen> {
                       color: AppColors.bgSecondary,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                        color: AppColors.borderPrimary,
+                        color: AppColors.colorE2E8F0,
                         width: 1,
                       ),
                     ),
@@ -111,8 +111,8 @@ class _PreparingDashboardScreenState extends State<PreparingDashboardScreen> {
                               child: AppProgressBar(
                                 value: _progress,
                                 height: 8,
-                                backgroundColor: AppColors.borderPrimary,
-                                progressColor: AppColors.bgAccent,
+                                backgroundColor: AppColors.colorE2E8F0,
+                                progressColor: AppColors.colorFF9F1C,
                                 borderRadius: BorderRadius.circular(4),
                                 margin: EdgeInsets.zero,
                               ),

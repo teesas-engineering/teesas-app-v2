@@ -34,9 +34,9 @@ class OtpField extends StatelessWidget with FormMixin {
   Widget build(BuildContext context) {
     final inputBorderRadius = BorderRadius.circular(Dimens.defaultBorderRadius);
     const inputBackgroundColor = AppColors.bgBrandSecondaryLight;
-    const unfocusedBorderColor = AppColors.borderTertiary;
+    const unfocusedBorderColor = AppColors.colorD0D5DD;
     const focusedBorderColor = AppColors.bgBrandSecondary;
-    const errorBorderColor = AppColors.borderNegative;
+    const errorBorderColor = AppColors.colorE12F4F;
 
     return PinCodeTextField(
       appContext: context,
@@ -70,7 +70,7 @@ class OtpField extends StatelessWidget with FormMixin {
       animationDuration: Duration.zero,
       backgroundColor: Colors.transparent,
       enableActiveFill: true,
-      cursorColor: AppColors.borderBrand,
+      cursorColor: AppColors.color16A34A,
       validator: validator ?? isRequired,
       textStyle: AppTypography.bodyLarge.copyWith(
         color: AppColors.textSecondary,

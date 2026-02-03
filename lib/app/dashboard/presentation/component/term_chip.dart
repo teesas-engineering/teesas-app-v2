@@ -29,14 +29,11 @@ class TermChip extends StatelessWidget {
         height: 52,
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.white : AppColors.borderPrimaryChip,
+          color: isSelected ? AppColors.white : AppColors.colorE2E8F0,
           borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
           border: isSelected
-              ? Border.all(
-                  color: AppColors.borderBrandLargeLight,
-                  width: 1,
-                )
-              : Border.all(color: AppColors.borderChip, width: 2),
+              ? Border.all(color: AppColors.color93D6AF, width: 1)
+              : Border.all(color: AppColors.colorEFF1F5, width: 2),
         ),
         child: Row(
           children: [
@@ -45,7 +42,7 @@ class TermChip extends StatelessWidget {
                 term.displayName,
                 style: AppTypography.titleSmall.copyWith(
                   color: isSelected
-                      ? AppColors.textButtonPrimary
+                      ? AppColors.color1E1C1C
                       : AppColors.textTertiary,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
                 ),

@@ -49,7 +49,7 @@ class CategorySection extends StatelessWidget {
                   '($subscriptionCount Subscription)',
                   style: AppTypography.titleSmall.copyWith(
                     fontSize: 12,
-                    color: AppColors.textWarning,
+                    color: AppColors.colorD97706,
                   ),
                 ),
               ],

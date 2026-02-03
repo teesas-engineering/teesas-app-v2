@@ -42,7 +42,7 @@ class SettingsSubItemTrailing extends StatelessWidget {
             color: isSelected ? AppColors.bgBrand : Colors.transparent,
             shape: BoxShape.circle,
             border: Border.all(
-              color: isSelected ? AppColors.bgBrand : AppColors.dividerColor,
+              color: isSelected ? AppColors.bgBrand : AppColors.colorC7C7C7,
               width: 2.w,
             ),
           ),

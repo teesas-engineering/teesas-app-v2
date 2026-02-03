@@ -101,7 +101,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     TextSpan(
                       text: '${_formatCountdown(_currentCountdown)} ',
                       style: AppTypography.titleSmall.copyWith(
-                        color: AppColors.bgAccent,
+                        color: AppColors.colorFF9F1C,
                       ),
                     ),
                     TextSpan(

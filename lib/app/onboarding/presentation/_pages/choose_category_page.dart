@@ -100,11 +100,11 @@ class ChooseCategoryPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: PreschoolCategory.values.length,
                           itemBuilder: (context, index) {
                             final category = PreschoolCategory.values[index];
@@ -113,7 +113,8 @@ class ChooseCategoryPage extends StatelessWidget {
                             return AppChip(
                               text: category.displayName,
                               isActive: isSelected,
-                              onTap: () => store.togglePreschoolCategory(category),
+                              onTap: () =>
+                                  store.togglePreschoolCategory(category),
                             );
                           },
                         ),
@@ -123,27 +124,31 @@ class ChooseCategoryPage extends StatelessWidget {
                     // Primary School section
                     _CategorySection(
                       title: 'Primary School',
-                      selectedCount: store.selectedPrimarySchoolCategories.length,
+                      selectedCount:
+                          store.selectedPrimarySchoolCategories.length,
                       child: Observer(
                         builder: (_) => GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: PrimarySchoolCategory.values.length,
                           itemBuilder: (context, index) {
-                            final category = PrimarySchoolCategory.values[index];
-                            final isSelected = store.selectedPrimarySchoolCategories
+                            final category =
+                                PrimarySchoolCategory.values[index];
+                            final isSelected = store
+                                .selectedPrimarySchoolCategories
                                 .contains(category);
                             return AppChip(
                               text: category.displayName,
                               isActive: isSelected,
-                              onTap: () => store.togglePrimarySchoolCategory(category),
+                              onTap: () =>
+                                  store.togglePrimarySchoolCategory(category),
                             );
                           },
                         ),
@@ -154,27 +159,31 @@ class ChooseCategoryPage extends StatelessWidget {
                     _CategorySection(
                       title: 'Secondary School',
                       subtitle: 'Entrance Exam Prep',
-                      selectedCount: store.selectedSecondarySchoolCategories.length,
+                      selectedCount:
+                          store.selectedSecondarySchoolCategories.length,
                       child: Observer(
                         builder: (_) => GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: SecondarySchoolCategory.values.length,
                           itemBuilder: (context, index) {
-                            final category = SecondarySchoolCategory.values[index];
-                            final isSelected = store.selectedSecondarySchoolCategories
+                            final category =
+                                SecondarySchoolCategory.values[index];
+                            final isSelected = store
+                                .selectedSecondarySchoolCategories
                                 .contains(category);
                             return AppChip(
                               text: category.displayName,
                               isActive: isSelected,
-                              onTap: () => store.toggleSecondarySchoolCategory(category),
+                              onTap: () =>
+                                  store.toggleSecondarySchoolCategory(category),
                             );
                           },
                         ),
@@ -184,27 +193,31 @@ class ChooseCategoryPage extends StatelessWidget {
                     // Nigerian Languages section
                     _CategorySection(
                       title: 'Nigerian Languages',
-                      selectedCount: store.selectedNigerianLanguagesCategories.length,
+                      selectedCount:
+                          store.selectedNigerianLanguagesCategories.length,
                       child: Observer(
                         builder: (_) => GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: NigerianLanguagesCategory.values.length,
                           itemBuilder: (context, index) {
-                            final category = NigerianLanguagesCategory.values[index];
-                            final isSelected = store.selectedNigerianLanguagesCategories
+                            final category =
+                                NigerianLanguagesCategory.values[index];
+                            final isSelected = store
+                                .selectedNigerianLanguagesCategories
                                 .contains(category);
                             return AppChip(
                               text: category.displayName,
                               isActive: isSelected,
-                              onTap: () => store.toggleNigerianLanguagesCategory(category),
+                              onTap: () => store
+                                  .toggleNigerianLanguagesCategory(category),
                             );
                           },
                         ),
@@ -221,20 +234,22 @@ class ChooseCategoryPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: LeaderInMeCategory.values.length,
                           itemBuilder: (context, index) {
                             final category = LeaderInMeCategory.values[index];
-                            final isSelected = store.selectedLeaderInMeCategories
+                            final isSelected = store
+                                .selectedLeaderInMeCategories
                                 .contains(category);
                             return AppChip(
                               text: category.displayName,
                               isActive: isSelected,
-                              onTap: () => store.toggleLeaderInMeCategory(category),
+                              onTap: () =>
+                                  store.toggleLeaderInMeCategory(category),
                             );
                           },
                         ),
@@ -251,11 +266,11 @@ class ChooseCategoryPage extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            crossAxisSpacing: 12,
-                            mainAxisSpacing: 12,
-                            childAspectRatio: 2.5,
-                          ),
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 12,
+                                mainAxisSpacing: 12,
+                                childAspectRatio: 2.5,
+                              ),
                           itemCount: MatricCategory.values.length,
                           itemBuilder: (context, index) {
                             final category = MatricCategory.values[index];
@@ -279,13 +294,12 @@ class ChooseCategoryPage extends StatelessWidget {
           // Proceed button at the bottom
           Container(
             padding: const EdgeInsets.all(20),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-            ),
+            decoration: BoxDecoration(color: AppColors.white),
             child: Observer(
               builder: (_) {
                 final count = store.totalSelections;
-                final text = 'Proceed with $count Selection${count != 1 ? 's' : ''}';
+                final text =
+                    'Proceed with $count Selection${count != 1 ? 's' : ''}';
                 return AppButton(
                   text: text,
                   onPressed: () async {
@@ -349,9 +363,7 @@ class _CategorySection extends StatelessWidget {
           ],
         ),
         16.height,
-        AppCard.secondary(
-          child: child,
-        ),
+        AppCard.secondary(child: child),
       ],
     );
   }

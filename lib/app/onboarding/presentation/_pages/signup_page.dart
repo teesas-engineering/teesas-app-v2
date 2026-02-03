@@ -82,7 +82,7 @@ class SignupPage extends StatelessWidget with FormMixin {
                         validator: isRequired,
                         suffixIcon: const Icon(
                           Icons.arrow_drop_down,
-                          color: AppColors.iconsSecondary,
+                          color: AppColors.color475569,
                         ),
                       ),
                     ),

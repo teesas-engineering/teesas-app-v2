@@ -36,11 +36,11 @@ class AppButton extends StatefulWidget {
       onPressed: onPressed,
       isDisabled: isDisabled,
       borderColor: negativeBorder
-          ? AppColors.borderNegative
+          ? AppColors.colorE12F4F
           : AppColors.bgBrandSecondary,
       buttonType: ButtonType.secondary,
       backgroundColor: negativeBorder
-          ? AppColors.bgNegativeLight
+          ? AppColors.colorFEF2F2
           : AppColors.bgBrandSecondaryLight,
     );
   }
@@ -134,7 +134,7 @@ class _AppButtonState extends State<AppButton> {
                       Icon(
                         widget.leadingIcon,
                         color: widget.isDisabled
-                            ? AppColors.iconsButtonDisabled
+                            ? AppColors.color94A3B8
                             : widget.buttonType.getIconColor(context),
                         size: widget.buttonType.getIconSize(context),
                       ),
@@ -146,7 +146,7 @@ class _AppButtonState extends State<AppButton> {
                       Icon(
                         widget.trailingIcon,
                         color: widget.isDisabled
-                            ? AppColors.iconsButtonDisabled
+                            ? AppColors.color94A3B8
                             : widget.buttonType.getIconColor(context),
                         size: widget.buttonType.getIconSize(context),
                       ),
@@ -171,7 +171,7 @@ class _AppButtonState extends State<AppButton> {
         color:
             widget.textColor ??
             (widget.isDisabled
-                ? AppColors.textButtonDisabled
+                ? AppColors.color94A3B8
                 : widget.buttonType.getTextColor(context)),
         fontWeight: widget.buttonType == ButtonType.secondary
             ? FontWeight.w400

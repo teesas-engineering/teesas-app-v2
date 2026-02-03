@@ -31,28 +31,19 @@ class CategoryChip extends StatelessWidget {
         height: 52,
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.white : AppColors.borderPrimaryChip,
+          color: isSelected ? AppColors.white : AppColors.colorE2E8F0,
           borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
           border: isSelected
-              ? const Border(
-                  bottom: BorderSide(color: AppColors.borderBrandLargeLight),
-                )
-              : Border.all(color: AppColors.borderChip, width: 2),
+              ? const Border(bottom: BorderSide(color: AppColors.color93D6AF))
+              : Border.all(color: AppColors.colorEFF1F5, width: 2),
           boxShadow: const [
-            BoxShadow(
-              color: AppColors.borderBrandLargeLight,
-              offset: Offset(0, 4),
-            ),
+            BoxShadow(color: AppColors.color93D6AF, offset: Offset(0, 4)),
           ],
         ),
         child: Row(
           children: [
             if (hasSubscription) ...[
-              Image.asset(
-                AppAssets.subscriptionBadge,
-                width: 16,
-                height: 16,
-              ),
+              Image.asset(AppAssets.subscriptionBadge, width: 16, height: 16),
               4.width,
             ],
             Expanded(
@@ -60,7 +51,7 @@ class CategoryChip extends StatelessWidget {
                 text,
                 style: AppTypography.titleSmall.copyWith(
                   color: isSelected
-                      ? AppColors.textButtonPrimary
+                      ? AppColors.color1E1C1C
                       : AppColors.textTertiary,
                   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w400,
                 ),

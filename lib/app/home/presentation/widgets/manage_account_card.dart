@@ -58,8 +58,8 @@ class ManageAccountCard extends StatelessWidget {
                             role == AccountRole.student ? 'Student' : 'Parent',
                             style: AppTypography.bodyMedium.copyWith(
                               color: role == AccountRole.student
-                                  ? AppColors.iconsAccentOrchid
-                                  : AppColors.bgAccent,
+                                  ? AppColors.color9333EA
+                                  : AppColors.colorFF9F1C,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -90,7 +90,7 @@ class ManageAccountCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(4.w),
                 decoration: const BoxDecoration(
-                  color: AppColors.borderNegative,
+                  color: AppColors.colorE12F4F,
                   shape: BoxShape.circle,
                 ),
                 child: Icon(

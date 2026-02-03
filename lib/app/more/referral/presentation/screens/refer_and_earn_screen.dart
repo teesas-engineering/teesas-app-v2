@@ -55,7 +55,7 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                     Text(
                       'View the following details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textModalSecondary,
+                        color: AppColors.color0A0A0A,
                       ),
                     ),
                     24.height,
@@ -73,10 +73,10 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                       '''Earn ₦50k or more per week, when you refer friends to MATRIC on the Teesas Education App! '''
                       '''Get ₦200 [Basic] - ₦1000 [Premium] - ₦1,800 [Premium +] for each referral who subscribes to any of the MATRIC plans, plus many other incentives and benefits.''',
                       style: AppTypography.bodySmall.copyWith(
-                        color: AppColors.textModalSecondary,
+                        color: AppColors.color0A0A0A,
                       ),
                     ),
-                    Divider(color: AppColors.dividerColor, height: 32.h),
+                    Divider(color: AppColors.colorC7C7C7, height: 32.h),
                     Observer(
                       builder: (_) =>
                           ReferralCodeCard(referralCode: _store.referralCode),
@@ -112,12 +112,12 @@ class _ReferAndEarnScreenState extends State<ReferAndEarnScreen> {
                           buttonType: ButtonType.secondary,
                           backgroundColor: AppColors.white,
                           borderColor: AppColors.bgBrand,
-                          textColor: AppColors.textModalSecondary,
+                          textColor: AppColors.color0A0A0A,
                           isFullWidth: false,
                         ),
                       ],
                     ),
-                    Divider(color: AppColors.dividerColor, height: 32.h),
+                    Divider(color: AppColors.colorC7C7C7, height: 32.h),
                     32.height,
                     Observer(
                       builder: (_) => ReferralStatsCard(

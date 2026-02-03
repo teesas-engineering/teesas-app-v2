@@ -14,7 +14,7 @@ class AppVerticalDivider extends StatelessWidget {
     return Container(
       height: height ?? 36.h,
       width: 1,
-      color: color ?? AppColors.dividerColor,
+      color: color ?? AppColors.colorC7C7C7,
     );
   }
 }

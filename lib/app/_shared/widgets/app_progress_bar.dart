@@ -77,8 +77,8 @@ class _AppProgressBarState extends State<AppProgressBar>
     final borderRadius =
         widget.borderRadius ?? const BorderRadius.all(Radius.circular(20));
     final backgroundColor =
-        widget.backgroundColor ?? AppColors.borderPrimary;
-    final progressColor = widget.progressColor ?? AppColors.bgAccent;
+        widget.backgroundColor ?? AppColors.colorE2E8F0;
+    final progressColor = widget.progressColor ?? AppColors.colorFF9F1C;
     final borderColor = widget.borderColor;
     final borderWidth = widget.borderWidth;
     final margin = widget.margin ?? const EdgeInsets.symmetric(horizontal: 10);

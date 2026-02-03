@@ -65,14 +65,14 @@ class DownloadedVideoCard extends StatelessWidget {
                       video.title,
                       style: AppTypography.bodyMedium.copyWith(
                         fontWeight: FontWeight.w500,
-                        color: AppColors.textModalSecondary,
+                        color: AppColors.color0A0A0A,
                       ),
                     ),
                     8.height,
                     Text(
                       video.subject,
                       style: AppTypography.bodySmall.copyWith(
-                        color: AppColors.bgAccent,
+                        color: AppColors.colorFF9F1C,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -89,11 +89,11 @@ class DownloadedVideoCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(4.r),
                   child: LinearProgressIndicator(
                     value: video.progress,
-                    backgroundColor: AppColors.borderPrimary,
+                    backgroundColor: AppColors.colorE2E8F0,
                     valueColor: AlwaysStoppedAnimation<Color>(
                       video.isCompleted
                           ? AppColors.bgBrandSecondary
-                          : AppColors.bgAccent,
+                          : AppColors.colorFF9F1C,
                     ),
                     minHeight: 6.h,
                     borderRadius: BorderRadius.circular(4.r),
@@ -115,7 +115,7 @@ class DownloadedVideoCard extends StatelessWidget {
                 width: 16.w,
                 height: 16.w,
                 colorFilter: const ColorFilter.mode(
-                  AppColors.bgAccent,
+                  AppColors.colorFF9F1C,
                   BlendMode.srcIn,
                 ), // Orange color for download icon
               ),
