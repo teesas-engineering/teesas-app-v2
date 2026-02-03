@@ -12,6 +12,7 @@ import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/more/settings/presentation/screens/change_password_screen.dart';
 import '../app/more/settings/presentation/screens/settings_screen.dart';
 import '../app/more/settings/presentation/screens/terms_and_conditions_screen.dart';
+import '../app/more/subscription/presentation/screens/add_subscription_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
@@ -40,6 +41,7 @@ class MainRouter {
   static const String changePassword = '/settings/change-password';
   static const String termsAndConditions = '/settings/terms-and-conditions';
   static const String subscription = '/subscription';
+  static const String addSubscription = '/subscription/add';
 
   GoRouter get router => _router;
 
@@ -116,6 +118,11 @@ class MainRouter {
         path: subscription,
         name: subscription,
         builder: (context, state) => const SubscriptionScreen(),
+      ),
+      GoRoute(
+        path: addSubscription,
+        name: addSubscription,
+        builder: (context, state) => const AddSubscriptionScreen(),
       ),
     ],
   );
