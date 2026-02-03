@@ -6,7 +6,7 @@ import '../app/forgot_password/presentation/screens/forgot_password_confirmation
 import '../app/forgot_password/presentation/screens/forgot_password_email_screen.dart';
 import '../app/forgot_password/presentation/screens/forgot_password_otp_screen.dart';
 import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
-import '../app/home/presentation/screens/manage_accounts_screen.dart';
+import '../app/_shared/screen/manage_account/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/more/referral/presentation/screens/invite_list_screen.dart';
 import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
@@ -19,6 +19,7 @@ import '../app/more/subscription/presentation/screens/add_subscription_screen.da
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
 import '../app/onboarding/presentation/screens/welcome_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
+import '../app/signin/presentation/screens/select_account_screen.dart';
 import 'app_router_wrapper.dart';
 
 @singleton
@@ -51,6 +52,7 @@ class MainRouter {
   static const String forgotPasswordConfirmation =
       '/forgot-password-confirmation';
   static const String welcomeScreen = '/welcome-screen';
+  static const String selectAccountScreen = '/select-account';
 
   GoRouter get router => _router;
 
@@ -154,6 +156,11 @@ class MainRouter {
         path: welcomeScreen,
         name: welcomeScreen,
         builder: (context, state) => const WelcomeScreen(),
+      ),
+      GoRoute(
+        path: selectAccountScreen,
+        name: selectAccountScreen,
+        builder: (context, state) => const SelectAccountScreen(),
       ),
     ],
   );

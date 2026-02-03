@@ -6,8 +6,8 @@ part of 'switch_profile_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_SwitchProfileDto _$SwitchProfileDtoFromJson(Map<String, dynamic> json) =>
-    _SwitchProfileDto(profileId: json['profile_id'] as String);
+SwitchProfileDto _$SwitchProfileDtoFromJson(Map<String, dynamic> json) =>
+    SwitchProfileDto(profileId: json['profile_id'] as String);
 
-Map<String, dynamic> _$SwitchProfileDtoToJson(_SwitchProfileDto instance) =>
+Map<String, dynamic> _$SwitchProfileDtoToJson(SwitchProfileDto instance) =>
     <String, dynamic>{'profile_id': instance.profileId};

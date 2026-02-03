@@ -7,10 +7,10 @@ import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
-import '../../../_shared/widgets/app_button.dart';
-import '../../../_shared/widgets/app_progress_header.dart';
-import '../stores/manage_accounts_store.dart';
-import '../widgets/manage_account_card.dart';
+import '../../widgets/app_button.dart';
+import '../../widgets/app_progress_header.dart';
+import '../../stores/manage_account_store/manage_accounts_store.dart';
+import '../../components/manage_account_card.dart';
 
 class ManageAccountsScreen extends StatefulWidget {
   const ManageAccountsScreen({super.key});

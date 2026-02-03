@@ -24,6 +24,7 @@ import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i49;
 import 'package:teesas/app/more/referral/store/referral_store.dart' as _i691;
 import 'package:teesas/app/more/subscription/store/subscription_store.dart'
     as _i135;
+import 'package:teesas/app/signin/store/login_store.dart' as _i535;
 import 'package:teesas/common/network/network_interceptor.dart' as _i362;
 import 'package:teesas/common/services/secured_storage_service.dart' as _i1056;
 import 'package:teesas/dependency_manager/modules/app_module.dart' as _i861;
@@ -48,14 +49,23 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1056.SecureStorageService(),
     );
     gh.lazySingleton<_i500.RouteHelper>(() => _i500.RouteHelper());
-    gh.lazySingleton<_i165.AuthRepository>(
-      () => _i165.AuthRepository(gh<_i738.AuthSource>()),
+    gh.lazySingleton<_i535.LoginStore>(
+      () => _i535.LoginStore(
+        authRepository: gh<_i165.AuthRepository>(),
+        storageService: gh<_i1056.SecureStorageService>(),
+      ),
     );
     gh.lazySingleton<_i362.NetworkInterceptor>(
       () => _i362.NetworkInterceptor(gh<_i1056.SecureStorageService>()),
     );
     gh.lazySingleton<_i361.Dio>(
       () => appModule.dio(gh<_i362.NetworkInterceptor>()),
+    );
+    gh.lazySingleton<_i738.AuthSource>(
+      () => appModule.getAuthSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i165.AuthRepository>(
+      () => _i165.AuthRepository(gh<_i738.AuthSource>()),
     );
     return this;
   }

@@ -6,7 +6,7 @@ part of 'country_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_CountryDto _$CountryDtoFromJson(Map<String, dynamic> json) => _CountryDto(
+CountryDto _$CountryDtoFromJson(Map<String, dynamic> json) => CountryDto(
   id: (json['id'] as num).toInt(),
   name: json['name'] as String,
   region: json['region'] as String,
@@ -18,7 +18,7 @@ _CountryDto _$CountryDtoFromJson(Map<String, dynamic> json) => _CountryDto(
   image: json['image'] as String,
 );
 
-Map<String, dynamic> _$CountryDtoToJson(_CountryDto instance) =>
+Map<String, dynamic> _$CountryDtoToJson(CountryDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

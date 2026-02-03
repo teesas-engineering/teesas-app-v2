@@ -2,12 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../common/enum/state_type.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
-import '../../../../common/utils/reaction_listener.dart';
+import '../../../../common/utils/input_validators.dart';
 import '../../../../dependency_manager/injectable.dart';
 import '../../../../router/route_helper.dart';
 import '../../../_shared/components/page_padding.dart';
@@ -20,23 +18,10 @@ import '../../store/login_store.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Provider<LoginStore>(
-      create: (_) => LoginStore(),
-      dispose: (_, store) => store.dispose(),
-      child: const _LoginContent(),
-    );
-  }
-}
-
-class _LoginContent extends StatelessWidget {
-  const _LoginContent();
 
   @override
   Widget build(BuildContext context) {
     final store = context.read<LoginStore>();
-
     return Scaffold(
       appBar: const AppAppBar(),
       body: Column(
@@ -65,7 +50,7 @@ class _LoginContent extends StatelessWidget {
                       24.height,
                       PasswordInputField(
                         controller: store.passwordController,
-                        onChanged: (value) {},
+                        validator: InputValidators.required,
                       ),
                       4.height,
                       Align(
@@ -74,8 +59,7 @@ class _LoginContent extends StatelessWidget {
                           splashColor: AppColors.borderBrandLargeLight
                               .withValues(alpha: .5),
                           onTap: () {
-                            context
-                                .read<RouteHelper>()
+                            getIt<RouteHelper>()
                                 .showForgotPasswordEmailScreen();
                           },
                           child: Padding(
@@ -107,20 +91,11 @@ class _LoginContent extends StatelessWidget {
                         },
                       ),
                       48.height,
-                      ReactionListener<Status>(
-                        observe: () => store.loginStatus,
-                        listenWhen: (previous, next) => next == Status.success,
-                        listener: (context, state) {
-                          if (state.isSuccess) {
-                            getIt<RouteHelper>().showHomeShell(replace: true);
-                          }
-                        },
-                        child: Observer(
-                          builder: (_) => AppButton(
-                            text: 'Login',
-                            onPressed: store.login,
-                            isLoading: store.isLoading,
-                          ),
+                      Observer(
+                        builder: (_) => AppButton(
+                          text: 'Login',
+                          onPressed: store.login,
+                          isLoading: store.isLoading,
                         ),
                       ),
                       16.height,

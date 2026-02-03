@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../../common/extensions/num_extension.dart';
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
-import '../../../_shared/widgets/app_card.dart';
+import '../../../common/extensions/num_extension.dart';
+import '../../../common/style_guide/colors.dart';
+import '../../../common/style_guide/style_guide.dart';
+import '../widgets/app_card.dart';
 
 enum AccountRole { student, parent }
 
@@ -12,16 +12,17 @@ class ManageAccountCard extends StatelessWidget {
     required this.name,
     required this.role,
     required this.avatarUrl,
-    required this.onEdit,
-    required this.onDelete,
+    this.onEdit,
+    this.onDelete,
     super.key,
   });
 
   final String name;
   final AccountRole role;
   final String avatarUrl;
-  final VoidCallback onEdit;
-  final VoidCallback onDelete;
+
+  final VoidCallback? onEdit;
+  final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -68,39 +69,42 @@ class ManageAccountCard extends StatelessWidget {
                     ),
                   ],
                 ),
-                32.height,
-                GestureDetector(
-                  onTap: onEdit,
-                  child: Text(
-                    'Edit Account',
-                    style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textPrimary,
+                if (onEdit != null) ...[
+                  32.height,
+                  GestureDetector(
+                    onTap: onEdit,
+                    child: Text(
+                      'Edit Account',
+                      style: AppTypography.bodyMedium.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
                     ),
                   ),
-                ),
+                ],
                 8.height,
               ],
             ),
           ),
-          Positioned(
-            top: 8.w,
-            right: 8.w,
-            child: GestureDetector(
-              onTap: onDelete,
-              child: Container(
-                padding: EdgeInsets.all(4.w),
-                decoration: const BoxDecoration(
-                  color: AppColors.borderNegative,
-                  shape: BoxShape.circle,
-                ),
-                child: Icon(
-                  Icons.close_rounded,
-                  size: 12.w,
-                  color: AppColors.white,
+          if (onDelete != null)
+            Positioned(
+              top: 8.w,
+              right: 8.w,
+              child: GestureDetector(
+                onTap: onDelete,
+                child: Container(
+                  padding: EdgeInsets.all(4.w),
+                  decoration: const BoxDecoration(
+                    color: AppColors.borderNegative,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    Icons.close_rounded,
+                    size: 12.w,
+                    color: AppColors.white,
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );

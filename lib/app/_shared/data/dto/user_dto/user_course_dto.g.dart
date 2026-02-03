@@ -6,8 +6,8 @@ part of 'user_course_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserCourseDto _$UserCourseDtoFromJson(Map<String, dynamic> json) =>
-    _UserCourseDto(
+UserCourseDto _$UserCourseDtoFromJson(Map<String, dynamic> json) =>
+    UserCourseDto(
       id: (json['id'] as num).toInt(),
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
@@ -15,7 +15,7 @@ _UserCourseDto _$UserCourseDtoFromJson(Map<String, dynamic> json) =>
       courseId: (json['course_id'] as num).toInt(),
     );
 
-Map<String, dynamic> _$UserCourseDtoToJson(_UserCourseDto instance) =>
+Map<String, dynamic> _$UserCourseDtoToJson(UserCourseDto instance) =>
     <String, dynamic>{
       'id': instance.id,
       'created_at': instance.createdAt,

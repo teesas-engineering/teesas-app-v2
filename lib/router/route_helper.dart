@@ -20,11 +20,11 @@ class RouteHelper {
     mainRouter.router.go(MainRouter.splashScreen);
   }
 
-  void showOnboardingRoot({bool replace = false}) {
+  Future<void> showOnboardingRoot({bool replace = false}) async {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.onboardingRoot);
+      await mainRouter.router.replaceNamed(MainRouter.onboardingRoot);
     } else {
-      mainRouter.router.pushNamed(MainRouter.onboardingRoot);
+      await mainRouter.router.pushNamed(MainRouter.onboardingRoot);
     }
   }
 
@@ -32,35 +32,49 @@ class RouteHelper {
     mainRouter.router.goNamed(MainRouter.welcomeScreen);
   }
 
+  void showSelectAccountScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.selectAccountScreen);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.selectAccountScreen);
+    }
+  }
+
   void showLoginScreen({bool replace = false}) {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.loginScreen);
+      unawaited(mainRouter.router.replaceNamed(MainRouter.loginScreen));
     } else {
-      mainRouter.router.pushNamed(MainRouter.loginScreen);
+      unawaited(mainRouter.router.pushNamed(MainRouter.loginScreen));
     }
   }
 
   void showForgotPasswordEmailScreen({bool replace = false}) {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.forgotPasswordEmail);
+      unawaited(mainRouter.router.replaceNamed(MainRouter.forgotPasswordEmail));
     } else {
-      mainRouter.router.pushNamed(MainRouter.forgotPasswordEmail);
+      unawaited(mainRouter.router.pushNamed(MainRouter.forgotPasswordEmail));
     }
   }
 
   void showForgotPasswordOtpScreen({bool replace = false}) {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.forgotPasswordOtp);
+      unawaited(mainRouter.router.replaceNamed(MainRouter.forgotPasswordOtp));
     } else {
-      mainRouter.router.pushNamed(MainRouter.forgotPasswordOtp);
+      unawaited(mainRouter.router.pushNamed(MainRouter.forgotPasswordOtp));
     }
   }
 
-  void showForgotPasswordConfirmationScreen({bool replace = false}) {
+  Future<void> showForgotPasswordConfirmationScreen({
+    bool replace = false,
+  }) async {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.forgotPasswordConfirmation);
+      unawaited(
+        mainRouter.router.replaceNamed(MainRouter.forgotPasswordConfirmation),
+      );
     } else {
-      mainRouter.router.pushNamed(MainRouter.forgotPasswordConfirmation);
+      unawaited(
+        mainRouter.router.pushNamed(MainRouter.forgotPasswordConfirmation),
+      );
     }
   }
 

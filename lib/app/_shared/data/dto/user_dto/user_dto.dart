@@ -1,51 +1,128 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+import '../../../enum/gender.dart';
 import 'country_dto.dart';
 import 'user_course_dto.dart';
 import 'user_profile_dto.dart';
 
-part 'user_dto.freezed.dart';
 part 'user_dto.g.dart';
 
-@freezed
-abstract class UserDto with _$UserDto {
-  const factory UserDto({
-    // Required fields first
-    required String phone,
-    @Default(false) @JsonKey(name: 'is_verified') bool isVerified,
-    // Nullable fields
-    int? id,
-    @JsonKey(name: 'auth_type') String? authType,
-    @JsonKey(name: 'auth_provider') String? authProvider,
-    @JsonKey(name: 'sso_id') String? ssoId,
-    String? name,
-    @JsonKey(name: 'user_score') int? userScore,
-    String? gender,
-    String? address,
-    String? deviceId,
-    String? relationship,
-    @JsonKey(name: 'date_of_birth') String? dateOfBirth,
-    String? email,
-    @JsonKey(name: 'parent_fcm_token') String? parentFcmToken,
-    @JsonKey(name: 'profile_pic') String? profilePic,
-    @JsonKey(name: 'user_type') String? userType,
-    bool? suspended,
-    bool? active,
-    @JsonKey(name: 'is_mainProfile') bool? isMainProfile,
-    @JsonKey(name: 'is_temp_password') bool? isTempPassword,
-    @JsonKey(name: 'referral_code') String? referralCode,
-    @JsonKey(name: 'country_id') int? countryId,
-    @JsonKey(name: 'socket_id') String? socketId,
-    @JsonKey(name: 'referred_by') String? referredBy,
-    @JsonKey(name: 'main_userId') int? mainUserId,
-    @JsonKey(name: 'organization_id') int? organizationId,
-    CountryDto? country,
-    dynamic parent,
-    List<UserProfileDto>? profiles,
-    dynamic referrer,
-    @JsonKey(name: 'user_courses') List<UserCourseDto>? userCourses,
-  }) = _UserDto;
+@JsonSerializable(explicitToJson: true)
+class UserDto {
+  final String phone;
+
+  @JsonKey(name: 'is_verified')
+  final bool isVerified;
+
+  final int? id;
+
+  @JsonKey(name: 'auth_type')
+  final String? authType;
+
+  @JsonKey(name: 'auth_provider')
+  final String? authProvider;
+
+  @JsonKey(name: 'sso_id')
+  final String? ssoId;
+
+  final String? name;
+
+  @JsonKey(name: 'user_score')
+  final int? userScore;
+
+  @JsonKey(fromJson: genderFromJson, toJson: genderToJson)
+  final Gender? gender;
+
+  final String? address;
+  final String? deviceId;
+  final String? relationship;
+
+  @JsonKey(name: 'date_of_birth')
+  final String? dateOfBirth;
+
+  final String? email;
+
+  @JsonKey(name: 'parent_fcm_token')
+  final String? parentFcmToken;
+
+  @JsonKey(name: 'profile_pic')
+  final String? profilePic;
+
+  @JsonKey(name: 'user_type')
+  final String? userType;
+
+  final bool? suspended;
+  final bool? active;
+
+  @JsonKey(name: 'is_mainProfile')
+  final bool? isMainProfile;
+
+  @JsonKey(name: 'is_temp_password')
+  final bool? isTempPassword;
+
+  @JsonKey(name: 'referral_code')
+  final String? referralCode;
+
+  @JsonKey(name: 'country_id')
+  final int? countryId;
+
+  @JsonKey(name: 'socket_id')
+  final String? socketId;
+
+  @JsonKey(name: 'referred_by')
+  final String? referredBy;
+
+  @JsonKey(name: 'main_userId')
+  final int? mainUserId;
+
+  @JsonKey(name: 'organization_id')
+  final int? organizationId;
+
+  final CountryDto? country;
+  final dynamic parent;
+  final List<UserProfileDto>? profiles;
+  final dynamic referrer;
+
+  @JsonKey(name: 'user_courses')
+  final List<UserCourseDto>? userCourses;
+
+  const UserDto({
+    required this.phone,
+    this.isVerified = false,
+    this.id,
+    this.authType,
+    this.authProvider,
+    this.ssoId,
+    this.name,
+    this.userScore,
+    this.gender,
+    this.address,
+    this.deviceId,
+    this.relationship,
+    this.dateOfBirth,
+    this.email,
+    this.parentFcmToken,
+    this.profilePic,
+    this.userType,
+    this.suspended,
+    this.active,
+    this.isMainProfile,
+    this.isTempPassword,
+    this.referralCode,
+    this.countryId,
+    this.socketId,
+    this.referredBy,
+    this.mainUserId,
+    this.organizationId,
+    this.country,
+    this.parent,
+    this.profiles,
+    this.referrer,
+    this.userCourses,
+  });
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 }

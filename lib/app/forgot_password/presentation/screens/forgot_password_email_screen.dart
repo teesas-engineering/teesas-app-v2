@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
@@ -39,14 +39,15 @@ class _ForgotPasswordEmailContent extends StatelessWidget {
     return Scaffold(
       appBar: const AppAppBar(),
       body: PagePadding(
+
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            24.verticalSpace,
             Text(
               'Retrieve Password',
               style: AppTypography.titleLarge.copyWith(
                 color: AppColors.textSecondary,
-                height: 40,
               ),
             ),
             Text(
@@ -78,56 +79,56 @@ class _ForgotPasswordEmailContent extends StatelessWidget {
                 );
               },
             ),
+
           ],
         ),
+
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          PagePadding(
-            child: ReactionListener<ForgotPasswordStatus>(
-              observe: () => store.status,
-              listenWhen: (previous, next) =>
-                  next == ForgotPasswordStatus.success,
-              listener: (context, _) {
-                getIt<RouteHelper>().showForgotPasswordOtpScreen();
-              },
-              child: Observer(
-                builder: (_) => AppButton(
-                  text: 'Retrieve Password',
-                  onPressed: store.submitForgotPassword,
-                  isLoading: store.isLoading,
-                ),
-              ),
-            ),
+bottomNavigationBar:  Column(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    PagePadding(
+      child: ReactionListener<ForgotPasswordStatus>(
+        observe: () => store.status,
+        listenWhen: (previous, next) =>
+        next == ForgotPasswordStatus.success,
+        listener: (context, _) {
+          getIt<RouteHelper>().showForgotPasswordOtpScreen();
+        },
+        child: Observer(
+          builder: (_) => AppButton(
+            text: 'Retrieve Password',
+            onPressed: store.submitForgotPassword,
+            isLoading: store.isLoading,
           ),
-          24.height,
-          Center(
-            child: Text.rich(
-              TextSpan(
-                text: 'Remember Password?\t',
-                style: AppTypography.bodyLarge.copyWith(
-                  color: AppColors.textButtonSecondary,
-                ),
-                children: [
-                  TextSpan(
-                    text: 'Sign In',
-                    style: AppTypography.titleMedium.copyWith(
-                      color: AppColors.textBrand,
-                    ),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        context
-                            .read<RouteHelper>()
-                            .showLoginScreen(replace: true);
-                      },
-                ),
-              ],
-            ),
-          ),),
-          24.height,
-        ],
+        ),
       ),
+    ),
+    24.height,
+    Center(
+      child: Text.rich(
+        TextSpan(
+          text: 'Remember Password?\t',
+          style: AppTypography.bodyLarge.copyWith(
+            color: AppColors.textButtonSecondary,
+          ),
+          children: [
+            TextSpan(
+              text: 'Sign In',
+              style: AppTypography.titleMedium.copyWith(
+                color: AppColors.textBrand,
+              ),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  getIt<RouteHelper>().pop();
+                },
+            ),
+          ],
+        ),
+      ),),
+    24.height,
+  ],
+),
     );
   }
 }

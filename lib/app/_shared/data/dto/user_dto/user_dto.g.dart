@@ -6,7 +6,7 @@ part of 'user_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
+UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
   phone: json['phone'] as String,
   isVerified: json['is_verified'] as bool? ?? false,
   id: (json['id'] as num?)?.toInt(),
@@ -15,7 +15,7 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
   ssoId: json['sso_id'] as String?,
   name: json['name'] as String?,
   userScore: (json['user_score'] as num?)?.toInt(),
-  gender: json['gender'] as String?,
+  gender: genderFromJson(json['gender']),
   address: json['address'] as String?,
   deviceId: json['deviceId'] as String?,
   relationship: json['relationship'] as String?,
@@ -47,7 +47,7 @@ _UserDto _$UserDtoFromJson(Map<String, dynamic> json) => _UserDto(
       .toList(),
 );
 
-Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
+Map<String, dynamic> _$UserDtoToJson(UserDto instance) => <String, dynamic>{
   'phone': instance.phone,
   'is_verified': instance.isVerified,
   'id': instance.id,
@@ -56,7 +56,7 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
   'sso_id': instance.ssoId,
   'name': instance.name,
   'user_score': instance.userScore,
-  'gender': instance.gender,
+  'gender': genderToJson(instance.gender),
   'address': instance.address,
   'deviceId': instance.deviceId,
   'relationship': instance.relationship,
@@ -75,9 +75,9 @@ Map<String, dynamic> _$UserDtoToJson(_UserDto instance) => <String, dynamic>{
   'referred_by': instance.referredBy,
   'main_userId': instance.mainUserId,
   'organization_id': instance.organizationId,
-  'country': instance.country,
+  'country': instance.country?.toJson(),
   'parent': instance.parent,
-  'profiles': instance.profiles,
+  'profiles': instance.profiles?.map((e) => e.toJson()).toList(),
   'referrer': instance.referrer,
-  'user_courses': instance.userCourses,
+  'user_courses': instance.userCourses?.map((e) => e.toJson()).toList(),
 };

@@ -67,10 +67,7 @@ class AccountsList extends StatelessWidget {
                   ),
                   24.height,
                   GestureDetector(
-                    onTap: () {
-                      // Clear form and show add user form
-                      store.clearForm();
-                    },
+                    onTap: store.clearForm,
                     child: Row(
                       children: [
                         Container(

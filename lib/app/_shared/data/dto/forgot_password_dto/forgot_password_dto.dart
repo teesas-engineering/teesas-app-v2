@@ -1,14 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'forgot_password_dto.freezed.dart';
 part 'forgot_password_dto.g.dart';
 
-@freezed
-abstract class ForgotPasswordDto with _$ForgotPasswordDto {
-  const factory ForgotPasswordDto({
-    required String phone,
-  }) = _ForgotPasswordDto;
+@JsonSerializable()
+class ForgotPasswordDto {
+  final String phone;
+
+  const ForgotPasswordDto({required this.phone});
 
   factory ForgotPasswordDto.fromJson(Map<String, dynamic> json) =>
       _$ForgotPasswordDtoFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ForgotPasswordDtoToJson(this);
 }

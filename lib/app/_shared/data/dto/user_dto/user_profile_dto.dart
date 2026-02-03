@@ -1,17 +1,29 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'user_profile_dto.freezed.dart';
+import '../../../enum/gender.dart';
+
+
 part 'user_profile_dto.g.dart';
 
-@freezed
-abstract class UserProfileDto with _$UserProfileDto {
-  const factory UserProfileDto({
-    required int id,
-    required String name,
-    required String email,
-    required String gender,
-  }) = _UserProfileDto;
+
+@JsonSerializable()
+class UserProfileDto {
+
+  const UserProfileDto({
+    required this.id,
+    required this.name,
+    required this.email,
+    this.gender,
+  });
 
   factory UserProfileDto.fromJson(Map<String, dynamic> json) =>
       _$UserProfileDtoFromJson(json);
+  final int id;
+  final String name;
+  final String email;
+
+  @JsonKey(fromJson: genderFromJson, toJson: genderToJson)
+  final Gender? gender;
+
+  Map<String, dynamic> toJson() => _$UserProfileDtoToJson(this);
 }

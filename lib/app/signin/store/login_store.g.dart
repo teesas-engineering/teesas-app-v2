@@ -53,6 +53,39 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
+  late final _$userAtom = Atom(name: '_LoginStoreBase.user', context: context);
+
+  @override
+  UserDto? get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(UserDto? value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
+
+  late final _$profilesAtom = Atom(
+    name: '_LoginStoreBase.profiles',
+    context: context,
+  );
+
+  @override
+  ObservableList<UserProfileDto> get profiles {
+    _$profilesAtom.reportRead();
+    return super.profiles;
+  }
+
+  @override
+  set profiles(ObservableList<UserProfileDto> value) {
+    _$profilesAtom.reportWrite(value, super.profiles, () {
+      super.profiles = value;
+    });
+  }
+
   late final _$loginAsyncAction = AsyncAction(
     '_LoginStoreBase.login',
     context: context,
@@ -67,6 +100,18 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     name: '_LoginStoreBase',
     context: context,
   );
+
+  @override
+  void selectProfile(UserProfileDto profile) {
+    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
+      name: '_LoginStoreBase.selectProfile',
+    );
+    try {
+      return super.selectProfile(profile);
+    } finally {
+      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void resetStatus() {
@@ -85,6 +130,8 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     return '''
 loginStatus: ${loginStatus},
 errorMessage: ${errorMessage},
+user: ${user},
+profiles: ${profiles},
 isLoading: ${isLoading}
     ''';
   }

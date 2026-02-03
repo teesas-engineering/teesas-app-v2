@@ -6,8 +6,8 @@ part of 'forgot_password_dto.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_ForgotPasswordDto _$ForgotPasswordDtoFromJson(Map<String, dynamic> json) =>
-    _ForgotPasswordDto(phone: json['phone'] as String);
+ForgotPasswordDto _$ForgotPasswordDtoFromJson(Map<String, dynamic> json) =>
+    ForgotPasswordDto(phone: json['phone'] as String);
 
-Map<String, dynamic> _$ForgotPasswordDtoToJson(_ForgotPasswordDto instance) =>
+Map<String, dynamic> _$ForgotPasswordDtoToJson(ForgotPasswordDto instance) =>
     <String, dynamic>{'phone': instance.phone};

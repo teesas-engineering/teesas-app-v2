@@ -6,7 +6,7 @@ class BaseDto {
   });
 
   factory BaseDto.fromJson(Map<String, dynamic> json) {
-    dynamic data = json['data'];
+    dynamic data = json['data'] as dynamic;
     if (data is List) {
       data = json['data'] as List;
     }

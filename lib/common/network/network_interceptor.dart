@@ -22,7 +22,6 @@ class NetworkInterceptor extends Interceptor {
     if (token != null) {
       options.headers['Authorization'] = 'Bearer $token';
     }
-
     super.onRequest(options, handler);
   }
 
@@ -45,17 +44,13 @@ class NetworkInterceptor extends Interceptor {
     String errorMessage = 'Something went wrong';
     String? errorType;
     final int? statusCode = err.response?.statusCode;
-
     if (err.type == DioExceptionType.connectionTimeout ||
         err.type == DioExceptionType.receiveTimeout) {
       errorMessage = 'Connection timeout, please try again.';
     } else if (err.type == DioExceptionType.badResponse) {
       try {
         final json = err.response?.data as Map<String, dynamic>;
-
-        final errorJson = json['error'] as Map<String, dynamic>;
-        final message = errorJson['message'] as String?;
-        errorType = errorJson['errorType'] as String?;
+        final message = json['message'] as String?;
         switch (statusCode) {
           case 400:
             errorMessage = message ?? 'Bad request. Please check your input.';

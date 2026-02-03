@@ -12,7 +12,7 @@ part of 'profile_source.dart';
 
 class _ProfileSource implements ProfileSource {
   _ProfileSource(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://api-teesas.teesas.com/v1//v1/profile/';
+    baseUrl ??= 'https://api-teesas.teesas.com/v1/v1/profile/';
   }
 
   final Dio _dio;
@@ -26,7 +26,8 @@ class _ProfileSource implements ProfileSource {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = payload;
+    final _data = <String, dynamic>{};
+    _data.addAll(payload.toJson());
     final _options = _setStreamType<BaseDto>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
