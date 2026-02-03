@@ -57,15 +57,13 @@ class OnboardingRoot extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: Observer(
-                  builder: (_) => PageView(
-                    controller: store.pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    onPageChanged: (index) {
-                      store.currentPage = index;
-                    },
-                    children: _pages,
-                  ),
+                child: PageView(
+                  controller: store.pageController,
+                  physics: const NeverScrollableScrollPhysics(),
+                  onPageChanged: (index) {
+                    store.currentPage = index;
+                  },
+                  children: _pages,
                 ),
               ),
             ],

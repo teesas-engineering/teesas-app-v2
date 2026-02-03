@@ -15,23 +15,17 @@ class PasswordInputField extends StatelessWidget {
     this.validator,
     this.onChanged,
     this.inputFormatters,
-    this.toggleStore,
   });
 
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
-  final ToggleStore? toggleStore;
 
   @override
   Widget build(BuildContext context) {
-    // Create or use provided ToggleStore
-    final store = toggleStore ?? ToggleStore();
-
-    // Provide the ToggleStore and wrap the content widget
     return Provider<ToggleStore>.value(
-      value: store,
+      value: ToggleStore(),
       child: _PasswordInputFieldContent(
         controller: controller,
         validator: validator,

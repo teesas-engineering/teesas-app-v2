@@ -1,0 +1,115 @@
+{
+  "data": {
+    "user": {
+      "id": 459,
+      "auth_type": "BASIC",
+      "auth_provider": null,
+      "sso_id": null,
+      "name": "Thomas",
+      "user_score": 0,
+      "phone": "8023426971",
+      "gender": "MALE",
+      "address": "Ikate, Lagos",
+      "deviceId": "device_123456",
+      "relationship": null,
+      "date_of_birth": "2025-04-07",
+      "email": "tighalo@gmail.com",
+      "parent_fcm_token": "parent_fcm_token",
+      "profile_pic": "profiles/1759742001724-42161216.png",
+      "user_type": "USER",
+      "suspended": false,
+      "active": true,
+      "is_verified": true,
+      "is_mainProfile": true,
+      "is_temp_password": false,
+      "referral_code": "lDZDc6q0",
+      "country_id": 87,
+      "socket_id": null,
+      "referred_by": null,
+      "main_userId": null,
+      "organization_id": null,
+      "country": {
+        "id": 87,
+        "name": "Nigeria",
+        "region": "Africa",
+        "code": "NGN",
+        "dial_code": "+234",
+        "symbol": "₦",
+        "price_rate": "380",
+        "emoji": "🇳🇬",
+        "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg"
+      },
+      "parent": null,
+      "profiles": [
+        {
+          "id": 461,
+          "name": "Davids",
+          "email": "tighalo@gmail.com",
+          "gender": "MALE"
+        }
+      ],
+      "referrer": null,
+      "user_courses": [
+        {
+          "id": 626,
+          "created_at": "2025-04-07 08:16:07",
+          "updated_at": "2025-04-07 08:16:07",
+          "user_id": 459,
+          "course_id": 137
+        },
+        {
+          "id": 628,
+          "created_at": "2025-04-07 08:16:07",
+          "updated_at": "2025-04-07 08:16:07",
+          "user_id": 459,
+          "course_id": 163
+        },
+        {
+          "id": 629,
+          "created_at": "2025-04-07 08:16:07",
+          "updated_at": "2025-04-07 08:16:07",
+          "user_id": 459,
+          "course_id": 153
+        },
+        {
+          "id": 630,
+          "created_at": "2025-04-07 08:16:07",
+          "updated_at": "2025-04-07 08:16:07",
+          "user_id": 459,
+          "course_id": 164
+        },
+        {
+          "id": 631,
+          "created_at": "2025-04-07 08:16:07",
+          "updated_at": "2025-04-07 08:16:07",
+          "user_id": 459,
+          "course_id": 157
+        },
+        {
+          "id": 963,
+          "created_at": "2025-05-24 12:33:35",
+          "updated_at": "2025-05-24 12:33:35",
+          "user_id": 459,
+          "course_id": 194
+        },
+        {
+          "id": 1789,
+          "created_at": "2026-01-27 10:28:58",
+          "updated_at": "2026-01-27 10:28:58",
+          "user_id": 459,
+          "course_id": 202
+        },
+        {
+          "id": 1790,
+          "created_at": "2026-01-27 10:28:58",
+          "updated_at": "2026-01-27 10:28:58",
+          "user_id": 459,
+          "course_id": 198
+        }
+      ]
+    },
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDU5LCJkZXZpY2VfaWQiOiJkZXZpY2VfMTIzNDU2IiwiaWF0IjoxNzcwMTAzMTM2LCJleHAiOjE3NzI2OTUxMzZ9.sX9d7EaDbGDNHnLiTVs0OND-L7EXMw3r_nB6KT_pN80"
+  },
+  "message": "Login successfully.",
+  "status": 200
+}

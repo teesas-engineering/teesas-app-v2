@@ -11,6 +11,7 @@ class SecureStorageService {
   final FlutterSecureStorage _storage = const FlutterSecureStorage();
 
   Future<bool> isLoggedIn() async {
+    await Future.delayed(const Duration(seconds: 2));
     final result = await _storage.read(key: StorageKeys.token);
     return result != null;
   }
@@ -31,8 +32,6 @@ class SecureStorageService {
       _storage.write(key: key, value: value);
 
   Future<void> saveUser(Map<String, dynamic> value) async {
-    await _storage.write(key: StorageKeys.userId, value: value['id']);
-
     await _storage.write(
       key: StorageKeys.userDetails,
       value: jsonEncode(value),

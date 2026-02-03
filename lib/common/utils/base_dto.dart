@@ -1,5 +1,4 @@
 class BaseDto {
-
   const BaseDto({
     required this.status,
     required this.message,
@@ -12,8 +11,13 @@ class BaseDto {
       data = json['data'] as List;
     }
 
-    return BaseDto(status: 200, message: json['message'] ?? '', data: data);
+    return BaseDto(
+      status: (json['status'] as int?) ?? 201,
+      message: json['message'] ?? '',
+      data: data,
+    );
   }
+
   final int? status;
   final String message;
   final dynamic data;

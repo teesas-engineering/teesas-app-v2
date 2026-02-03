@@ -1,9 +1,12 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-
-import '../app/home/presentation/screens/home_shell_screen.dart';
+import '../app/dashboard/presentation/screens/dashboard_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_confirmation_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_email_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_otp_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
+import '../app/onboarding/presentation/screens/welcome_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -22,6 +25,11 @@ class MainRouter {
   static const String learning = '/learning';
   static const String homeShell = '/home-shell';
   static const String manageAccounts = '/manage-accounts';
+  static const String forgotPasswordEmail = '/forgot-password-email';
+  static const String forgotPasswordOtp = '/forgot-password-otp';
+  static const String forgotPasswordConfirmation =
+      '/forgot-password-confirmation';
+  static const String welcomeScreen = '/welcome-screen';
 
   GoRouter get router => _router;
 
@@ -47,12 +55,33 @@ class MainRouter {
       GoRoute(
         path: homeShell,
         name: homeShell,
-        builder: (context, state) => const HomeShellScreen(),
+        builder: (context, state) =>  const DashboardScreen(),
       ),
       GoRoute(
         path: manageAccounts,
         name: manageAccounts,
         builder: (context, state) => const ManageAccountsScreen(),
+      ),
+      GoRoute(
+        path: forgotPasswordEmail,
+        name: forgotPasswordEmail,
+        builder: (context, state) => const ForgotPasswordEmailScreen(),
+      ),
+      GoRoute(
+        path: forgotPasswordOtp,
+        name: forgotPasswordOtp,
+        builder: (context, state) => const ForgotPasswordOtpScreen(),
+      ),
+      GoRoute(
+        path: forgotPasswordConfirmation,
+        name: forgotPasswordConfirmation,
+        builder: (context, state) =>
+            const ForgotPasswordConfirmationScreen(),
+      ),
+      GoRoute(
+        path: welcomeScreen,
+        name: welcomeScreen,
+        builder: (context, state) => const WelcomeScreen(),
       ),
     ],
   );

@@ -12,7 +12,8 @@
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:teesas/app/_shared/data/source/auth_source.dart' as _i789;
+import 'package:teesas/app/_shared/data/source/auth_source/auth_source.dart'
+    as _i738;
 import 'package:teesas/app/_shared/domain/repository/auth_repository.dart'
     as _i165;
 import 'package:teesas/app/_shared/stores/category_store/category_store.dart'
@@ -41,7 +42,7 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i500.RouteHelper>(() => _i500.RouteHelper());
     gh.lazySingleton<_i165.AuthRepository>(
-      () => _i165.AuthRepository(gh<_i789.AuthSource>()),
+      () => _i165.AuthRepository(gh<_i738.AuthSource>()),
     );
     gh.lazySingleton<_i362.NetworkInterceptor>(
       () => _i362.NetworkInterceptor(gh<_i1056.SecureStorageService>()),

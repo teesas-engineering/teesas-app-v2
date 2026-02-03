@@ -13,8 +13,7 @@ class ApiResultWrapper {
   }) async {
     try {
       final result = await func.call();
-
-      if (result.status != 200 && result.status != 201) {
+      if (result.data==null) {
         return Failure(error: result.message, code: result.status);
       }
       final finalResult = mapper(result.data);
@@ -37,7 +36,7 @@ class ApiResultWrapper {
     try {
       final result = await func.call();
 
-      if (result.status != 200 && result.status != 201) {
+      if (result.data==null) {
         return Failure(error: result.message, code: result.status);
       }
       if (result.data is List<dynamic>) {

@@ -28,11 +28,39 @@ class RouteHelper {
     }
   }
 
+  void showWelcomeScreen() {
+    mainRouter.router.goNamed(MainRouter.welcomeScreen);
+  }
+
   void showLoginScreen({bool replace = false}) {
     if (replace) {
       mainRouter.router.replaceNamed(MainRouter.loginScreen);
     } else {
       mainRouter.router.pushNamed(MainRouter.loginScreen);
+    }
+  }
+
+  void showForgotPasswordEmailScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.forgotPasswordEmail);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.forgotPasswordEmail);
+    }
+  }
+
+  void showForgotPasswordOtpScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.forgotPasswordOtp);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.forgotPasswordOtp);
+    }
+  }
+
+  void showForgotPasswordConfirmationScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.forgotPasswordConfirmation);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.forgotPasswordConfirmation);
     }
   }
 

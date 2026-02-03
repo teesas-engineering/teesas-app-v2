@@ -1,96 +1,33 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
-import '../../../../dependency_manager/injectable.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/widgets/app_button.dart';
-import '../../../../router/route_helper.dart';
+import '../stores/welcome_screen_store.dart';
 
-class _OnboardingData {
-  final String image;
-  final String description;
-
-  const _OnboardingData({required this.image, required this.description});
-}
-
-class WelcomeScreen extends StatefulWidget {
+class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
-  State<WelcomeScreen> createState() => _WelcomeScreenState();
+  Widget build(BuildContext context) {
+    return Provider<WelcomeScreenStore>(
+      create: (_) => WelcomeScreenStore(),
+      dispose: (_, store) => store.dispose(),
+      child: const _WelcomeScreenContent(),
+    );
+  }
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
-  final PageController _pageController = PageController();
-  int _currentPage = 0;
-  bool isLastPage = false;
-
-  final List<_OnboardingData> _onboardingPages = const [
-    _OnboardingData(
-      image: AppAssets.onboardingImage1,
-      description: 'Fun-filled learning for curious little minds',
-    ),
-    _OnboardingData(
-      image: AppAssets.onboardingImage2,
-      description:
-          'Master Common Entrance with lessons and practice questions.',
-    ),
-    _OnboardingData(
-      image: AppAssets.onboardingImage3,
-      description:
-          'Comprehensive educational content for JSS and SSS students.',
-    ),
-    _OnboardingData(
-      image: AppAssets.onboardingImage4,
-      description: 'Unlock UTME & SSCE excellence with ease.',
-    ),
-    _OnboardingData(
-      image: AppAssets.onboardingImage5,
-      description: 'Tailored lessons to secure your admission.',
-    ),
-    _OnboardingData(
-      image: AppAssets.onboardingImage6,
-      description: 'Discover the habits that lead to lifelong success',
-    ),
-  ];
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  Future<void> _nextPage() async {
-    if (_currentPage < _onboardingPages.length - 1) {
-      unawaited(
-        _pageController.nextPage(
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        ),
-      );
-    } else {}
-  }
-
-  Future<void> _skipOnboarding() async {
-    // Scroll to the end of the welcome pageview
-    if (_currentPage < _onboardingPages.length - 1) {
-      unawaited(
-        _pageController.animateToPage(
-          _onboardingPages.length - 1,
-          duration: const Duration(milliseconds: 300),
-          curve: Curves.easeInOut,
-        ),
-      );
-    }
-  }
+class _WelcomeScreenContent extends StatelessWidget {
+  const _WelcomeScreenContent();
 
   @override
   Widget build(BuildContext context) {
-    final currentData = _onboardingPages[_currentPage];
-    final isLastPage = _currentPage == _onboardingPages.length - 1;
+    final store = context.read<WelcomeScreenStore>();
 
     return Scaffold(
       backgroundColor: AppColors.bgBrandSecondaryLight,
@@ -99,26 +36,30 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           children: [
             28.height,
             PagePadding(
-              child: Row(
-                children: List.generate(
-                  _onboardingPages.length,
-                  (index) => Expanded(
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 300),
-                      curve: Curves.easeInOut,
-                      height: 5,
-                      margin: EdgeInsets.zero,
-                      decoration: BoxDecoration(
-                        color: index == _currentPage
-                            ? AppColors.bgAccent
-                            : AppColors.onboardingIndicatorInActive,
-                        borderRadius: BorderRadius.circular(
-                          index == _currentPage ? 8 : 0,
+              child: Observer(
+                builder: (_) {
+                  return Row(
+                    children: List.generate(
+                      store.onboardingPages.length,
+                      (index) => Expanded(
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                          height: 5,
+                          margin: EdgeInsets.zero,
+                          decoration: BoxDecoration(
+                            color: index == store.currentPage
+                                ? AppColors.bgAccent
+                                : AppColors.onboardingIndicatorInActive,
+                            borderRadius: BorderRadius.circular(
+                              index == store.currentPage ? 8 : 0,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
+                  );
+                },
               ),
             ),
             16.height,
@@ -135,15 +76,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             12.height,
             Expanded(
               child: PageView.builder(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    _currentPage = index;
-                  });
-                },
-                itemCount: _onboardingPages.length,
+                controller: store.pageController,
+                onPageChanged: store.setCurrentPage,
+                itemCount: store.onboardingPages.length,
                 itemBuilder: (context, index) {
-                  final data = _onboardingPages[index];
+                  final data = store.onboardingPages[index];
                   return PagePadding(
                     child: Column(
                       children: [
@@ -154,7 +91,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         ),
                         38.height,
                         Text(
-                          currentData.description,
+                          data.description,
                           style: AppTypography.titleLarge.copyWith(
                             color: AppColors.textBrandDark,
                             fontSize: 28,
@@ -168,45 +105,48 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 },
               ),
             ),
+            Observer(
+              builder: (_) {
+                final isLastPage = store.isLastPage;
+                final currentPage = store.currentPage;
 
-            // Navigation buttons
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
-              decoration: const BoxDecoration(color: AppColors.bgPrimary),
-
-              child: isLastPage
-                  ? Column(
-                      children: [
-                        AppButton(
-                          text: 'Get Started',
-                          onPressed: () async {
-                            getIt<RouteHelper>().showOnboardingRoot();
-                          },
+                return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+                  decoration: const BoxDecoration(color: AppColors.bgPrimary),
+                  child: isLastPage
+                      ? Column(
+                          children: [
+                            AppButton(
+                              text: 'Get Started',
+                              onPressed: () async => store.goToOnboardingRoot(),
+                            ),
+                            16.height,
+                            AppButton.secondary(
+                              text: 'I already have an account',
+                              onPressed: () async => store.goToLogin(),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Expanded(
+                              child: AppButton.secondary(
+                                text: 'Skip',
+                                isDisabled: currentPage == 0,
+                                onPressed: store.skipOnboarding,
+                              ),
+                            ),
+                            const SizedBox(width: 24),
+                            Expanded(
+                              child: AppButton(
+                                text: 'Next',
+                                onPressed: store.nextPage,
+                              ),
+                            ),
+                          ],
                         ),
-                        16.height,
-                        AppButton.secondary(
-                          text: 'I already have an account',
-                          onPressed: () async {
-                            getIt<RouteHelper>().showLoginScreen();
-                          },
-                        ),
-                      ],
-                    )
-                  : Row(
-                      children: [
-                        Expanded(
-                          child: AppButton.secondary(
-                            text: 'Skip',
-                            isDisabled: _currentPage == 0,
-                            onPressed: _skipOnboarding,
-                          ),
-                        ),
-                        const SizedBox(width: 24),
-                        Expanded(
-                          child: AppButton(text: 'Next', onPressed: _nextPage),
-                        ),
-                      ],
-                    ),
+                );
+              },
             ),
           ],
         ),

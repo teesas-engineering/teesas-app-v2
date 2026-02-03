@@ -3,7 +3,7 @@ enum AppEnvironment { prod, stagging }
 
 class AppConfig {
   AppConfig._();
-  static String baseUrl = 'https://api-teesas.teesas.com/v1/';
+  static const  baseUrl = 'https://api-teesas.teesas.com/v1/';
   static AppEnvironment environment = AppEnvironment.stagging;
   static bool get isLive => environment == AppEnvironment.prod;
   static int connectionTimeout = 20;

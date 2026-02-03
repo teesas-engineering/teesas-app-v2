@@ -32,12 +32,11 @@ class NetworkInterceptor extends Interceptor {
     final responseValue = data['data'];
     if (responseValue is Map<String, dynamic>) {
       final responseData = data['data'] as Map<String, dynamic>?;
-      final token = responseData?['accessToken'] as String?;
+      final token = responseData?['token'] as String?;
       if (token != null) {
         _secureStorageService.saveToken(token);
       }
     }
-    debugPrint('🟢 🟢  API RESPONSE -> ${response.data}');
     super.onResponse(response, handler);
   }
 

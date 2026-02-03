@@ -10,15 +10,19 @@ import '../pages/live_class_page.dart';
 import '../pages/more_page.dart';
 
 class DashboardScreen extends StatelessWidget {
-   DashboardScreen({super.key});
+  const DashboardScreen({
+    super.key,
+    this.pages = const [
+      HomePage(),
+      FavoritePage(),
+      LiveClassPage(),
+      LeaderBorderPage(),
+      MorePage(),
+    ],
+  });
 
-  List<Widget> pages =  const [
-    HomePage(),
-    FavoritePage(),
-    LiveClassPage(),
-    LeaderBorderPage(),
-    MorePage(),
-  ];
+  final List<Widget> pages;
+
   @override
   Widget build(BuildContext context) {
     final store = context.read<DashboardStore>();
@@ -29,10 +33,7 @@ class DashboardScreen extends StatelessWidget {
       ),
       body: Observer(
         builder: (_) {
-          return IndexedStack(
-            index: store.currentIndex,
-            children: pages,
-          );
+          return IndexedStack(index: store.currentIndex, children: pages);
         },
       ),
     );
