@@ -55,7 +55,7 @@ class AddUserForm extends StatelessWidget with FormMixin {
               ),
               16.height,
               GestureDetector(
-                onTap: () => store.selectCountry(context),
+                onTap: () async{},
                 child: Observer(
                   builder: (_) => AppInputField(
                     controller: TextEditingController(

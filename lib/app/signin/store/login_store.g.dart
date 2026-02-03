@@ -102,18 +102,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   );
 
   @override
-  void selectProfile(UserProfileDto profile) {
-    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
-      name: '_LoginStoreBase.selectProfile',
-    );
-    try {
-      return super.selectProfile(profile);
-    } finally {
-      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void resetStatus() {
     final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
       name: '_LoginStoreBase.resetStatus',

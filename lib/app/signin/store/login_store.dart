@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../../common/services/secured_storage_service.dart';
 import '../../../../dependency_manager/injectable.dart';
 import '../../../common/enum/state_type.dart';
@@ -11,7 +10,6 @@ import '../../_shared/data/dto/login_dto/login_dto.dart';
 import '../../_shared/data/dto/user_dto/user_dto.dart';
 import '../../_shared/data/dto/user_dto/user_profile_dto.dart';
 import '../../_shared/domain/repository/auth_repository.dart';
-
 part 'login_store.g.dart';
 
 @lazySingleton
@@ -90,11 +88,6 @@ abstract class _LoginStoreBase with Store {
         },
       );
     }
-  }
-
-  @action
-  void selectProfile(UserProfileDto profile) {
-    getIt<RouteHelper>().showHomeShell(replace: true);
   }
 
   @action

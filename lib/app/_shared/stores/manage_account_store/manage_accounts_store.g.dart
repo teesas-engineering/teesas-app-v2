@@ -57,6 +57,18 @@ mixin _$ManageAccountsStore on _ManageAccountsStore, Store {
   }
 
   @override
+  void editAccount() {
+    final _$actionInfo = _$_ManageAccountsStoreActionController.startAction(
+      name: '_ManageAccountsStore.editAccount',
+    );
+    try {
+      return super.editAccount();
+    } finally {
+      _$_ManageAccountsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 accounts: ${accounts}

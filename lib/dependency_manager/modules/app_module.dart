@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../app/_shared/data/source/auth_source/auth_source.dart';
+import '../../app/_shared/data/source/util_source/util_source.dart';
 import '../../common/network/network_interceptor.dart';
 import '../../common/utils/app_config.dart';
 
@@ -24,4 +25,7 @@ abstract class AppModule {
 
   @lazySingleton
   AuthSource getAuthSource(Dio dio) => AuthSource(dio);
+
+  @lazySingleton
+  UtilSource getUtilSource(Dio dio) => UtilSource(dio);
 }

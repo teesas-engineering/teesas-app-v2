@@ -5,5 +5,6 @@ class StorageKeys{
   static const userId = 'userId';
   static const currentCourse = 'currentCourse';
   static const stores = 'vendor-store';
-
+  static const utilCourses = 'util_courses';
+  static const utilCountries = 'util_countries';
 }

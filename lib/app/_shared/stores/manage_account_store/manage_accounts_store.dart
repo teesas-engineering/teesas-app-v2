@@ -1,10 +1,10 @@
 import 'package:mobx/mobx.dart';
-
 part 'manage_accounts_store.g.dart';
 
 class ManageAccountsStore = _ManageAccountsStore with _$ManageAccountsStore;
 
 abstract class _ManageAccountsStore with Store {
+
   @observable
   ObservableList<AccountItem> accounts = ObservableList<AccountItem>.of([
     AccountItem(
@@ -36,6 +36,10 @@ abstract class _ManageAccountsStore with Store {
   void addAccount() {
     // Logic to add account
   }
+
+  @action
+  void editAccount(){}
+
 }
 
 enum AccountRoleType { student, parent }

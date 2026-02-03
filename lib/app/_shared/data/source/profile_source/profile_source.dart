@@ -7,7 +7,7 @@ import '../../dto/switch_profile_dto/switch_profile_dto.dart';
 
 part 'profile_source.g.dart';
 
-@RestApi(baseUrl: '${AppConfig.baseUrl}/v1/profile/')
+@RestApi(baseUrl: '${AppConfig.baseUrl}/profile/')
 abstract class ProfileSource {
   factory ProfileSource(Dio dio) = _ProfileSource;
 

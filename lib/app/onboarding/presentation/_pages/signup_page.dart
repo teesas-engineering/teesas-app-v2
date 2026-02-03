@@ -10,6 +10,7 @@ import '../../../../common/utils/form_mixin.dart';
 import '../../../../dependency_manager/injectable.dart';
 import '../../../_shared/enum/gender.dart';
 import '../../../_shared/enum/input_type.dart';
+import '../../../_shared/modal/countries_modal.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/app_input_field.dart';
 import '../../../_shared/widgets/password_input_field.dart';
@@ -70,7 +71,13 @@ class SignupPage extends StatelessWidget with FormMixin {
                   ),
                   16.height,
                   GestureDetector(
-                    onTap: () => store.selectCountry(context),
+                    onTap: () async {
+                      final String? selected = await CountriesModal.show(
+                        context,
+                        selectedCountryName: store.selectedCountry,
+                      );
+                      store.selectedCountry = selected;
+                    },
                     child: Observer(
                       builder: (_) => AppInputField(
                         controller: TextEditingController(

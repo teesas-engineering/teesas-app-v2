@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../common/style_guide/colors.dart';
-import '../../../../common/style_guide/style_guide.dart';
 import '../../../../common/utils/form_mixin.dart';
 import '../../../_shared/enum/gender.dart';
+import '../../../_shared/modal/countries_modal.dart';
 import '../../../_shared/enum/leader_in_me_category.dart';
 import '../../../_shared/enum/matric_category.dart';
 import '../../../_shared/enum/nigerian_languages_category.dart';
@@ -109,14 +108,6 @@ abstract class _OnboardingStore with Store, FormMixin {
       selectedLeaderInMeCategories.length +
       selectedMatricCategories.length;
 
-  List<String> get countries => [
-    'Nigeria',
-    'Ghana',
-    'Kenya',
-    'South Africa',
-    'Tanzania',
-  ];
-
   @action
   void setGender(Gender? gender) {
     selectedGender = gender;
@@ -218,48 +209,7 @@ abstract class _OnboardingStore with Store, FormMixin {
     }
   }
 
-  Future<void> selectCountry(BuildContext context) async {
-    final String? selected = await showModalBottomSheet<String>(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text(
-                'Select Country',
-                style: AppTypography.titleLarge.copyWith(
-                  color: AppColors.textPrimary,
-                ),
-              ),
-            ),
-            ...countries.map(
-              (country) => ListTile(
-                title: Text(
-                  country,
-                  style: AppTypography.bodyLarge.copyWith(
-                    color: AppColors.textSecondary,
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context, country);
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-    if (selected != null) {
-      setCountry(selected);
-    }
-  }
+
 
   Future<void> handleRegister() async {
     if (formKey.currentState?.validate() ?? false) {
