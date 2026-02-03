@@ -43,7 +43,7 @@ class MoreTab extends StatelessWidget {
                 _MenuItem(
                   icon: AppAssets.icSubscriptions,
                   title: 'Subscriptions',
-                  onTap: () {},
+                  onTap: () => context.push(MainRouter.subscription),
                 ),
                 _MenuItem(
                   icon: AppAssets.icTeesasPortal,

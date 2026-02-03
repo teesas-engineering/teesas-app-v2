@@ -130,4 +130,12 @@ class AppColors {
   static Color onboardingIndicatorInActive = const Color(0xFFE4E4E4);
   static Color registeredBg = const Color(0xFFFCF7EA);
   static Color subscribedBg = const Color(0xFFEFFFCE);
+  static const badgeBgRed = Color(0xFFFFF5F3);
+  static const badgeTextRed = Color(0xFF846058);
+  static const bgBorderRed = Color(0xFFE9DCD9);
+  static const badgeBgBlue = Color(0xFFF5F9FB);
+  static const badgeTextBlue = Color(0xFF51666F);
+  static const bgBorderBlue = Color(0xFFD6E2E8);
+
+  static const Color color8A5206 = Color(0xFF8A5206);
 }

@@ -92,11 +92,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      const Divider(
-                        height: 1,
-                        thickness: 1,
-                        color: AppColors.dividerColor,
-                      ),
+                      const Divider(height: 1, color: AppColors.dividerColor),
                       ExpandableSettingsSection(
                         iconPath: AppAssets.icVideo,
                         iconColor: AppColors.iconsWarning,

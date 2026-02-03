@@ -9,6 +9,10 @@ import '../app/more/referral/presentation/screens/invite_list_screen.dart';
 import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
 import '../app/more/referral/presentation/screens/withdraw_earnings_screen.dart';
 import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
+import '../app/more/settings/presentation/screens/change_password_screen.dart';
+import '../app/more/settings/presentation/screens/settings_screen.dart';
+import '../app/more/settings/presentation/screens/terms_and_conditions_screen.dart';
+import '../app/more/subscription/presentation/screens/subscription_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -32,6 +36,10 @@ class MainRouter {
   static const String withdrawEarnings = '/refer-and-earn/withdraw';
   static const String withdrawSuccess = '/refer-and-earn/withdraw/success';
   static const String downloadedVideos = '/downloaded-videos';
+  static const String settings = '/settings';
+  static const String changePassword = '/settings/change-password';
+  static const String termsAndConditions = '/settings/terms-and-conditions';
+  static const String subscription = '/subscription';
 
   GoRouter get router => _router;
 
@@ -88,6 +96,26 @@ class MainRouter {
         path: downloadedVideos,
         name: downloadedVideos,
         builder: (context, state) => const DownloadedVideosScreen(),
+      ),
+      GoRoute(
+        path: settings,
+        name: settings,
+        builder: (context, state) => const SettingsScreen(),
+      ),
+      GoRoute(
+        path: changePassword,
+        name: changePassword,
+        builder: (context, state) => const ChangePasswordScreen(),
+      ),
+      GoRoute(
+        path: termsAndConditions,
+        name: termsAndConditions,
+        builder: (context, state) => const TermsAndConditionsScreen(),
+      ),
+      GoRoute(
+        path: subscription,
+        name: subscription,
+        builder: (context, state) => const SubscriptionScreen(),
       ),
     ],
   );
