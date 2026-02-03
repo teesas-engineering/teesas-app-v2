@@ -5,9 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
-import '../../../../_shared/widgets/custom_switch.dart';
-
-enum SettingsSubItemTrailingType { toggle, radio, chevron }
+import 'settings_sub_item_trailing.dart';
 
 class SettingsSubItem extends StatelessWidget {
   const SettingsSubItem({
@@ -57,42 +55,15 @@ class SettingsSubItem extends StatelessWidget {
                 ),
               ),
             ),
-            _buildTrailing(),
+            SettingsSubItemTrailing(
+              trailingType: trailingType,
+              toggleValue: toggleValue,
+              onToggleChanged: onToggleChanged,
+              isSelected: isSelected,
+            ),
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildTrailing() {
-    switch (trailingType) {
-      case SettingsSubItemTrailingType.chevron:
-        return Icon(
-          Icons.arrow_forward_ios,
-          size: 16.w,
-          color: AppColors.textSecondary,
-        );
-      case SettingsSubItemTrailingType.toggle:
-        return CustomSwitch(
-          value: toggleValue ?? false,
-          onChanged: onToggleChanged,
-        );
-      case SettingsSubItemTrailingType.radio:
-        return Container(
-          width: 16.w,
-          height: 16.w,
-          decoration: BoxDecoration(
-            color: isSelected ? AppColors.bgBrand : Colors.transparent,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: isSelected ? AppColors.bgBrand : AppColors.dividerColor,
-              width: 2.w,
-            ),
-          ),
-          child: isSelected
-              ? Icon(Icons.check, size: 14.w, color: Colors.white)
-              : null,
-        );
-    }
   }
 }

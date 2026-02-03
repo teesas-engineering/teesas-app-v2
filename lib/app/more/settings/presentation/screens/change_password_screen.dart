@@ -7,8 +7,8 @@ import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
 import '../../../../_shared/widgets/app_back_header.dart';
-import '../../../../_shared/widgets/app_button.dart';
-import '../../../../_shared/widgets/app_input_field.dart';
+import '../widgets/change_password_field.dart';
+import '../widgets/change_password_proceed_button.dart';
 import '../../store/change_password_store.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -61,18 +61,18 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         ),
                       ),
                       32.height,
-                      _PasswordField(
+                      ChangePasswordField(
                         controller: _store.oldPasswordController,
                         labelText: 'Old Password',
                         hintText: 'Input',
                       ),
                       24.height,
-                      _PasswordField(
+                      ChangePasswordField(
                         controller: _store.newPasswordController,
                         labelText: 'New Password',
                       ),
                       24.height,
-                      _PasswordField(
+                      ChangePasswordField(
                         controller: _store.confirmPasswordController,
                         labelText: 'Confirm New Password',
                       ),
@@ -87,7 +87,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   Dimens.pagePadding,
                   24.h,
                 ),
-                child: _ProceedButton(
+                child: ChangePasswordProceedButton(
                   isLoading: _store.isLoading,
                   onPressed: _store.changePassword,
                 ),
@@ -95,55 +95,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _PasswordField extends StatelessWidget {
-  const _PasswordField({
-    required this.controller,
-    required this.labelText,
-    this.hintText,
-  });
-
-  final TextEditingController controller;
-  final String labelText;
-  final String? hintText;
-
-  @override
-  Widget build(BuildContext context) {
-    return AppInputField(
-      controller: controller,
-      labelText: labelText,
-      hintText: hintText,
-      obscureText: true,
-      backgroundColor: AppColors.white,
-      borderColor: AppColors.borderPrimary,
-    );
-  }
-}
-
-class _ProceedButton extends StatelessWidget {
-  const _ProceedButton({required this.isLoading, required this.onPressed});
-
-  final bool isLoading;
-  final Future<void> Function() onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
-        border: Border.all(color: AppColors.bgBrand, width: 2),
-      ),
-      child: AppButton(
-        text: 'Proceed',
-        onPressed: onPressed,
-        isLoading: isLoading,
-        backgroundColor: AppColors.white,
-        textColor: AppColors.textPrimary,
-        borderColor: AppColors.transparent,
       ),
     );
   }

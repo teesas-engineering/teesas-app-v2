@@ -12,7 +12,9 @@ import '../../../../_shared/widgets/app_card.dart';
 import '../../store/settings_store.dart';
 import '../widgets/expandable_settings_section.dart';
 import '../widgets/settings_item.dart';
+import '../widgets/settings_item_trailing.dart';
 import '../widgets/settings_sub_item.dart';
+import '../widgets/settings_sub_item_trailing.dart';
 import '../../../../../router/main_router.dart';
 
 class SettingsScreen extends StatefulWidget {

@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
-import '../../../../../common/style_guide/style_guide.dart';
 import '../../../../_shared/widgets/app_button.dart';
 import '../../../../_shared/widgets/app_card.dart';
+import '../../../../_shared/widgets/app_vertical_divider.dart';
+import 'referral_stat_item.dart';
 
 class ReferralStatsCard extends StatelessWidget {
   const ReferralStatsCard({
@@ -30,11 +31,17 @@ class ReferralStatsCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildStatItem('Total\nEarnings', totalEarnings),
-              _buildDivider(),
-              _buildStatItem('Current\nEarnings', currentEarnings),
-              _buildDivider(),
-              _buildStatItem('Total\nWithdrawal', totalWithdrawal),
+              ReferralStatItem(label: 'Total\nEarnings', value: totalEarnings),
+              const AppVerticalDivider(),
+              ReferralStatItem(
+                label: 'Current\nEarnings',
+                value: currentEarnings,
+              ),
+              const AppVerticalDivider(),
+              ReferralStatItem(
+                label: 'Total\nWithdrawal',
+                value: totalWithdrawal,
+              ),
             ],
           ),
           24.height,
@@ -49,44 +56,5 @@ class ReferralStatsCard extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  Widget _buildStatItem(String label, double value) {
-    return Expanded(
-      child: Column(
-        children: [
-          Text(
-            label,
-            textAlign: TextAlign.center,
-            style: AppTypography.labelSmall.copyWith(
-              color: AppColors.textSecondary,
-              height: 1.2,
-            ),
-          ),
-          8.height,
-          Text(
-            _formatNumber(value),
-            textAlign: TextAlign.center,
-            style: AppTypography.titleSmall.copyWith(
-              color: AppColors.textModalSecondary,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildDivider() {
-    return Container(height: 28.h, width: 1, color: AppColors.dividerColor);
-  }
-
-  String _formatNumber(double value) {
-    return value
-        .toStringAsFixed(0)
-        .replaceAllMapped(
-          RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-          (m) => '${m[1]},',
-        );
   }
 }

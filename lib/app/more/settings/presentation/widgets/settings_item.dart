@@ -3,11 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../common/extensions/num_extension.dart';
-import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
-import '../../../../_shared/widgets/custom_switch.dart';
-
-enum SettingsItemTrailingType { chevron, dropdown, toggle }
+import 'settings_item_trailing.dart';
 
 class SettingsItem extends StatelessWidget {
   const SettingsItem({
@@ -50,32 +47,14 @@ class SettingsItem extends StatelessWidget {
                 ),
               ),
             ),
-            _buildTrailing(),
+            SettingsItemTrailing(
+              trailingType: trailingType,
+              toggleValue: toggleValue,
+              onToggleChanged: onToggleChanged,
+            ),
           ],
         ),
       ),
     );
-  }
-
-  Widget _buildTrailing() {
-    switch (trailingType) {
-      case SettingsItemTrailingType.chevron:
-        return Icon(
-          Icons.arrow_forward_ios,
-          size: 18.w,
-          color: AppColors.textSecondary,
-        );
-      case SettingsItemTrailingType.dropdown:
-        return Icon(
-          Icons.arrow_forward_ios,
-          size: 16.w,
-          color: AppColors.textSecondary,
-        );
-      case SettingsItemTrailingType.toggle:
-        return CustomSwitch(
-          value: toggleValue ?? false,
-          onChanged: onToggleChanged,
-        );
-    }
   }
 }
