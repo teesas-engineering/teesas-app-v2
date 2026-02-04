@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
+import '../app/more/subscription/data/model/subscription_checkout_item.dart';
 import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
@@ -13,6 +14,7 @@ import '../app/more/settings/presentation/screens/change_password_screen.dart';
 import '../app/more/settings/presentation/screens/settings_screen.dart';
 import '../app/more/settings/presentation/screens/terms_and_conditions_screen.dart';
 import '../app/more/subscription/presentation/screens/add_subscription_screen.dart';
+import '../app/more/subscription/presentation/screens/subscription_summary_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
@@ -42,6 +44,7 @@ class MainRouter {
   static const String termsAndConditions = '/settings/terms-and-conditions';
   static const String subscription = '/subscription';
   static const String addSubscription = '/subscription/add';
+  static const String subscriptionSummary = '/subscription/summary';
 
   GoRouter get router => _router;
 
@@ -123,6 +126,14 @@ class MainRouter {
         path: addSubscription,
         name: addSubscription,
         builder: (context, state) => const AddSubscriptionScreen(),
+      ),
+      GoRoute(
+        path: subscriptionSummary,
+        name: subscriptionSummary,
+        builder: (context, state) {
+          final items = state.extra as List<SubscriptionCheckoutItem>;
+          return SubscriptionSummaryScreen(checkoutItems: items);
+        },
       ),
     ],
   );
