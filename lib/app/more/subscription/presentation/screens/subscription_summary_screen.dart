@@ -8,10 +8,9 @@ import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
 import '../../../../_shared/widgets/app_button.dart';
 import '../../../../_shared/widgets/app_card.dart';
+import '../../../../_shared/widgets/app_divider.dart';
 import '../../../../_shared/widgets/app_input_field.dart';
 import '../../../../_shared/widgets/app_progress_header.dart';
-import '../../../../_shared/widgets/app_vertical_divider.dart';
-import '../../data/model/subscription.dart';
 import '../../data/model/subscription_checkout_item.dart';
 import '../widgets/history_subscription_card.dart';
 
@@ -81,19 +80,9 @@ class SubscriptionSummaryScreen extends StatelessWidget {
                       separatorBuilder: (_, _) => 16.height,
                       itemBuilder: (context, index) {
                         final item = checkoutItems[index];
-                        final subscription = Subscription(
-                          id: item.id,
-                          planName: item.planDuration,
-                          startDate: '', // Not needed for display
-                          endDate: '', // Not needed for display
-                          amount: item.amount,
-                          status: SubscriptionStatus.active, // Mock
-                          category: item.categoryTag,
-                          subCategory: item.title,
-                        );
 
                         return HistorySubscriptionCard(
-                          subscription: subscription,
+                          subscription: item.toSubscription(),
                           backgroundColor: AppColors.bgPrimary,
                           hasBorder: false,
                           margin: EdgeInsets.zero,
@@ -101,7 +90,7 @@ class SubscriptionSummaryScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  const AppVerticalDivider(),
+                  const AppDivider(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -123,7 +112,7 @@ class SubscriptionSummaryScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const AppVerticalDivider(),
+                  const AppDivider(),
                   const AppInputField(
                     labelText: "Apply Promocode/Referral/Reseller's Code",
                   ),
