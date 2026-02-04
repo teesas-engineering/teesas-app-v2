@@ -12,18 +12,18 @@ import '../../../_shared/enum/nigerian_languages_category.dart';
 import '../../../_shared/enum/preschool_category.dart';
 import '../../../_shared/enum/primary_school_category.dart';
 import '../../../_shared/enum/secondary_school_category.dart';
+import '../../../_shared/stores/category_store/category_store.dart';
 import '../../../_shared/widgets/app_bar.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/app_card.dart';
 import '../../../_shared/widgets/app_chip.dart';
-import '../stores/onboarding_store.dart';
 
 class ChooseCategoryPage extends StatelessWidget {
   const ChooseCategoryPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<OnboardingStore>(context);
+    final store = Provider.of<CategoryStore>(context);
 
     return Scaffold(
       backgroundColor: AppColors.bgPrimary,

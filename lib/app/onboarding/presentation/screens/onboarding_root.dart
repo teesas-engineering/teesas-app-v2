@@ -60,9 +60,7 @@ class OnboardingRoot extends StatelessWidget {
                 child: PageView(
                   controller: store.pageController,
                   physics: const NeverScrollableScrollPhysics(),
-                  onPageChanged: (index) {
-                    store.currentPage = index;
-                  },
+                  onPageChanged: store.setCurrentPage,
                   children: _pages,
                 ),
               ),

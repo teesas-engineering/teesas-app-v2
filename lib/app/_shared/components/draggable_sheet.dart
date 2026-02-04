@@ -13,6 +13,7 @@ class DraggableSheet extends StatefulWidget {
     this.description,
     this.showBack = true,
     this.cta,
+    this.onBackPress,
   });
 
   final double? initialChildSize;
@@ -20,6 +21,7 @@ class DraggableSheet extends StatefulWidget {
   final String? title;
   final bool showBack;
   final Widget? cta;
+  final VoidCallback? onBackPress;
   final Widget Function(ScrollController scrollController) child;
 
   @override
@@ -48,7 +50,7 @@ class _DraggableSheetState extends State<DraggableSheet> {
       builder: (context, value, child) {
         return DraggableScrollableSheet(
           initialChildSize: value,
-          maxChildSize: 0.95,
+          maxChildSize: 0.98,
           minChildSize: .3,
           builder: (context, scrollController) {
             return DecoratedBox(
@@ -98,7 +100,11 @@ class _DraggableSheetState extends State<DraggableSheet> {
                           if (widget.showBack)
                             InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                if (widget.onBackPress != null) {
+                                  widget.onBackPress?.call();
+                                } else {
+                                  Navigator.pop(context);
+                                }
                               },
                               child: const Icon(
                                 color: AppColors.iconsPrimary,

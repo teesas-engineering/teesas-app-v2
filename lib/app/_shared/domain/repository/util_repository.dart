@@ -22,7 +22,7 @@ class UtilRepository {
     );
   }
 
-  Future<ApiResult<List<CountriesDto>>> getCountries() {
+  Future<ApiResult<List<CountryDto>>> getCountries() {
     return ApiResultWrapper.wrap(
       func: _source.getCountries,
       mapper: (data) =>

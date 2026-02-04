@@ -77,11 +77,12 @@ class _ProfileSource implements ProfileSource {
   }
 
   @override
-  Future<BaseDto> addAccount() async {
+  Future<BaseDto> addAccount(AddAccountRequestDto payload) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(payload.toJson());
     final _options = _setStreamType<BaseDto>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
@@ -104,11 +105,12 @@ class _ProfileSource implements ProfileSource {
   }
 
   @override
-  Future<BaseDto> addUserCourse() async {
+  Future<BaseDto> addUserCourse(AddUserCourseRequestDto payload) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(payload.toJson());
     final _options = _setStreamType<BaseDto>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

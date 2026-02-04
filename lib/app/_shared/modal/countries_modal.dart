@@ -5,6 +5,7 @@ import '../../../common/dimens/app_dimens.dart';
 import '../../../common/enum/state_type.dart';
 import '../../../common/utils/modal_helper.dart';
 import '../components/draggable_sheet.dart';
+import '../data/dto/get_countries_dto/get_countries_country_dto.dart';
 import '../stores/util_store/util_store.dart';
 import '../widgets/app_input_field.dart';
 import 'country_modal_item.dart';
@@ -14,7 +15,7 @@ class CountriesModal extends StatelessWidget {
 
   final String? selectedCountryName;
 
-  static Future<String?> show(
+  static Future<CountryDto?> show(
     BuildContext context, {
     String? selectedCountryName,
   }) async {
@@ -33,6 +34,9 @@ class CountriesModal extends StatelessWidget {
       title: 'Choose Country',
       description:
           "Today is a new day. It's your day. You shape it. Sign in to start managing your projects.",
+      onBackPress: (){
+        Navigator.pop(context, selectedCountryName);
+      },
       child: (sheetScrollController) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
@@ -69,7 +73,7 @@ class CountriesModal extends StatelessWidget {
                             country: country,
                             isSelected:
                                 selectedCountryName == country.name,
-                            onTap: () => Navigator.pop(context, country.name),
+                            onTap: () => store.selectCountry(country),
                           );
                         },
                       ),

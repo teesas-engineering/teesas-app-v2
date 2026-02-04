@@ -1,6 +1,9 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../enum/leader_in_me_category.dart';
+import '../../enum/matric_category.dart';
+import '../../enum/nigerian_languages_category.dart';
 import '../../enum/preschool_category.dart';
 import '../../enum/primary_school_category.dart';
 import '../../enum/secondary_school_category.dart';
@@ -26,6 +29,27 @@ abstract class _CategoryStore with Store {
   @observable
   ObservableSet<SecondarySchoolCategory> selectedSecondarySchoolCategories =
       ObservableSet<SecondarySchoolCategory>();
+
+  @observable
+  ObservableSet<NigerianLanguagesCategory> selectedNigerianLanguagesCategories =
+      ObservableSet<NigerianLanguagesCategory>();
+
+  @observable
+  ObservableSet<LeaderInMeCategory> selectedLeaderInMeCategories =
+      ObservableSet<LeaderInMeCategory>();
+
+  @observable
+  ObservableSet<MatricCategory> selectedMatricCategories =
+      ObservableSet<MatricCategory>();
+
+  @computed
+  int get totalSelections =>
+      selectedPreschoolCategories.length +
+      selectedPrimarySchoolCategories.length +
+      selectedSecondarySchoolCategories.length +
+      selectedNigerianLanguagesCategories.length +
+      selectedLeaderInMeCategories.length +
+      selectedMatricCategories.length;
 
   @action
   void setTerm(Term? term) {
@@ -56,6 +80,33 @@ abstract class _CategoryStore with Store {
       selectedSecondarySchoolCategories.remove(category);
     } else {
       selectedSecondarySchoolCategories.add(category);
+    }
+  }
+
+  @action
+  void toggleNigerianLanguagesCategory(NigerianLanguagesCategory category) {
+    if (selectedNigerianLanguagesCategories.contains(category)) {
+      selectedNigerianLanguagesCategories.remove(category);
+    } else {
+      selectedNigerianLanguagesCategories.add(category);
+    }
+  }
+
+  @action
+  void toggleLeaderInMeCategory(LeaderInMeCategory category) {
+    if (selectedLeaderInMeCategories.contains(category)) {
+      selectedLeaderInMeCategories.remove(category);
+    } else {
+      selectedLeaderInMeCategories.add(category);
+    }
+  }
+
+  @action
+  void toggleMatricCategory(MatricCategory category) {
+    if (selectedMatricCategories.contains(category)) {
+      selectedMatricCategories.remove(category);
+    } else {
+      selectedMatricCategories.add(category);
     }
   }
 }

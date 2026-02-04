@@ -3,36 +3,36 @@ import 'package:json_annotation/json_annotation.dart';
 part 'get_countries_country_dto.g.dart';
 
 @JsonSerializable()
-class CountriesDto {
-  final int id;
-  final String name;
-  final String region;
-  final String code;
+class CountryDto {
+  final int? id;
+  final String? name;
+  final String? region;
+  final String? code;
 
   @JsonKey(name: 'dial_code')
-  final String dialCode;
+  final String? dialCode;
 
-  final String emoji;
-  final String image;
-  final String symbol;
+  final String? emoji;
+  final String? image;
+  final String? symbol;
 
   @JsonKey(name: 'price_rate')
-  final String priceRate;
+  final String? priceRate;
 
-  const CountriesDto({
-    required this.id,
-    required this.name,
-    required this.region,
-    required this.code,
-    required this.dialCode,
-    required this.emoji,
-    required this.image,
-    required this.symbol,
-    required this.priceRate,
+  const CountryDto({
+    this.id,
+    this.name,
+    this.region,
+    this.code,
+    this.dialCode,
+    this.emoji,
+    this.image,
+    this.symbol,
+    this.priceRate,
   });
 
-  factory CountriesDto.fromJson(Map<String, dynamic> json) =>
-      _$CountriesDtoFromJson(json);
+  factory CountryDto.fromJson(Map<String, dynamic> json) =>
+      _$CountryDtoFromJson(json);
 
-  Map<String, dynamic> toJson() => _$CountriesDtoToJson(this);
+  Map<String, dynamic> toJson() => _$CountryDtoToJson(this);
 }

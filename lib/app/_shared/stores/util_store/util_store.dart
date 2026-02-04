@@ -4,6 +4,8 @@ import '../../../../common/enum/state_type.dart';
 import '../../../../common/enum/storage_keys.dart';
 import '../../../../common/services/secured_storage_service.dart';
 import '../../../../common/utils/countries_util.dart';
+import '../../../../dependency_manager/injectable.dart';
+import '../../../../router/route_helper.dart';
 import '../../data/dto/get_countries_dto/get_countries_country_dto.dart';
 import '../../data/dto/get_countries_dto/get_countries_data_dto.dart';
 import '../../data/dto/get_courses_dto/course_dto.dart';
@@ -25,7 +27,7 @@ abstract class _UtilStore with Store {
   ObservableList<CourseDto> courses = ObservableList<CourseDto>();
 
   @observable
-  ObservableList<CountriesDto> countries = ObservableList.of(CountriesUtil().countries);
+  ObservableList<CountryDto> countries = ObservableList.of(CountriesUtil().countries);
 
   @observable
   String countriesSearchQuery = '';
@@ -39,14 +41,24 @@ abstract class _UtilStore with Store {
   @observable
   String? errorMessage;
 
+  @action
+  void initCountries(){
+    countries = ObservableList.of(CountriesUtil().countries);
+  }
+  @action
+  void selectCountry(CountryDto country){
+    countriesSearchQuery = '';
+    getIt<RouteHelper>().pop(country);
+  }
   @computed
-  List<CountriesDto> get filteredCountries {
+  List<CountryDto> get filteredCountries {
     final query = countriesSearchQuery.trim().toLowerCase();
     if (query.isEmpty) {
-      return List<CountriesDto>.from(countries);
+      return List<CountryDto>.from(countries);
     }
     return countries
-        .where((c) => c.name.toLowerCase().contains(query))
+        .where((c) =>
+            (c.name ?? '').toLowerCase().contains(query))
         .toList();
   }
 

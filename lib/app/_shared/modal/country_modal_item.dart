@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../common/dimens/app_dimens.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
@@ -13,7 +12,7 @@ class CountryModalItem extends StatelessWidget {
     super.key,
   });
 
-  final CountriesDto country;
+  final CountryDto country;
   final bool isSelected;
   final VoidCallback onTap;
 
@@ -28,31 +27,32 @@ class CountryModalItem extends StatelessWidget {
           onTap: onTap,
           borderRadius: BorderRadius.circular(Dimens.borderRadiusMin),
           child: Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Dimens.borderRadiusMin),
-              border: Border.all(
-                color: isSelected
-                    ? AppColors.iconsPositive
-                    : AppColors.c7Grey,
-                width: isSelected ? 2 : 1,
-              ),
+              color: isSelected ? AppColors.white : AppColors.borderPrimaryChip,
+              borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
+              border: isSelected
+                  ? const Border(
+                bottom: BorderSide(color: AppColors.bgBrand,width: 4,),
+                top: BorderSide(color: AppColors.bgBrand),
+                left: BorderSide(color: AppColors.bgBrand),
+                right: BorderSide(color: AppColors.bgBrand),
+              )
+                  : Border.all(color: AppColors.borderChip, width: 2),
+
             ),
             child: Row(
               children: [
                 SizedBox(
-                  width: 24,
-                  height: 24,
+                  width: 16,
+                  height: 16,
                   child: isSelected
-                      ? Container(
-                    decoration: const BoxDecoration(
-                      color: AppColors.iconsPositive,
+                      ? const DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: AppColors.bgBrandSecondary,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.check,
                       size: 16,
                       color: AppColors.textInvert,
@@ -62,8 +62,8 @@ class CountryModalItem extends StatelessWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: AppColors.bgAccentRosewood,
-                        width: 1.5,
+                        color: AppColors.iconsAccentOrange,
+                        width: .5,
                       ),
                     ),
                   ),
@@ -71,16 +71,18 @@ class CountryModalItem extends StatelessWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    '${country.emoji} ${country.name}',
-                    style: (isSelected
-                            ? AppTypography.titleMedium
-                            : AppTypography.bodyMedium)
+                    '${country.emoji} ${(country.name ?? '').trim()}',
+                    style:
+                    (isSelected
+                        ? AppTypography.titleMedium
+                        : AppTypography.bodyMedium)
                         .copyWith(
                       color: isSelected
                           ? AppColors.textPrimary
                           : AppColors.textSecondary,
-                      fontWeight:
-                          isSelected ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: isSelected
+                          ? FontWeight.w600
+                          : FontWeight.normal,
                     ),
                   ),
                 ),
@@ -91,5 +93,4 @@ class CountryModalItem extends StatelessWidget {
       ),
     );
   }
-
 }

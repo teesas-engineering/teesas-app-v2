@@ -9,11 +9,11 @@ part of 'util_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$UtilStore on _UtilStore, Store {
-  Computed<List<CountriesDto>>? _$filteredCountriesComputed;
+  Computed<List<CountryDto>>? _$filteredCountriesComputed;
 
   @override
-  List<CountriesDto> get filteredCountries =>
-      (_$filteredCountriesComputed ??= Computed<List<CountriesDto>>(
+  List<CountryDto> get filteredCountries =>
+      (_$filteredCountriesComputed ??= Computed<List<CountryDto>>(
         () => super.filteredCountries,
         name: '_UtilStore.filteredCountries',
       )).value;
@@ -39,13 +39,13 @@ mixin _$UtilStore on _UtilStore, Store {
   );
 
   @override
-  ObservableList<CountriesDto> get countries {
+  ObservableList<CountryDto> get countries {
     _$countriesAtom.reportRead();
     return super.countries;
   }
 
   @override
-  set countries(ObservableList<CountriesDto> value) {
+  set countries(ObservableList<CountryDto> value) {
     _$countriesAtom.reportWrite(value, super.countries, () {
       super.countries = value;
     });
@@ -145,6 +145,35 @@ mixin _$UtilStore on _UtilStore, Store {
   @override
   Future<void> fetchCountries() {
     return _$fetchCountriesAsyncAction.run(() => super.fetchCountries());
+  }
+
+  late final _$_UtilStoreActionController = ActionController(
+    name: '_UtilStore',
+    context: context,
+  );
+
+  @override
+  void initCountries() {
+    final _$actionInfo = _$_UtilStoreActionController.startAction(
+      name: '_UtilStore.initCountries',
+    );
+    try {
+      return super.initCountries();
+    } finally {
+      _$_UtilStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void selectCountry(CountryDto country) {
+    final _$actionInfo = _$_UtilStoreActionController.startAction(
+      name: '_UtilStore.selectCountry',
+    );
+    try {
+      return super.selectCountry(country);
+    } finally {
+      _$_UtilStoreActionController.endAction(_$actionInfo);
+    }
   }
 
   @override

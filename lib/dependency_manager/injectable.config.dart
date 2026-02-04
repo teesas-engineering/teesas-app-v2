@@ -14,10 +14,14 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:teesas/app/_shared/data/source/auth_source/auth_source.dart'
     as _i738;
+import 'package:teesas/app/_shared/data/source/profile_source/profile_source.dart'
+    as _i168;
 import 'package:teesas/app/_shared/data/source/util_source/util_source.dart'
     as _i217;
 import 'package:teesas/app/_shared/domain/repository/auth_repository.dart'
     as _i165;
+import 'package:teesas/app/_shared/domain/repository/profile_repository.dart'
+    as _i139;
 import 'package:teesas/app/_shared/domain/repository/util_repository.dart'
     as _i993;
 import 'package:teesas/app/_shared/stores/category_store/category_store.dart'
@@ -29,6 +33,10 @@ import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i49;
 import 'package:teesas/app/more/referral/store/referral_store.dart' as _i691;
 import 'package:teesas/app/more/subscription/store/subscription_store.dart'
     as _i135;
+import 'package:teesas/app/onboarding/presentation/stores/onboarding_store.dart'
+    as _i128;
+import 'package:teesas/app/onboarding/presentation/stores/signup_store.dart'
+    as _i589;
 import 'package:teesas/app/signin/store/login_store.dart' as _i535;
 import 'package:teesas/common/network/network_interceptor.dart' as _i362;
 import 'package:teesas/common/services/secured_storage_service.dart' as _i1056;
@@ -50,6 +58,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.singleton<_i559.MainRouter>(() => _i559.MainRouter());
     gh.lazySingleton<_i440.CategoryStore>(() => _i440.CategoryStore());
     gh.lazySingleton<_i161.DashboardStore>(() => _i161.DashboardStore());
+    gh.lazySingleton<_i128.OnboardingStore>(() => _i128.OnboardingStore());
+    gh.lazySingleton<_i589.SignupStore>(() => _i589.SignupStore());
     gh.lazySingleton<_i1056.SecureStorageService>(
       () => _i1056.SecureStorageService(),
     );
@@ -72,8 +82,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i217.UtilSource>(
       () => appModule.getUtilSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i168.ProfileSource>(
+      () => appModule.getProfileSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i993.UtilRepository>(
       () => _i993.UtilRepository(gh<_i217.UtilSource>()),
+    );
+    gh.lazySingleton<_i139.ProfileRepository>(
+      () => _i139.ProfileRepository(gh<_i168.ProfileSource>()),
     );
     gh.lazySingleton<_i715.UtilStore>(
       () => _i715.UtilStore(

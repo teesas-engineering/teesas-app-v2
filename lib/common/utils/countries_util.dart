@@ -2,7 +2,7 @@ import '../../app/_shared/data/dto/get_countries_dto/get_countries_country_dto.d
 
 class CountriesUtil {
 
-  List<CountriesDto> countries =[
+  List<CountryDto> countries =[
     {
       'id': 3,
       'name': 'Afghanistan',
@@ -1488,5 +1488,5 @@ class CountriesUtil {
       'symbol': r'Z$',
       'price_rate': '361.9'
     }
-  ].map(CountriesDto.fromJson).toList();
+  ].map(CountryDto.fromJson).toList();
 }

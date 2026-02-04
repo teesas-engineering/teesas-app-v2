@@ -9,7 +9,7 @@ part of 'get_countries_data_dto.dart';
 GetCountriesDto _$GetCountriesDtoFromJson(Map<String, dynamic> json) =>
     GetCountriesDto(
       countries: (json['countries'] as List<dynamic>)
-          .map((e) => CountriesDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => CountryDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

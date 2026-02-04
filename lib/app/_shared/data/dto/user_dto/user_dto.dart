@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-
 import '../../../enum/gender.dart';
-import 'country_dto.dart';
+import '../get_countries_dto/get_countries_country_dto.dart';
 import 'user_course_dto.dart';
 import 'user_profile_dto.dart';
 
@@ -9,6 +8,44 @@ part 'user_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class UserDto {
+
+  const UserDto({
+    required this.phone,
+    this.isVerified = false,
+    this.id,
+    this.authType,
+    this.authProvider,
+    this.ssoId,
+    this.name,
+    this.userScore,
+    this.gender,
+    this.address,
+    this.deviceId,
+    this.relationship,
+    this.dateOfBirth,
+    this.email,
+    this.parentFcmToken,
+    this.profilePic,
+    this.userType,
+    this.suspended,
+    this.active,
+    this.isMainProfile,
+    this.isTempPassword,
+    this.referralCode,
+    this.countryId,
+    this.socketId,
+    this.referredBy,
+    this.mainUserId,
+    this.organizationId,
+    this.country,
+    this.parent,
+    this.profiles,
+    this.referrer,
+    this.userCourses,
+  });
+
+  factory UserDto.fromJson(Map<String, dynamic> json) =>
+      _$UserDtoFromJson(json);
   final String phone;
 
   @JsonKey(name: 'is_verified')
@@ -85,44 +122,6 @@ class UserDto {
 
   @JsonKey(name: 'user_courses')
   final List<UserCourseDto>? userCourses;
-
-  const UserDto({
-    required this.phone,
-    this.isVerified = false,
-    this.id,
-    this.authType,
-    this.authProvider,
-    this.ssoId,
-    this.name,
-    this.userScore,
-    this.gender,
-    this.address,
-    this.deviceId,
-    this.relationship,
-    this.dateOfBirth,
-    this.email,
-    this.parentFcmToken,
-    this.profilePic,
-    this.userType,
-    this.suspended,
-    this.active,
-    this.isMainProfile,
-    this.isTempPassword,
-    this.referralCode,
-    this.countryId,
-    this.socketId,
-    this.referredBy,
-    this.mainUserId,
-    this.organizationId,
-    this.country,
-    this.parent,
-    this.profiles,
-    this.referrer,
-    this.userCourses,
-  });
-
-  factory UserDto.fromJson(Map<String, dynamic> json) =>
-      _$UserDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$UserDtoToJson(this);
 }

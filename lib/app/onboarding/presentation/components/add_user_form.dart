@@ -14,12 +14,12 @@ import '../../../_shared/widgets/app_input_field.dart';
 import '../../../_shared/widgets/password_input_field.dart';
 import '../../../_shared/widgets/phone_email_input_field.dart';
 import '../../../_shared/widgets/secondary_chip.dart';
-import '../stores/onboarding_store.dart';
+import '../stores/add_account_store.dart';
 
 class AddUserForm extends StatelessWidget with FormMixin {
   const AddUserForm({required this.store, super.key});
 
-  final OnboardingStore store;
+  final AddAccountStore store;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class AddUserForm extends StatelessWidget with FormMixin {
                 child: Observer(
                   builder: (_) => AppInputField(
                     controller: TextEditingController(
-                      text: store.countryDisplayText,
+                      text: '',
                     ),
                     labelText: 'Country',
                     hintText: 'Country',

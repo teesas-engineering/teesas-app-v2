@@ -5,9 +5,15 @@ part 'switch_profile_dto.g.dart';
 @JsonSerializable()
 class SwitchProfileDto {
   @JsonKey(name: 'profile_id')
-  final String profileId;
+  final int profileId;
 
-  const SwitchProfileDto({required this.profileId});
+  @JsonKey(name: 'device_id')
+  final String deviceId;
+
+  const SwitchProfileDto({
+    required this.profileId,
+    required this.deviceId,
+  });
 
   factory SwitchProfileDto.fromJson(Map<String, dynamic> json) =>
       _$SwitchProfileDtoFromJson(json);

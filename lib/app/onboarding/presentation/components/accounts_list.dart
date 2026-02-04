@@ -6,13 +6,13 @@ import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/widgets/app_button.dart';
-import '../stores/onboarding_store.dart';
+import '../stores/add_account_store.dart';
 import '../widgets/user_account_card.dart';
 
 class AccountsList extends StatelessWidget {
   const AccountsList({required this.store, super.key});
 
-  final OnboardingStore store;
+  final AddAccountStore store;
 
   @override
   Widget build(BuildContext context) {

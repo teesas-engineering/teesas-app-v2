@@ -6,7 +6,7 @@ part 'get_countries_data_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class GetCountriesDto {
-  final List<CountriesDto> countries;
+  final List<CountryDto> countries;
 
   const GetCountriesDto({required this.countries});
 

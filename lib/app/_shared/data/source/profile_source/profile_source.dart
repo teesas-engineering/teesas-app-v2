@@ -3,6 +3,8 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../../common/utils/app_config.dart';
 import '../../../../../common/utils/base_dto.dart';
+import '../../dto/add_account_dto/add_account_request_dto.dart';
+import '../../dto/add_user_course_dto/add_user_course_request_dto.dart';
 import '../../dto/switch_profile_dto/switch_profile_dto.dart';
 
 part 'profile_source.g.dart';
@@ -18,10 +20,10 @@ abstract class ProfileSource {
   Future<BaseDto> getUserProfiles();
 
   @POST('add-account')
-  Future<BaseDto> addAccount();
+  Future<BaseDto> addAccount(@Body() AddAccountRequestDto payload);
 
   @POST('add-user-course')
-  Future<BaseDto> addUserCourse();
+  Future<BaseDto> addUserCourse(@Body() AddUserCourseRequestDto payload);
 
   @MultiPart()
   @POST('update-profile')

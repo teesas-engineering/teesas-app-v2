@@ -1,13 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
+import '../../../../common/constants/app_constants.dart';
+import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../../common/utils/form_mixin.dart';
+import '../../../../common/utils/input_validators.dart';
 import '../../../../dependency_manager/injectable.dart';
+import '../../../../router/route_helper.dart';
+import '../../../_shared/data/dto/get_countries_dto/get_countries_country_dto.dart';
 import '../../../_shared/enum/gender.dart';
 import '../../../_shared/enum/input_type.dart';
 import '../../../_shared/modal/countries_modal.dart';
@@ -16,8 +21,7 @@ import '../../../_shared/widgets/app_input_field.dart';
 import '../../../_shared/widgets/password_input_field.dart';
 import '../../../_shared/widgets/phone_email_input_field.dart';
 import '../../../_shared/widgets/secondary_chip.dart';
-import '../../../../router/route_helper.dart';
-import '../stores/onboarding_store.dart';
+import '../stores/signup_store.dart';
 import '../widgets/footer.dart';
 
 class SignupPage extends StatelessWidget with FormMixin {
@@ -25,14 +29,14 @@ class SignupPage extends StatelessWidget with FormMixin {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<OnboardingStore>(context);
+    final store =context.read<SignupStore>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
+            padding:  const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
             child: Form(
               key: store.formKey,
 
@@ -70,36 +74,35 @@ class SignupPage extends StatelessWidget with FormMixin {
                     onChange: (value, type) {},
                   ),
                   16.height,
-                  GestureDetector(
-                    onTap: () async {
-                      final String? selected = await CountriesModal.show(
-                        context,
-                        selectedCountryName: store.selectedCountry,
-                      );
-                      store.selectedCountry = selected;
-                    },
-                    child: Observer(
-                      builder: (_) => AppInputField(
-                        controller: TextEditingController(
-                          text: store.countryDisplayText,
-                        ),
-                        labelText: 'Country',
-                        hintText: 'Country',
-                        readOnly: true,
-                        validator: isRequired,
-                        suffixIcon: const Icon(
-                          Icons.arrow_drop_down,
-                          color: AppColors.iconsSecondary,
-                        ),
+                  Observer(
+                    builder: (_) => AppInputField(
+                      onTap: () async {
+                        final CountryDto? selected = await CountriesModal.show(
+                          context,
+                          selectedCountryName: store.selectedCountry?.name,
+                        );
+                        store.setCountry(selected);
+                      },
+                      controller: store.countryDisplayController,
+                      labelText: 'Country',
+                      hintText: 'Country',
+                      readOnly: true,
+                      prefixIcon: store.selectedCountry != null
+                          ? IconButton(
+                              onPressed: () {},
+                              icon: SvgPicture.network(
+                                store.selectedCountry!.image ??
+                                    AppConstant.defaultCountryFlag,
+                                width: 24,
+                                height: 24,
+                              ))
+                          : null,
+                      validator: isRequired,
+                      suffixIcon: const Icon(
+                        Icons.arrow_drop_down,
+                        color: AppColors.iconsSecondary,
                       ),
                     ),
-                  ),
-                  16.height,
-                  AppInputField(
-                    controller: store.cityController,
-                    labelText: 'City/Location',
-                    hintText: 'City/Location',
-                    validator: isRequired,
                   ),
                   16.height,
                   Observer(
@@ -163,7 +166,7 @@ class SignupPage extends StatelessWidget with FormMixin {
                   16.height,
                   PasswordInputField(
                     controller: store.passwordController,
-                    validator: isRequired,
+                    validator: InputValidators.passwordValidator,
                   ),
                   16.height,
                   AppInputField(
@@ -182,7 +185,13 @@ class SignupPage extends StatelessWidget with FormMixin {
         FooterParent(
           child: Column(
             children: [
-              AppButton(text: 'Register', onPressed: store.handleRegister),
+              Observer(
+                builder: (_) => AppButton(
+                  text: 'Register',
+                  onPressed: store.handleRegister,
+                  isDisabled: !store.isRegisterEnabled,
+                ),
+              ),
               24.height,
               Text.rich(
                 TextSpan(
