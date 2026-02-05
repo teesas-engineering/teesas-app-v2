@@ -35,6 +35,24 @@ mixin _$SignupStore on _SignupStore, Store {
     });
   }
 
+  late final _$signUpStatusAtom = Atom(
+    name: '_SignupStore.signUpStatus',
+    context: context,
+  );
+
+  @override
+  Status get signUpStatus {
+    _$signUpStatusAtom.reportRead();
+    return super.signUpStatus;
+  }
+
+  @override
+  set signUpStatus(Status value) {
+    _$signUpStatusAtom.reportWrite(value, super.signUpStatus, () {
+      super.signUpStatus = value;
+    });
+  }
+
   late final _$selectedCountryAtom = Atom(
     name: '_SignupStore.selectedCountry',
     context: context,
@@ -50,6 +68,42 @@ mixin _$SignupStore on _SignupStore, Store {
   set selectedCountry(CountryDto? value) {
     _$selectedCountryAtom.reportWrite(value, super.selectedCountry, () {
       super.selectedCountry = value;
+    });
+  }
+
+  late final _$phoneNumberAtom = Atom(
+    name: '_SignupStore.phoneNumber',
+    context: context,
+  );
+
+  @override
+  String get phoneNumber {
+    _$phoneNumberAtom.reportRead();
+    return super.phoneNumber;
+  }
+
+  @override
+  set phoneNumber(String value) {
+    _$phoneNumberAtom.reportWrite(value, super.phoneNumber, () {
+      super.phoneNumber = value;
+    });
+  }
+
+  late final _$parentPhoneNumberAtom = Atom(
+    name: '_SignupStore.parentPhoneNumber',
+    context: context,
+  );
+
+  @override
+  String get parentPhoneNumber {
+    _$parentPhoneNumberAtom.reportRead();
+    return super.parentPhoneNumber;
+  }
+
+  @override
+  set parentPhoneNumber(String value) {
+    _$parentPhoneNumberAtom.reportWrite(value, super.parentPhoneNumber, () {
+      super.parentPhoneNumber = value;
     });
   }
 
@@ -87,6 +141,16 @@ mixin _$SignupStore on _SignupStore, Store {
     _$_formVersionAtom.reportWrite(value, super._formVersion, () {
       super._formVersion = value;
     });
+  }
+
+  late final _$createAccountAsyncAction = AsyncAction(
+    '_SignupStore.createAccount',
+    context: context,
+  );
+
+  @override
+  Future<void> createAccount() {
+    return _$createAccountAsyncAction.run(() => super.createAccount());
   }
 
   late final _$_SignupStoreActionController = ActionController(
@@ -146,7 +210,10 @@ mixin _$SignupStore on _SignupStore, Store {
   String toString() {
     return '''
 selectedGender: ${selectedGender},
+signUpStatus: ${signUpStatus},
 selectedCountry: ${selectedCountry},
+phoneNumber: ${phoneNumber},
+parentPhoneNumber: ${parentPhoneNumber},
 selectedDate: ${selectedDate},
 isRegisterEnabled: ${isRegisterEnabled}
     ''';

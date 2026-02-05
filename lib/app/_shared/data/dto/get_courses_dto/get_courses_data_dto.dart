@@ -6,7 +6,7 @@ part 'get_courses_data_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class GetCoursesDataDto {
-  final List<CourseDto> courses;
+  final List<ClassCategoryDto> courses;
 
   const GetCoursesDataDto({required this.courses});
 

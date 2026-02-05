@@ -24,10 +24,11 @@ import 'package:teesas/app/_shared/domain/repository/profile_repository.dart'
     as _i139;
 import 'package:teesas/app/_shared/domain/repository/util_repository.dart'
     as _i993;
-import 'package:teesas/app/_shared/stores/category_store/category_store.dart'
-    as _i440;
+import 'package:teesas/app/_shared/stores/account_management_store/account_management_store.dart'
+    as _i197;
 import 'package:teesas/app/_shared/stores/dashboard_store/dashboard_store.dart'
     as _i161;
+import 'package:teesas/app/_shared/stores/otp_store/otp_store.dart' as _i596;
 import 'package:teesas/app/_shared/stores/util_store/util_store.dart' as _i715;
 import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i49;
 import 'package:teesas/app/more/referral/store/referral_store.dart' as _i691;
@@ -56,7 +57,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i691.ReferralStore>(() => _i691.ReferralStore());
     gh.factory<_i135.SubscriptionStore>(() => _i135.SubscriptionStore());
     gh.singleton<_i559.MainRouter>(() => _i559.MainRouter());
-    gh.lazySingleton<_i440.CategoryStore>(() => _i440.CategoryStore());
     gh.lazySingleton<_i161.DashboardStore>(() => _i161.DashboardStore());
     gh.lazySingleton<_i128.OnboardingStore>(() => _i128.OnboardingStore());
     gh.lazySingleton<_i589.SignupStore>(() => _i589.SignupStore());
@@ -64,12 +64,6 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i1056.SecureStorageService(),
     );
     gh.lazySingleton<_i500.RouteHelper>(() => _i500.RouteHelper());
-    gh.lazySingleton<_i535.LoginStore>(
-      () => _i535.LoginStore(
-        authRepository: gh<_i165.AuthRepository>(),
-        storageService: gh<_i1056.SecureStorageService>(),
-      ),
-    );
     gh.lazySingleton<_i362.NetworkInterceptor>(
       () => _i362.NetworkInterceptor(gh<_i1056.SecureStorageService>()),
     );
@@ -99,6 +93,26 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i165.AuthRepository>(
       () => _i165.AuthRepository(gh<_i738.AuthSource>()),
+    );
+    gh.lazySingleton<_i197.AccountManagementStore>(
+      () => _i197.AccountManagementStore(
+        gh<_i139.ProfileRepository>(),
+        gh<_i715.UtilStore>(),
+      ),
+    );
+    gh.lazySingleton<_i596.OtpStore>(
+      () => _i596.OtpStore(
+        gh<_i165.AuthRepository>(),
+        gh<_i1056.SecureStorageService>(),
+      ),
+    );
+    gh.lazySingleton<_i535.LoginStore>(
+      () => _i535.LoginStore(
+        gh<_i165.AuthRepository>(),
+        gh<_i1056.SecureStorageService>(),
+        gh<_i596.OtpStore>(),
+        gh<_i128.OnboardingStore>(),
+      ),
     );
     return this;
   }

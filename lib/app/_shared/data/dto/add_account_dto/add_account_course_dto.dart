@@ -6,13 +6,13 @@ part 'add_account_course_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class AddAccountCourseDto {
-  final int id;
-  final List<AddAccountClassDto> classes;
 
   const AddAccountCourseDto({required this.id, required this.classes});
 
   factory AddAccountCourseDto.fromJson(Map<String, dynamic> json) =>
       _$AddAccountCourseDtoFromJson(json);
+  final int id;
+  final List<AddAccountClassDto> classes;
 
   Map<String, dynamic> toJson() => _$AddAccountCourseDtoToJson(this);
 }

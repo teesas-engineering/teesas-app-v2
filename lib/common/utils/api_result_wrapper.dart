@@ -13,7 +13,10 @@ class ApiResultWrapper {
   }) async {
     try {
       final result = await func.call();
-      if (result.data==null) {
+      if (result.status != 200 && result.status != 201) {
+        return Failure(error: result.message, code: result.status);
+      }
+      if (result.data == null) {
         return Failure(error: result.message, code: result.status);
       }
       final finalResult = mapper(result.data);
@@ -22,8 +25,7 @@ class ApiResultWrapper {
       final error = dioException.error! as ApiException;
       debugPrintStack(stackTrace: trace);
       return Failure(error: error.message, code: -1);
-    }
-    catch (e, trace) {
+    } catch (e, trace) {
       debugPrintStack(stackTrace: trace);
       return Failure(error: e.toString(), code: -1);
     }
@@ -35,8 +37,10 @@ class ApiResultWrapper {
   }) async {
     try {
       final result = await func.call();
-
-      if (result.data==null) {
+      if (result.status != 200 || result.status != 201) {
+        return Failure(error: result.message, code: result.status);
+      }
+      if (result.data == null) {
         return Failure(error: result.message, code: result.status);
       }
       if (result.data is List<dynamic>) {
@@ -49,10 +53,8 @@ class ApiResultWrapper {
     } on DioException catch (dioException) {
       final error = dioException.error! as ApiException;
       return Failure(error: error.message, code: -1);
-    }
-    catch (e) {
+    } catch (e) {
       return Failure(error: e.toString(), code: -1);
     }
   }
-
 }

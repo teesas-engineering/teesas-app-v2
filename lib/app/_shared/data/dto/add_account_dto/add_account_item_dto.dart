@@ -1,34 +1,24 @@
-import 'package:json_annotation/json_annotation.dart';
-
+import 'package:freezed_annotation/freezed_annotation.dart';
+import '../../../enum/gender.dart';
 import 'add_account_course_dto.dart';
-
+part 'add_account_item_dto.freezed.dart';
 part 'add_account_item_dto.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class AddAccountItemDto {
-  final int id;
-  final String name;
+@freezed
+abstract class AddAccountItemDto with _$AddAccountItemDto {
+  const factory AddAccountItemDto({
+    required String name,
 
-  @JsonKey(name: 'country_id')
-  final int countryId;
+    @JsonKey(name: 'country_id')
+    required int countryId,
 
-  @JsonKey(name: 'date_of_birth')
-  final String dateOfBirth;
+    @JsonKey(name: 'date_of_birth')
+    required String dateOfBirth,
 
-  final String gender;
-  final List<AddAccountCourseDto> courses;
-
-  const AddAccountItemDto({
-    required this.id,
-    required this.name,
-    required this.countryId,
-    required this.dateOfBirth,
-    required this.gender,
-    required this.courses,
-  });
+    required List<AddAccountCourseDto> courses, @JsonKey(fromJson: genderFromJson, toJson: genderToJson)
+    Gender? gender,
+  }) = _AddAccountItemDto;
 
   factory AddAccountItemDto.fromJson(Map<String, dynamic> json) =>
       _$AddAccountItemDtoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$AddAccountItemDtoToJson(this);
 }

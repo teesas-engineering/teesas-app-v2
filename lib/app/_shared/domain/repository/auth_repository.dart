@@ -11,7 +11,6 @@ import '../../data/dto/update_password_dto/update_password_dto.dart';
 import '../../data/dto/user_dto/user_dto.dart';
 import '../../data/dto/verify_forgot_password_dto/verify_forgot_password_dto.dart';
 import '../../data/dto/verify_otp_dto/verify_otp_dto.dart';
-import '../../data/dto/verify_otp_dto/verify_otp_response_dto.dart';
 import '../../data/source/auth_source/auth_source.dart';
 
 @lazySingleton
@@ -49,11 +48,11 @@ class AuthRepository {
     );
   }
 
-  Future<ApiResult<VerifyOtpResponseDto>> verifyOtp(VerifyOtpDto model) async {
+  Future<ApiResult<UserDto>> verifyOtp(VerifyOtpDto model) async {
     return ApiResultWrapper.wrap(
       func: () => _source.verifyOtp(model),
       mapper: (data) =>
-          VerifyOtpResponseDto.fromJson(data as Map<String, dynamic>),
+          UserDto.fromJson(data as Map<String, dynamic>),
     );
   }
 

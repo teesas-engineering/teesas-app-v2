@@ -4,11 +4,9 @@ import 'package:provider/provider.dart';
 
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/utils/modal_helper.dart';
-import '../../../_shared/enum/term.dart';
-import '../../../_shared/stores/category_store/category_store.dart';
+import '../../../_shared/stores/util_store/util_store.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/base_modal_parent.dart';
-import '../component/term_chip.dart';
 
 class TermSelectionModal extends StatelessWidget {
   const TermSelectionModal({super.key});
@@ -16,17 +14,15 @@ class TermSelectionModal extends StatelessWidget {
   static Future<void> show(BuildContext context) async {
     await ModalHelper.show(
       context,
-      child: Provider<CategoryStore>(
-        create: (_) => CategoryStore(),
-        child: const TermSelectionModal(),
-      ),
+      child: const TermSelectionModal(),
     );
   }
 
-  static Future<void> showWithStore(BuildContext context, CategoryStore store) async {
+  static Future<void> showWithStore(
+      BuildContext context, UtilStore store) async {
     await ModalHelper.show(
       context,
-      child: Provider<CategoryStore>.value(
+      child: Provider<UtilStore>.value(
         value: store,
         child: const TermSelectionModal(),
       ),
@@ -35,7 +31,7 @@ class TermSelectionModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<CategoryStore>(context);
+    final store = Provider.of<UtilStore>(context);
 
     return BaseModalParent(
       title: 'Select Preferred Term',
@@ -47,36 +43,40 @@ class TermSelectionModal extends StatelessWidget {
             builder: (_) {
               return Column(
                 children: [
-                  TermChip(
-                    term: Term.firstTerm,
-                    isSelected: store.selectedTerm == Term.firstTerm,
-                    onTap: () => store.setTerm(Term.firstTerm),
-                  ),
-                  12.height,
-                  TermChip(
-                    term: Term.secondTerm,
-                    isSelected: store.selectedTerm == Term.secondTerm,
-                    onTap: () => store.setTerm(Term.secondTerm),
-                  ),
-                  12.height,
-                  TermChip(
-                    term: Term.thirdTerm,
-                    isSelected: store.selectedTerm == Term.thirdTerm,
-                    onTap: () => store.setTerm(Term.thirdTerm),
-                  ),
+                  // TermChip(
+                  //   term: Term.firstTerm,
+                  //   isSelected: store.selectedTerm == Term.firstTerm,
+                  //   onTap: () => store.setTerm(Term.firstTerm),
+                  // ),
+                  // 12.height,
+                  // TermChip(
+                  //   term: Term.secondTerm,
+                  //   isSelected: store.selectedTerm == Term.secondTerm,
+                  //   onTap: () => store.setTerm(Term.secondTerm),
+                  // ),
+                  // 12.height,
+                  // TermChip(
+                  //   term: Term.thirdTerm,
+                  //   isSelected: store.selectedTerm == Term.thirdTerm,
+                  //   onTap: () => store.setTerm(Term.thirdTerm),
+                  // ),
                 ],
               );
             },
           ),
           32.height,
-          AppButton(
-            text: 'Proceed',
-            onPressed: () async {
-              if (store.selectedTerm != null) {
-                Navigator.pop(context);
-              }
+          Observer(
+            builder: (_) {
+              return AppButton(
+                text: 'Proceed',
+                onPressed: () async {
+                  if (store.selectedTerm != null) {
+                    Navigator.pop(context);
+                  }
+                },
+                isDisabled: store.selectedTerm == null,
+              );
             },
-            isDisabled: store.selectedTerm == null,
           ),
           24.height,
         ],

@@ -9,7 +9,7 @@ part of 'get_courses_data_dto.dart';
 GetCoursesDataDto _$GetCoursesDataDtoFromJson(Map<String, dynamic> json) =>
     GetCoursesDataDto(
       courses: (json['courses'] as List<dynamic>)
-          .map((e) => CourseDto.fromJson(e as Map<String, dynamic>))
+          .map((e) => ClassCategoryDto.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

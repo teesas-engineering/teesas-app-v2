@@ -10,7 +10,7 @@ part 'user_dto.g.dart';
 class UserDto {
 
   const UserDto({
-    required this.phone,
+     this.phone,
     this.isVerified = false,
     this.id,
     this.authType,
@@ -46,7 +46,7 @@ class UserDto {
 
   factory UserDto.fromJson(Map<String, dynamic> json) =>
       _$UserDtoFromJson(json);
-  final String phone;
+  final String? phone;
 
   @JsonKey(name: 'is_verified')
   final bool isVerified;

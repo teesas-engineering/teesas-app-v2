@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../common/extensions/num_extension.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
+import '../presentation/dialog/confirmation_dialog.dart';
 import '../widgets/app_card.dart';
 
 enum AccountRole { student, parent }
@@ -14,6 +15,7 @@ class ManageAccountCard extends StatelessWidget {
     required this.avatarUrl,
     this.onEdit,
     this.onDelete,
+    this.onClick,
     super.key,
   });
 
@@ -21,91 +23,108 @@ class ManageAccountCard extends StatelessWidget {
   final AccountRole role;
   final String avatarUrl;
 
+  final VoidCallback? onClick;
   final VoidCallback? onEdit;
   final VoidCallback? onDelete;
 
   @override
   Widget build(BuildContext context) {
-    return AppCard.primary(
-      padding: EdgeInsets.zero,
-      child: Stack(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(16.w),
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CircleAvatar(
-                      radius: 28,
-                      backgroundImage: NetworkImage(avatarUrl),
-                      backgroundColor: AppColors.bgPrimary,
-                    ),
-                    16.width,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          4.height,
-                          Text(
-                            name,
-                            style: AppTypography.titleMedium.copyWith(
-                              color: AppColors.textPrimary,
+    return GestureDetector(
+      onTap: onClick,
+      child: AppCard.primary(
+        padding: EdgeInsets.zero,
+        child: Stack(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.w),
+              child: Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 28,
+                        backgroundColor: AppColors.bgPrimary,
+                        child: Image.asset(avatarUrl),
+                      ),
+                      16.width,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            4.height,
+                            Text(
+                              name,
+                              style: AppTypography.titleMedium.copyWith(
+                                color: AppColors.textPrimary,
+                              ),
                             ),
-                          ),
-                          4.height,
-                          Text(
-                            role == AccountRole.student ? 'Student' : 'Parent',
-                            style: AppTypography.bodyMedium.copyWith(
-                              color: role == AccountRole.student
-                                  ? AppColors.iconsAccentOrchid
-                                  : AppColors.bgAccent,
-                              fontWeight: FontWeight.w600,
+                            4.height,
+                            Text(
+                              role == AccountRole.student
+                                  ? 'Student'
+                                  : 'Parent',
+                              style: AppTypography.bodyMedium.copyWith(
+                                color: role == AccountRole.student
+                                    ? AppColors.iconsAccentOrchid
+                                    : AppColors.bgAccent,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (onEdit != null) ...[
+                    32.height,
+                    GestureDetector(
+                      onTap: onEdit,
+                      child: Text(
+                        'Edit Account',
+                        style: AppTypography.bodyMedium.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
                       ),
                     ),
                   ],
-                ),
-                if (onEdit != null) ...[
-                  32.height,
-                  GestureDetector(
-                    onTap: onEdit,
-                    child: Text(
-                      'Edit Account',
-                      style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                  ),
+                  8.height,
                 ],
-                8.height,
-              ],
+              ),
             ),
-          ),
-          if (onDelete != null)
-            Positioned(
-              top: 8.w,
-              right: 8.w,
-              child: GestureDetector(
-                onTap: onDelete,
-                child: Container(
-                  padding: EdgeInsets.all(4.w),
-                  decoration: const BoxDecoration(
-                    color: AppColors.borderNegative,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Icon(
-                    Icons.close_rounded,
-                    size: 12.w,
-                    color: AppColors.white,
+            if (onDelete != null)
+              Positioned(
+                top: 8.w,
+                right: 8.w,
+                child: GestureDetector(
+                  onTap: () async {
+                    await ConfirmationDialog.show(
+                      context,
+                      title: 'Delete User!',
+                      subtitle: 'Are you sure you want to delete this user?',
+                      secondaryButtonText: 'No, I don’t',
+                      primaryButtonText: 'Delete',
+                      onPrimaryPressed: () async {
+                        onDelete?.call();
+                      },
+                    );
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(4.w),
+                    decoration: const BoxDecoration(
+                      color: AppColors.borderNegative,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.close_rounded,
+                      size: 12.w,
+                      color: AppColors.white,
+                    ),
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

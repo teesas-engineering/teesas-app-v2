@@ -60,6 +60,18 @@ mixin _$OnboardingStore on _OnboardingStore, Store {
   }
 
   @override
+  void jumpTo(int index) {
+    final _$actionInfo = _$_OnboardingStoreActionController.startAction(
+      name: '_OnboardingStore.jumpTo',
+    );
+    try {
+      return super.jumpTo(index);
+    } finally {
+      _$_OnboardingStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 currentPage: ${currentPage},

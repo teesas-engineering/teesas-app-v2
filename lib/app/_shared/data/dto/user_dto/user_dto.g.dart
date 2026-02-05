@@ -7,7 +7,7 @@ part of 'user_dto.dart';
 // **************************************************************************
 
 UserDto _$UserDtoFromJson(Map<String, dynamic> json) => UserDto(
-  phone: json['phone'] as String,
+  phone: json['phone'] as String?,
   isVerified: json['is_verified'] as bool? ?? false,
   id: (json['id'] as num?)?.toInt(),
   authType: json['auth_type'] as String?,

@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../../_shared/components/manage_account_card.dart';
 import '../../../_shared/components/page_padding.dart';
+import '../../../_shared/enum/gender.dart';
+import '../../../_shared/stores/account_management_store/account_management_store.dart';
 import '../../../_shared/widgets/app_button.dart';
-import '../stores/add_account_store.dart';
-import '../widgets/user_account_card.dart';
 
 class AccountsList extends StatelessWidget {
-  const AccountsList({required this.store, super.key});
-
-  final AddAccountStore store;
+  const AccountsList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final store = context.read<AccountManagementStore>();
     return Column(
       children: [
         Expanded(
@@ -27,9 +29,10 @@ class AccountsList extends StatelessWidget {
                   24.height,
                   Text(
                     'Add Account',
-                    style: AppTypography.headlineMedium.copyWith(
+                    style: AppTypography.titleLarge.copyWith(
                       color: AppColors.textPrimary,
                       fontWeight: FontWeight.bold,
+                      fontSize: 20,
                     ),
                   ),
                   24.height,
@@ -42,57 +45,32 @@ class AccountsList extends StatelessWidget {
                   16.height,
                   Observer(
                     builder: (_) => Column(
-                      children: store.userAccounts.asMap().entries.map((entry) {
+                      children: store.pendingAccounts.asMap().entries.map((
+                        entry,
+                      ) {
                         final index = entry.key;
                         final user = entry.value;
                         return Padding(
                           padding: EdgeInsets.only(
-                            bottom: index < store.userAccounts.length - 1
+                            bottom: index < store.pendingAccounts.length - 1
                                 ? 16
                                 : 0,
                           ),
-                          child: UserAccountCard(
+                          child: ManageAccountCard(
                             name: user.name,
-                            gender: user.gender,
+                            onClick: () => store.selectCategoryForUser(user),
+                            role: AccountRole.student,
+                            avatarUrl:
+                                user.gender?.getAvatar() ??
+                                Gender.male.getAvatar(),
                             onEdit: () {
-                              // Handle edit
+                              store.editAccount(user,index);
                             },
-                            onDelete: () {
-                              store.removeUserAccount(index);
-                            },
+                            onDelete: () =>
+                                store.removeAccountFromPending(index),
                           ),
                         );
                       }).toList(),
-                    ),
-                  ),
-                  24.height,
-                  GestureDetector(
-                    onTap: store.clearForm,
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: AppColors.borderPrimary,
-                              width: 2,
-                            ),
-                          ),
-                          child: const Icon(
-                            Icons.add,
-                            color: AppColors.textPrimary,
-                          ),
-                        ),
-                        const SizedBox(width: 16),
-                        Text(
-                          'Add Another User',
-                          style: AppTypography.bodyLarge.copyWith(
-                            color: AppColors.textPrimary,
-                          ),
-                        ),
-                      ],
                     ),
                   ),
                   32.height,
@@ -102,14 +80,36 @@ class AccountsList extends StatelessWidget {
           ),
         ),
         // Continue button at the bottom
+
+        GestureDetector(
+          onTap: store.addAnotherUser,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.add_circle_outline,
+                size: 24,
+                color: AppColors.textPrimary,
+              ),
+              const SizedBox(width: 16),
+              Text(
+                'Add Another User',
+                style: AppTypography.bodyLarge.copyWith(
+                  color: AppColors.textButtonSecondary,
+                ),
+              ),
+            ],
+          ),
+        ),
+        16.verticalSpace,
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20).copyWith(bottom: 24),
           decoration: BoxDecoration(color: AppColors.white),
-          child: AppButton.secondary(
-            text: 'Continue',
-            onPressed: () async {
-              // Handle continue logic
-            },
+          child:Column(
+            children: [
+
+              AppButton(text: 'Continue', onPressed: store.saveAndContinue)
+            ],
           ),
         ),
       ],
