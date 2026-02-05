@@ -1,11 +1,11 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
-import '../app/more/subscription/data/model/subscription_checkout_item.dart';
-import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
+import '../app/assessment/presentation/screens/assessment_question_screen.dart';
+import '../app/assessment/presentation/screens/assessment_rules_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
-import '../app/onboarding/presentation/screens/onboarding_root.dart';
+import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
 import '../app/more/referral/presentation/screens/invite_list_screen.dart';
 import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
 import '../app/more/referral/presentation/screens/withdraw_earnings_screen.dart';
@@ -13,9 +13,11 @@ import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/more/settings/presentation/screens/change_password_screen.dart';
 import '../app/more/settings/presentation/screens/settings_screen.dart';
 import '../app/more/settings/presentation/screens/terms_and_conditions_screen.dart';
+import '../app/more/subscription/data/model/subscription_checkout_item.dart';
 import '../app/more/subscription/presentation/screens/add_subscription_screen.dart';
-import '../app/more/subscription/presentation/screens/subscription_summary_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
+import '../app/more/subscription/presentation/screens/subscription_summary_screen.dart';
+import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
 import 'app_router_wrapper.dart';
 
@@ -45,6 +47,8 @@ class MainRouter {
   static const String subscription = '/subscription';
   static const String addSubscription = '/subscription/add';
   static const String subscriptionSummary = '/subscription/summary';
+  static const String assessmentRules = '/assessment-rules';
+  static const String assessmentQuestion = '/assessment-question';
 
   GoRouter get router => _router;
 
@@ -134,6 +138,16 @@ class MainRouter {
           final items = state.extra as List<SubscriptionCheckoutItem>;
           return SubscriptionSummaryScreen(checkoutItems: items);
         },
+      ),
+      GoRoute(
+        path: assessmentRules,
+        name: assessmentRules,
+        builder: (context, state) => const AssessmentRulesScreen(),
+      ),
+      GoRoute(
+        path: assessmentQuestion,
+        name: assessmentQuestion,
+        builder: (context, state) => const AssessmentQuestionScreen(),
       ),
     ],
   );
