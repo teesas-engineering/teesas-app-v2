@@ -85,7 +85,7 @@ class UserAccountCard extends StatelessWidget {
               width: 24,
               height: 24,
               decoration: const BoxDecoration(
-                color: AppColors.borderNegative,
+                color: AppColors.colorE12F4F,
                 shape: BoxShape.circle,
               ),
               child: Icon(Icons.close, color: AppColors.white, size: 16),

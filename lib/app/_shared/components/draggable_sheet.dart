@@ -90,7 +90,7 @@ class _DraggableSheetState extends State<DraggableSheet> {
                                   Text(
                                     widget.description!,
                                     style: AppTypography.bodyMedium.copyWith(
-                                      color: AppColors.textModalSecondary,
+                                      color: AppColors.color0A0A0A,
                                     ),
                                   ),
                                 ],
@@ -107,7 +107,7 @@ class _DraggableSheetState extends State<DraggableSheet> {
                                 }
                               },
                               child: const Icon(
-                                color: AppColors.iconsPrimary,
+                                color: AppColors.color808080,
                                 Icons.cancel_outlined,
                               ),
                             ),
@@ -117,7 +117,7 @@ class _DraggableSheetState extends State<DraggableSheet> {
                     16.height,
                     const Padding(
                       padding: EdgeInsets.symmetric(horizontal: 24),
-                      child: Divider(thickness: 1, color: AppColors.c7Grey),
+                      child: Divider(thickness: 1, color: AppColors.colorC7C7C7C7),
                     ),
                     16.height,
                   ],

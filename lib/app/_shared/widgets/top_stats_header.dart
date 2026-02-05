@@ -4,17 +4,19 @@ import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
 import '../../dashboard/presentation/component/app_bar_action.dart';
 
-class TopStatsHeader extends StatelessWidget implements PreferredSizeWidget{
-  const TopStatsHeader({super.key,this.includePadding=true});
+class TopStatsHeader extends StatelessWidget implements PreferredSizeWidget {
+  const TopStatsHeader({super.key, this.includePadding = true});
 
   final bool includePadding;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding).copyWith(bottom: includePadding?20:0),
+      padding: const EdgeInsets.symmetric(
+        horizontal: Dimens.pagePadding,
+      ).copyWith(bottom: includePadding ? 20 : 0),
       color: AppColors.white,
-      child:  Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const AppBarAction(asset: AppAssets.pointsIcon, value: '224'),

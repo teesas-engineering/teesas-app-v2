@@ -29,11 +29,7 @@ class AssessmentCard extends StatelessWidget {
         children: [
           Column(
             children: [
-              Image.asset(
-                icon,
-                width: 32,
-                height: 32,
-              ),
+              Image.asset(icon, width: 32, height: 32),
               8.height,
               Text(
                 subject,
@@ -46,10 +42,10 @@ class AssessmentCard extends StatelessWidget {
               AppProgressBar(
                 value: progress,
                 height: 6,
-                backgroundColor: AppColors.borderPrimary,
+                backgroundColor: AppColors.colorE2E8F0,
                 progressColor: progress == 1.0
                     ? AppColors.bgBrandSecondary
-                    : AppColors.bgAccent,
+                    : AppColors.colorFF9F1C,
                 borderRadius: BorderRadius.circular(3),
                 margin: EdgeInsets.zero,
               ),
@@ -73,11 +69,7 @@ class AssessmentCard extends StatelessWidget {
                   shape: BoxShape.circle,
                   color: AppColors.bgBrandSecondary,
                 ),
-                child: Icon(
-                  Icons.check,
-                  size: 14,
-                  color: AppColors.white,
-                ),
+                child: Icon(Icons.check, size: 14, color: AppColors.white),
               ),
             ),
         ],

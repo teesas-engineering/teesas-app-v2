@@ -20,7 +20,7 @@ class ActiveSubscriptionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.cardBorder),
+        border: Border.all(color: AppColors.colorD9E8E8),
       ),
       child: Row(
         children: [
@@ -28,13 +28,13 @@ class ActiveSubscriptionCard extends StatelessWidget {
             width: 32.w,
             height: 32.w,
             decoration: BoxDecoration(
-              color: AppColors.bgWarning, // Light yellow/orange bg
+              color: AppColors.colorFFFBEB, // Light yellow/orange bg
               borderRadius: BorderRadius.circular(8.r),
             ),
             alignment: Alignment.center,
             child: Icon(
               Icons.auto_stories, // Book/Learning icon
-              color: AppColors.bgAccentAmber,
+              color: AppColors.colorD97706,
               size: 24.sp,
             ),
           ),

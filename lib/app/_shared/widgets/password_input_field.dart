@@ -69,7 +69,7 @@ class _PasswordInputFieldContent extends StatelessWidget {
           suffixIcon: IconButton(
             icon: Icon(
               isPasswordVisible ? FontAwesomeIcons.eye: FontAwesomeIcons.eyeSlash,
-              color: AppColors.iconsSecondary,
+              color: AppColors.color475569,
               size: 16,
             ),
             onPressed: store.toggle,

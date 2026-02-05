@@ -31,14 +31,14 @@ class ReferralCodeCard extends StatelessWidget {
                   Text(
                     'Your Referral Code',
                     style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textInvert,
+                      color: AppColors.white,
                     ),
                   ),
                   16.height,
                   Text(
                     referralCode,
                     style: AppTypography.displaySmall.copyWith(
-                      color: AppColors.textInvert,
+                      color: AppColors.white,
                       fontSize: 20.sp,
                       fontWeight: FontWeight.w700,
                     ),
@@ -63,7 +63,7 @@ class ReferralCodeCard extends StatelessWidget {
                   child: Text(
                     'Copy',
                     style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textInvert,
+                      color: AppColors.white,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -76,7 +76,7 @@ class ReferralCodeCard extends StatelessWidget {
             child: Text(
               'Terms & Conditions Apply',
               style: AppTypography.labelSmall.copyWith(
-                color: AppColors.textInvert,
+                color: AppColors.white,
                 decoration: TextDecoration.underline,
               ),
             ),

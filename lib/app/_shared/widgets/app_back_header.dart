@@ -31,8 +31,8 @@ class AppBackHeader extends StatelessWidget implements PreferredSizeWidget {
                 padding: EdgeInsets.all(10.w),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.buttonBg,
-                  border: Border.all(color: AppColors.cardBorder),
+                  color: AppColors.colorF3F8F8,
+                  border: Border.all(color: AppColors.colorD9E8E8),
                 ),
                 child: SvgPicture.asset(AppAssets.icArrowBack),
               ),

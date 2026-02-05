@@ -42,7 +42,7 @@ class SmallButton extends StatelessWidget {
         child: Text(
           text,
           style: AppTypography.titleSmall.copyWith(
-            color: AppColors.textButtonPrimary,
+            color: AppColors.color1E1C1C,
             fontSize: 10,
           ),
         ),

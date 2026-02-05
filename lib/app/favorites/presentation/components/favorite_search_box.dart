@@ -22,14 +22,17 @@ class FavoriteSearchBox extends StatelessWidget {
             Expanded(
               child: AppInputField(
                 backgroundColor: AppColors.bgPrimary,
-                borderColor: AppColors.borderTertiary,
+                borderColor: AppColors.colorD0D5DD,
                 borderRadius: BorderRadius.circular(8),
                 hintText: 'Search',
-                prefixIcon: IconButton(onPressed: (){}, icon: SvgPicture.asset(
-                  AppAssets.search,
-                  width: 24,
-                  height: 24,
-                )),
+                prefixIcon: IconButton(
+                  onPressed: () {},
+                  icon: SvgPicture.asset(
+                    AppAssets.search,
+                    width: 24,
+                    height: 24,
+                  ),
+                ),
               ),
             ),
             12.width,
@@ -41,7 +44,9 @@ class FavoriteSearchBox extends StatelessWidget {
                 height: 40,
                 decoration: BoxDecoration(
                   color: AppColors.white,
-                  borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius/2),
+                  borderRadius: BorderRadius.circular(
+                    Dimens.defaultBorderRadius / 2,
+                  ),
                 ),
                 child: const Center(
                   child: Icon(Icons.tune, color: AppColors.textBrand, size: 20),

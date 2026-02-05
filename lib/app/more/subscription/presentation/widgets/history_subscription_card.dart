@@ -7,19 +7,28 @@ import '../../data/model/subscription.dart';
 import 'subscription_category_tag.dart';
 
 class HistorySubscriptionCard extends StatelessWidget {
-  const HistorySubscriptionCard({required this.subscription, super.key});
+  const HistorySubscriptionCard({
+    required this.subscription,
+    super.key,
+    this.backgroundColor,
+    this.hasBorder = true,
+    this.margin,
+  });
 
   final Subscription subscription;
+  final Color? backgroundColor;
+  final bool hasBorder;
+  final EdgeInsets? margin;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.h),
+      margin: margin ?? EdgeInsets.only(bottom: 16.h),
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: backgroundColor ?? AppColors.white,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.cardBorder),
+        border: hasBorder ? Border.all(color: AppColors.colorD9E8E8) : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

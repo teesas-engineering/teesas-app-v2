@@ -28,58 +28,64 @@ class _DashboardAppBarState extends State<DashboardAppBar> {
   @override
   Widget build(BuildContext context) {
     final store = context.read<DashboardStore>();
-    return Observer(builder: (_){
-      return ColoredBox(
-        color: AppColors.white,
-        child: Column(
-          children: [
-           const TopStatsHeader(includePadding: false,),
-            if(store.currentIndex==0)
-              ...[
+    return Observer(
+      builder: (_) {
+        return ColoredBox(
+          color: AppColors.white,
+          child: Column(
+            children: [
+              const TopStatsHeader(includePadding: false),
+              if (store.currentIndex == 0) ...[
                 24.height,
-                PagePadding(child: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          UserAvatar(
-                            gender: Gender.female,
-                            onTap: () {
-                              unawaited(AccountModal.show(context));
-                            },
-                          ),
-                          4.width,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Welcome',
-                                style: AppTypography.bodySmall.copyWith(
-                                  color: AppColors.textButtonPrimary,
+                PagePadding(
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            UserAvatar(
+                              gender: Gender.female,
+                              onTap: () {
+                                unawaited(AccountModal.show(context));
+                              },
+                            ),
+                            4.width,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Welcome',
+                                  style: AppTypography.bodySmall.copyWith(
+                                    color: AppColors.color1E1C1C,
+                                  ),
                                 ),
-                              ),
-                              4.height,
-                              Text(
-                                'James Omokewe',
-                                style: AppTypography.titleMedium.copyWith(
-                                  color: AppColors.textButtonPrimary,
+                                4.height,
+                                Text(
+                                  'James Omokewe',
+                                  style: AppTypography.titleMedium.copyWith(
+                                    color: AppColors.color1E1C1C,
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    4.width,
-                    ClickableDropdownButton(text: 'Grade 1', onTap: () {
-                      CategorySelectionModal.show(context);
-                    }),
-                  ],
-                )),
-              ]
-          ],
-        ),
-      );
-    });
+                      4.width,
+                      ClickableDropdownButton(
+                        text: 'Grade 1',
+                        onTap: () {
+                          CategorySelectionModal.show(context);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ],
+          ),
+        );
+      },
+    );
   }
 }

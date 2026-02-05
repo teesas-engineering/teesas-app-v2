@@ -53,7 +53,7 @@ class _WithdrawEarningsScreenState extends State<WithdrawEarningsScreen> {
                     Text(
                       'Enter the appropriate details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textModalSecondary,
+                        color: AppColors.color0A0A0A,
                       ),
                     ),
                     24.height,
@@ -130,7 +130,7 @@ class _BankDropdown extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.bgSecondary,
               borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: AppColors.borderPrimary),
+              border: Border.all(color: AppColors.colorE2E8F0),
             ),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(

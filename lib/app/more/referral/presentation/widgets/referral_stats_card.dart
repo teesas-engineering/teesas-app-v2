@@ -5,7 +5,7 @@ import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
 import '../../../../_shared/widgets/app_button.dart';
 import '../../../../_shared/widgets/app_card.dart';
-import '../../../../_shared/widgets/app_vertical_divider.dart';
+import '../../../../_shared/widgets/app_divider.dart';
 import 'referral_stat_item.dart';
 
 class ReferralStatsCard extends StatelessWidget {
@@ -32,12 +32,12 @@ class ReferralStatsCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               ReferralStatItem(label: 'Total\nEarnings', value: totalEarnings),
-              const AppVerticalDivider(),
+              const AppDivider(direction: Axis.vertical),
               ReferralStatItem(
                 label: 'Current\nEarnings',
                 value: currentEarnings,
               ),
-              const AppVerticalDivider(),
+              const AppDivider(direction: Axis.vertical),
               ReferralStatItem(
                 label: 'Total\nWithdrawal',
                 value: totalWithdrawal,
@@ -50,7 +50,7 @@ class ReferralStatsCard extends StatelessWidget {
             onPressed: () async => onWithdraw(),
             backgroundColor: AppColors.white,
             borderColor: AppColors.bgBrand,
-            textColor: AppColors.textModalSecondary,
+            textColor: AppColors.color0A0A0A,
             isFullWidth: false,
           ),
         ],

@@ -50,7 +50,7 @@ class _InviteListScreenState extends State<InviteListScreen> {
                     Text(
                       'View the following details below.',
                       style: AppTypography.bodyMedium.copyWith(
-                        color: AppColors.textModalSecondary,
+                        color: AppColors.color0A0A0A,
                         fontWeight: FontWeight.w400,
                       ),
                     ),
@@ -65,7 +65,7 @@ class _InviteListScreenState extends State<InviteListScreen> {
                       onChanged: _store.setSearchQuery,
                       borderRadius: BorderRadius.circular(8.r),
                       backgroundColor: const Color(0xFFF9FAFB),
-                      borderColor: AppColors.borderPrimary,
+                      borderColor: AppColors.colorE2E8F0,
                     ),
                     24.height,
                     AppCard.secondary(
@@ -95,7 +95,7 @@ class _InviteListScreenState extends State<InviteListScreen> {
                             itemCount: _store.filteredInvitees.length,
                             separatorBuilder: (_, __) => const Divider(
                               height: 1,
-                              color: AppColors.borderPrimary,
+                              color: AppColors.colorE2E8F0,
                             ),
                             itemBuilder: (context, index) {
                               final invitee = _store.filteredInvitees[index];
@@ -154,8 +154,8 @@ class _InviteListScreenState extends State<InviteListScreen> {
                 padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: isRegistered
-                      ? AppColors.registeredBg
-                      : AppColors.subscribedBg,
+                      ? AppColors.colorFCF7EA
+                      : AppColors.colorEFFFCE,
                   borderRadius: BorderRadius.circular(4.r),
                 ),
                 child: Text(

@@ -71,7 +71,8 @@ class _HomePageContent extends StatelessWidget {
                       16.width,
                       Expanded(
                         child: HomeCardOptionCard(
-                          onclick: () {},
+                          onclick: () {      context.push(MainRouter.assessmentRules);
+                          },
                           backgroundColor: AppColors.homeCardBorderColor2,
                           boarderColor: AppColors.homeCardBackgroundColor2,
                           asset: AppAssets.testImage,

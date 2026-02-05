@@ -22,6 +22,9 @@ class AppButton extends StatefulWidget {
     this.isLoading = false,
     this.textColor,
     this.borderColor,
+    this.child,
+    this.padding,
+    this.textStyle,
     super.key,
   });
 
@@ -36,11 +39,11 @@ class AppButton extends StatefulWidget {
       onPressed: onPressed,
       isDisabled: isDisabled,
       borderColor: negativeBorder
-          ? AppColors.borderNegative
+          ? AppColors.colorE12F4F
           : AppColors.bgBrandSecondary,
       buttonType: ButtonType.secondary,
       backgroundColor: negativeBorder
-          ? AppColors.bgNegativeLight
+          ? AppColors.colorFEF2F2
           : AppColors.bgBrandSecondaryLight,
     );
   }
@@ -56,6 +59,9 @@ class AppButton extends StatefulWidget {
   final IconData? trailingIcon;
   final bool isFullWidth;
   final bool isLoading;
+  final Widget? child;
+  final EdgeInsets? padding;
+  final TextStyle? textStyle;
 
   @override
   State<AppButton> createState() => _AppButtonState();
@@ -69,10 +75,12 @@ class _AppButtonState extends State<AppButton> {
     const verticalPadding = 15.0;
     const horizontalPadding = 20.0;
 
-    const padding = EdgeInsets.symmetric(
-      vertical: verticalPadding,
-      horizontal: horizontalPadding,
-    );
+    final padding =
+        widget.padding ??
+        const EdgeInsets.symmetric(
+          vertical: verticalPadding,
+          horizontal: horizontalPadding,
+        );
 
     final buttonColor = widget.isDisabled
         ? widget.buttonType.getDisabledButtonColor(context)
@@ -111,7 +119,9 @@ class _AppButtonState extends State<AppButton> {
         child: Container(
           padding: padding,
           decoration: BoxDecoration(
-            color: _isPressed ? buttonColor.withOpacity(0.9) : buttonColor,
+            color: _isPressed
+                ? buttonColor.withValues(alpha: 0.9)
+                : buttonColor,
             borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
             border: widget.buttonType.getBorder(
               context,
@@ -123,6 +133,8 @@ class _AppButtonState extends State<AppButton> {
             children: [
               if (widget.isLoading)
                 _getLoader(context)
+              else if (widget.child != null)
+                widget.child!
               else
                 Row(
                   mainAxisSize: widget.isFullWidth
@@ -134,7 +146,7 @@ class _AppButtonState extends State<AppButton> {
                       Icon(
                         widget.leadingIcon,
                         color: widget.isDisabled
-                            ? AppColors.iconsButtonDisabled
+                            ? AppColors.color94A3B8
                             : widget.buttonType.getIconColor(context),
                         size: widget.buttonType.getIconSize(context),
                       ),
@@ -146,7 +158,7 @@ class _AppButtonState extends State<AppButton> {
                       Icon(
                         widget.trailingIcon,
                         color: widget.isDisabled
-                            ? AppColors.iconsButtonDisabled
+                            ? AppColors.color94A3B8
                             : widget.buttonType.getIconColor(context),
                         size: widget.buttonType.getIconSize(context),
                       ),
@@ -166,18 +178,20 @@ class _AppButtonState extends State<AppButton> {
     return Text(
       widget.text,
       textAlign: TextAlign.center,
-      style: textStyle.copyWith(
-        fontFamily: AppTypography.balooBhaijaan,
-        color:
-            widget.textColor ??
-            (widget.isDisabled
-                ? AppColors.textButtonDisabled
-                : widget.buttonType.getTextColor(context)),
-        fontWeight: widget.buttonType == ButtonType.secondary
-            ? FontWeight.w400
-            : FontWeight.w800,
-        fontSize: widget.buttonType == ButtonType.secondary ? 14 : 16,
-      ),
+      style:
+          widget.textStyle ??
+          textStyle.copyWith(
+            fontFamily: AppTypography.balooBhaijaan,
+            color:
+                widget.textColor ??
+                (widget.isDisabled
+                    ? AppColors.color94A3B8
+                    : widget.buttonType.getTextColor(context)),
+            fontWeight: widget.buttonType == ButtonType.secondary
+                ? FontWeight.w400
+                : FontWeight.w800,
+            fontSize: widget.buttonType == ButtonType.secondary ? 14 : 16,
+          ),
     );
   }
 

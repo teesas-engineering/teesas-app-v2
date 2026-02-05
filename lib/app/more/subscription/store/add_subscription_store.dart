@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import '../data/model/subscription_checkout_item.dart';
 
 part 'add_subscription_store.g.dart';
 
@@ -85,5 +86,23 @@ abstract class _AddSubscriptionStore with Store {
 
   bool isSelected(String groupId, String planId) {
     return selectedPlanIds[groupId] == planId;
+  }
+
+  List<SubscriptionCheckoutItem> getSelectedItems() {
+    final List<SubscriptionCheckoutItem> items = [];
+    selectedPlanIds.forEach((groupId, planId) {
+      final group = groups.firstWhere((g) => g.id == groupId);
+      final option = group.options.firstWhere((o) => o.id == planId);
+      items.add(
+        SubscriptionCheckoutItem(
+          id: option.id,
+          title: group.title,
+          planDuration: option.duration,
+          categoryTag: group.categoryTag,
+          amount: option.amount,
+        ),
+      );
+    });
+    return items;
   }
 }

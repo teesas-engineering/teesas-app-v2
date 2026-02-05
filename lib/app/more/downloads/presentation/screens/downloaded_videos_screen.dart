@@ -64,7 +64,7 @@ class _DownloadedVideosScreenState extends State<DownloadedVideosScreen> {
                             onChanged: _store.setSearchQuery,
                             borderRadius: BorderRadius.circular(8.r),
                             backgroundColor: const Color(0xFFF9FAFB),
-                            borderColor: AppColors.borderPrimary,
+                            borderColor: AppColors.colorE2E8F0,
                             padding: EdgeInsets.symmetric(
                               horizontal: 12.w,
                               vertical: 12.h,
@@ -77,7 +77,7 @@ class _DownloadedVideosScreenState extends State<DownloadedVideosScreen> {
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(color: AppColors.borderPrimary),
+                            border: Border.all(color: AppColors.colorE2E8F0),
                           ),
                           child: SvgPicture.asset(
                             AppAssets.icFilter,
@@ -88,7 +88,7 @@ class _DownloadedVideosScreenState extends State<DownloadedVideosScreen> {
                       ],
                     ),
                     Divider(
-                      color: AppColors.dividerColor,
+                      color: AppColors.colorC7C7C7,
                       thickness: 1.h,
                       height: 32.h,
                     ),
@@ -125,7 +125,7 @@ class _DownloadedVideosScreenState extends State<DownloadedVideosScreen> {
                                     style: AppTypography.labelSmall.copyWith(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 10.sp,
-                                      color: AppColors.textCategory,
+                                      color: AppColors.color51666F,
                                     ),
                                   ),
                                 ),
