@@ -3,10 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 import 'package:mobx/mobx.dart';
+import '../../../../common/constants/app_constants.dart';
+import '../../../../common/enum/state_type.dart';
 import '../../../../common/utils/form_mixin.dart';
+import '../../../../common/utils/notify_helper.dart';
 import '../../../../dependency_manager/injectable.dart';
 import '../../../_shared/data/dto/get_countries_dto/get_countries_country_dto.dart';
+import '../../../_shared/data/dto/send_otp_dto/send_otp_dto.dart';
+import '../../../_shared/data/dto/sign_up_dto/sign_up_dto.dart';
+import '../../../_shared/domain/repository/auth_repository.dart';
 import '../../../_shared/enum/gender.dart';
+import '../../../_shared/stores/otp_store/otp_store.dart';
 import '../../../_shared/util/date_picker.dart';
 import 'onboarding_store.dart';
 
@@ -17,12 +24,16 @@ class SignupStore = _SignupStore with _$SignupStore;
 
 abstract class _SignupStore with Store, FormMixin {
   _SignupStore()
-      : _onboardingStore =  getIt<OnboardingStore>() {
+    : _onboardingStore = getIt<OnboardingStore>(),
+      _otpStore = getIt<OtpStore>(),
+      _repository = getIt<AuthRepository>() {
     _initControllers();
     _attachListeners();
   }
 
-  final OnboardingStore  _onboardingStore;
+  final OnboardingStore _onboardingStore;
+  final AuthRepository _repository;
+  final OtpStore _otpStore;
 
   void _initControllers() {
     nameController = TextEditingController();
@@ -60,7 +71,13 @@ abstract class _SignupStore with Store, FormMixin {
   Gender? selectedGender;
 
   @observable
+  Status signUpStatus = Status.initial;
+  @observable
   CountryDto? selectedCountry;
+  @observable
+  String phoneNumber = '';
+  @observable
+  String parentPhoneNumber = '';
 
   @observable
   DateTime? selectedDate;
@@ -130,10 +147,39 @@ abstract class _SignupStore with Store, FormMixin {
     }
   }
 
-  Future<void> handleRegister() async {
+  @action
+  Future<void> createAccount() async {
     if (formKey.currentState?.validate() ?? false) {
-      // Trigger onboarding store actions if needed (e.g. next page)
-      unawaited(_onboardingStore.onNext());
+      final deviceId = await AppConstant.deviceId();
+      final model = SignUpDto(
+        name: nameController.text,
+        phone: phoneNumber.substring(4),
+        countryId: selectedCountry?.id ?? 87,
+        dateOfBirth: formattedDate,
+        gender: selectedGender,
+        email: emailController.text,
+        deviceId: deviceId,
+        password: passwordController.text,
+        parentName: parentNameController.text,
+        parentPhoneNumber: parentPhoneNumber.substring(4),
+      );
+      signUpStatus = Status.loading;
+      final response = await _repository.signUp(model);
+      response.when(
+        onSuccess: (result) {
+          signUpStatus = Status.success;
+          unawaited(
+            _otpStore.sendOtp(
+              SendOtpDto(email: emailController.text, phone: phoneNumber.substring(4)),
+            ),
+          );
+          unawaited(_onboardingStore.onNext());
+        },
+        onError: (error) {
+          signUpStatus = Status.error;
+          NotifyHelper.showErrorToast(error);
+        },
+      );
     }
   }
 
@@ -154,5 +200,4 @@ abstract class _SignupStore with Store, FormMixin {
     referralCodeController.dispose();
     countryDisplayController.dispose();
   }
-
 }

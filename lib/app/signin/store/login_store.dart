@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
@@ -7,26 +9,33 @@ import '../../../common/enum/state_type.dart';
 import '../../../common/utils/notify_helper.dart';
 import '../../../router/route_helper.dart';
 import '../../_shared/data/dto/login_dto/login_dto.dart';
+import '../../_shared/data/dto/send_otp_dto/send_otp_dto.dart';
 import '../../_shared/data/dto/user_dto/user_dto.dart';
 import '../../_shared/data/dto/user_dto/user_profile_dto.dart';
 import '../../_shared/domain/repository/auth_repository.dart';
+import '../../_shared/stores/otp_store/otp_store.dart';
+import '../../onboarding/presentation/stores/onboarding_store.dart';
+
 part 'login_store.g.dart';
 
 @lazySingleton
 class LoginStore = _LoginStoreBase with _$LoginStore;
 
 abstract class _LoginStoreBase with Store {
-  _LoginStoreBase({
-    AuthRepository? authRepository,
-    SecureStorageService? storageService,
-  }) : _authRepository = authRepository ?? getIt<AuthRepository>(),
-       _storageService = storageService ?? getIt<SecureStorageService>() {
+  _LoginStoreBase(
+    this._authRepository,
+    this._storageService,
+    this._otpStore,
+    this._onboardingStore,
+  ) {
     _emailOrPhoneController = TextEditingController();
     _passwordController = TextEditingController();
   }
 
   final AuthRepository _authRepository;
   final SecureStorageService _storageService;
+  final OtpStore _otpStore;
+  final OnboardingStore _onboardingStore;
 
   final GlobalKey<FormState> key = GlobalKey();
   late final TextEditingController _emailOrPhoneController;
@@ -79,7 +88,21 @@ abstract class _LoginStoreBase with Store {
             await _storageService.saveUser(user.toJson());
             profiles = ObservableList.of(user.profiles ?? []);
             getIt<RouteHelper>().showSelectAccountScreen();
-          } else {}
+          } else {
+            ///taking the user to the onboarding so they can verify their account and continue the
+            ///onboarding flow
+            unawaited(
+              ///this flow may fail, since we are relying on email or phone alone.
+              ///however if verification can go through to both email and phone, this will work fine.
+              ///the goal here is to switch the flow and give the user a chance to continue onboarding
+              ///in cases where they didn't verify their account, after account creation
+              _otpStore.sendOtp(
+                SendOtpDto(email: emailOrPhone, phone: emailOrPhone),
+              ),
+            );
+            _onboardingStore.jumpTo(1);
+            unawaited(getIt<RouteHelper>().showOnboardingRoot(replace: true));
+          }
         },
         onError: (message) {
           errorMessage = message;

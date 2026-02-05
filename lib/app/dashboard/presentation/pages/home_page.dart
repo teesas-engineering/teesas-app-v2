@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/extensions/num_extension.dart';
+import '../../../../common/services/secured_storage_service.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../../../dependency_manager/injectable.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/stores/tab_store/index_store.dart';
 import '../component/continue_watching.dart';
@@ -56,7 +58,10 @@ class _HomePageContent extends StatelessWidget {
                     children: [
                       Expanded(
                         child: HomeCardOptionCard(
-                          onclick: () {},
+                          onclick: () {
+                            print('tear down');
+                            getIt<SecureStorageService>().tearDown();
+                          },
                           backgroundColor: AppColors.homeCardBorderColor1,
                           boarderColor: AppColors.homeCardBackgroundColor1,
                           asset: AppAssets.videoImage,

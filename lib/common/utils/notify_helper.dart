@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../style_guide/colors.dart';
+
 class NotifyHelper {
   NotifyHelper._();
 
@@ -15,13 +17,14 @@ class NotifyHelper {
 
   static void showErrorToast(String message) => showToast(message);
 
-  static void showSuccessToast(String message) => showToast(message);
+  static void showSuccessToast(String message, {ToastGravity? gravity}) =>
+      showToast(message, gravity: gravity, color: AppColors.bgBrand);
 
   static void showToast(
-      String message, {
-        Color? color,
-        ToastGravity? gravity,
-      }) => Fluttertoast.showToast(
+    String message, {
+    Color? color,
+    ToastGravity? gravity,
+  }) => Fluttertoast.showToast(
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
     gravity: gravity ?? ToastGravity.TOP,
@@ -34,11 +37,11 @@ class NotifyHelper {
       _showSuccessSnackBar(context, false, child: child);
 
   static Future<void> _showSuccessSnackBar(
-      BuildContext context,
-      bool error, {
-        String? message,
-        Widget? child,
-      }) async {
+    BuildContext context,
+    bool error, {
+    String? message,
+    Widget? child,
+  }) async {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
       builder: (context) => Positioned(

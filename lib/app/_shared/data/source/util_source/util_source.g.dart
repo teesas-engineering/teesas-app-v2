@@ -12,7 +12,7 @@ part of 'util_source.dart';
 
 class _UtilSource implements UtilSource {
   _UtilSource(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://api-teesas.teesas.com/v1/utils/';
+    baseUrl ??= 'https://api-teesas-staging.teesas.com/v1/utils/';
   }
 
   final Dio _dio;

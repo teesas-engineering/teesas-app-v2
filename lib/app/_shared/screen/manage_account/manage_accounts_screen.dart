@@ -3,13 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import '../../../../common/dimens/app_dimens.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../enum/gender.dart';
+import '../../stores/account_management_store/account_management_store.dart';
 import '../../widgets/app_button.dart';
 import '../../widgets/app_progress_header.dart';
-import '../../stores/manage_account_store/manage_accounts_store.dart';
 import '../../components/manage_account_card.dart';
 
 class ManageAccountsScreen extends StatefulWidget {
@@ -20,10 +22,10 @@ class ManageAccountsScreen extends StatefulWidget {
 }
 
 class _ManageAccountsScreenState extends State<ManageAccountsScreen> {
-  final ManageAccountsStore _store = ManageAccountsStore();
 
   @override
   Widget build(BuildContext context) {
+    final store = context.read<AccountManagementStore>();
     return Scaffold(
       appBar: const AppProgressHeader(progress: 0.75),
       backgroundColor: AppColors.bgPrimary,
@@ -67,18 +69,16 @@ class _ManageAccountsScreenState extends State<ManageAccountsScreen> {
                         return ListView.separated(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          itemCount: _store.accounts.length,
+                          itemCount: store.pendingAccounts.length,
                           separatorBuilder: (_, _) => 16.height,
                           itemBuilder: (context, index) {
-                            final account = _store.accounts[index];
+                            final account = store.pendingAccounts[index];
                             return ManageAccountCard(
                               name: account.name,
-                              role: account.role == AccountRoleType.student
-                                  ? AccountRole.student
-                                  : AccountRole.parent,
-                              avatarUrl: account.avatarUrl,
+                              role:AccountRole.student,
+                              avatarUrl: account.gender?.getAvatar()??Gender.male.getAvatar(),
                               onEdit: () {},
-                              onDelete: () => _store.removeAccount(account.id),
+                              onDelete: () => store.removeAccountFromPending(index),
                             );
                           },
                         );
@@ -87,7 +87,7 @@ class _ManageAccountsScreenState extends State<ManageAccountsScreen> {
                     32.height,
                     Center(
                       child: GestureDetector(
-                        onTap: _store.addAccount,
+                        onTap: (){},
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

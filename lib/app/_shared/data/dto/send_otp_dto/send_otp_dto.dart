@@ -4,13 +4,13 @@ part 'send_otp_dto.g.dart';
 
 @JsonSerializable()
 class SendOtpDto {
-  final String? email;
-  final String? phone;
 
   const SendOtpDto({this.email, this.phone});
 
   factory SendOtpDto.fromJson(Map<String, dynamic> json) =>
       _$SendOtpDtoFromJson(json);
+  final String? email;
+  final String? phone;
 
   Map<String, dynamic> toJson() => _$SendOtpDtoToJson(this);
 }

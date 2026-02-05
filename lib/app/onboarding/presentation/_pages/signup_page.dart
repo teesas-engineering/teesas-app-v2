@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/constants/app_constants.dart';
 import '../../../../common/dimens/app_dimens.dart';
+import '../../../../common/enum/state_type.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
@@ -29,14 +30,14 @@ class SignupPage extends StatelessWidget with FormMixin {
 
   @override
   Widget build(BuildContext context) {
-    final store =context.read<SignupStore>();
+    final store = context.read<SignupStore>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           child: SingleChildScrollView(
-            padding:  const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
+            padding: const EdgeInsets.symmetric(horizontal: Dimens.pagePadding),
             child: Form(
               key: store.formKey,
 
@@ -71,7 +72,9 @@ class SignupPage extends StatelessWidget with FormMixin {
                     inputType: InputType.phone,
                     labelText: 'Phone Number',
                     hintText: 'Phone Number',
-                    onChange: (value, type) {},
+                    onChange: (value, type) {
+                      store.phoneNumber = value;
+                    },
                   ),
                   16.height,
                   Observer(
@@ -95,7 +98,8 @@ class SignupPage extends StatelessWidget with FormMixin {
                                     AppConstant.defaultCountryFlag,
                                 width: 24,
                                 height: 24,
-                              ))
+                              ),
+                            )
                           : null,
                       validator: isRequired,
                       suffixIcon: const Icon(
@@ -112,6 +116,7 @@ class SignupPage extends StatelessWidget with FormMixin {
                         text: store.formattedDate,
                       ),
                       labelText: 'Date of Birth',
+
                       hintText: 'Date of Birth',
                       readOnly: true,
                       validator: isRequired,
@@ -161,7 +166,9 @@ class SignupPage extends StatelessWidget with FormMixin {
                     inputType: InputType.phone,
                     labelText: 'Parent Phone Number',
                     hintText: 'Parent Phone Number',
-                    onChange: (value, type) {},
+                    onChange: (value, type) {
+                      store.parentPhoneNumber = value;
+                    },
                   ),
                   16.height,
                   PasswordInputField(
@@ -188,7 +195,8 @@ class SignupPage extends StatelessWidget with FormMixin {
               Observer(
                 builder: (_) => AppButton(
                   text: 'Register',
-                  onPressed: store.handleRegister,
+                  onPressed: store.createAccount,
+                  isLoading: store.signUpStatus.isLoading,
                   isDisabled: !store.isRegisterEnabled,
                 ),
               ),

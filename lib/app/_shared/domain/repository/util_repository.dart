@@ -14,7 +14,7 @@ class UtilRepository {
 
   final UtilSource _source;
 
-  Future<ApiResult<List<CourseDto>>> getCourses() {
+  Future<ApiResult<List<ClassCategoryDto>>> getCourses() {
     return ApiResultWrapper.wrap(
       func: _source.getCourses,
       mapper: (data) =>

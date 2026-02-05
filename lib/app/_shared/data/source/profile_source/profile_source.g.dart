@@ -12,7 +12,7 @@ part of 'profile_source.dart';
 
 class _ProfileSource implements ProfileSource {
   _ProfileSource(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://api-teesas.teesas.com/v1/profile/';
+    baseUrl ??= 'https://api-teesas-staging.teesas.com/v1/profile/';
   }
 
   final Dio _dio;

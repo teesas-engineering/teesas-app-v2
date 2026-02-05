@@ -36,6 +36,11 @@ abstract class _OnboardingStore with Store {
   void setCurrentPage(int page) {
     currentPage = page;
   }
+  @action
+  void jumpTo(int index){
+    currentPage = index;
+    _pageController=PageController(initialPage: index);
+  }
 
   Future<void> goToPreviousPage() async {
     if (currentPage > 0) {

@@ -1,12 +1,13 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-
+import 'package:provider/provider.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/app_card.dart';
+import '../stores/onboarding_store.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -67,8 +68,8 @@ class WelcomePage extends StatelessWidget {
                 child: AppButton.secondary(
                   text: 'Proceed',
                   onPressed: () async {
-                    // Navigate to next screen
-                    context.push('/onboarding');
+                    unawaited(
+                        context.read<OnboardingStore>().onNext());
                   },
                 ),
               ),

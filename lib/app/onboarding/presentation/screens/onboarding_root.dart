@@ -8,7 +8,7 @@ import '../../../../router/route_helper.dart';
 import '../../../_shared/widgets/app_progress_bar.dart';
 import '../_pages/account_verification_page.dart';
 import '../_pages/add_account_page.dart';
-import '../_pages/choose_category_page.dart';
+import '../components/choose_category_page.dart';
 import '../_pages/signup_page.dart';
 import '../_pages/welcome_page.dart';
 import '../stores/onboarding_store.dart';
@@ -18,7 +18,7 @@ class OnboardingRoot extends StatelessWidget {
 
   static final List<Widget> _pages = [
     const SignupPage(),
-    AccountVerificationPage(),
+    const AccountVerificationPage(),
     const WelcomePage(),
     const AddAccountPage(),
     const ChooseCategoryPage(),
@@ -26,47 +26,55 @@ class OnboardingRoot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final store = Provider.of<OnboardingStore>(context);
+    final store = context.read<OnboardingStore>();
 
     return PopScope(
       canPop: false,
-      child: Scaffold(
-        backgroundColor: AppColors.bgPrimary,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: AppColors.iconsPrimary),
-            onPressed: () async {
-              final shouldPop = await store.handleBackPress();
-              if (shouldPop) {
-                getIt<RouteHelper>().pop();
-              }
-            },
-          ),
-          title: Observer(
-            builder: (_) => AppProgressBar(
-              value: store.progress,
-              height: 6,
-              backgroundColor: AppColors.borderPrimary,
-              progressColor: AppColors.bgAccent,
-            ),
-          ),
-          actions: const [SizedBox(width: 8)],
-        ),
-        body: SafeArea(
-          bottom: false,
-          child: Column(
-            children: [
-              Expanded(
-                child: PageView(
-                  controller: store.pageController,
-                  physics: const NeverScrollableScrollPhysics(),
-                  onPageChanged: store.setCurrentPage,
-                  children: _pages,
+      child: Observer(
+        builder: (_) {
+          return Scaffold(
+            backgroundColor:store.currentPage >= 2?AppColors.white: AppColors.bgPrimary,
+            appBar:store.currentPage >= 2?null: AppBar(
+              automaticallyImplyLeading: false,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.arrow_back,
+                  color: AppColors.iconsPrimary,
+                ),
+                onPressed: () async {
+                  final shouldPop = await store.handleBackPress();
+                  if (shouldPop) {
+                    getIt<RouteHelper>().pop();
+                  }
+                },
+              ),
+              title: Observer(
+                builder: (_) => AppProgressBar(
+                  value: store.progress,
+                  height: 6,
+                  backgroundColor: AppColors.borderPrimary,
+                  progressColor: AppColors.bgAccent,
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+            body: SafeArea(
+              bottom: false,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: PageView(
+
+                      controller: store.pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      onPageChanged: store.setCurrentPage,
+                      children: _pages,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

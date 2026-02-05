@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
+
 import '../../../../common/enum/state_type.dart';
 import '../../../../common/enum/storage_keys.dart';
 import '../../../../common/services/secured_storage_service.dart';
@@ -11,6 +12,7 @@ import '../../data/dto/get_countries_dto/get_countries_data_dto.dart';
 import '../../data/dto/get_courses_dto/course_dto.dart';
 import '../../data/dto/get_courses_dto/get_courses_data_dto.dart';
 import '../../domain/repository/util_repository.dart';
+import '../../enum/term.dart';
 
 part 'util_store.g.dart';
 
@@ -24,10 +26,19 @@ abstract class _UtilStore with Store {
   final SecureStorageService _storageService;
 
   @observable
-  ObservableList<CourseDto> courses = ObservableList<CourseDto>();
+  ObservableList<ClassCategoryDto> classCategory =
+      ObservableList<ClassCategoryDto>();
 
   @observable
-  ObservableList<CountryDto> countries = ObservableList.of(CountriesUtil().countries);
+  ObservableSet<int> selectedClassIds = ObservableSet<int>();
+
+  @observable
+  Term? selectedTerm;
+
+  @observable
+  ObservableList<CountryDto> countries = ObservableList.of(
+    CountriesUtil().countries,
+  );
 
   @observable
   String countriesSearchQuery = '';
@@ -41,15 +52,42 @@ abstract class _UtilStore with Store {
   @observable
   String? errorMessage;
 
+  @observable
+  ObservableMap<int, List<int>?> selectedCategories = ObservableMap();
+
   @action
-  void initCountries(){
+  void initCountries() {
     countries = ObservableList.of(CountriesUtil().countries);
   }
+
   @action
-  void selectCountry(CountryDto country){
+  void selectCountry(CountryDto country) {
     countriesSearchQuery = '';
     getIt<RouteHelper>().pop(country);
   }
+
+
+
+  @action
+  void toggleCategorySelection(int categoryId, int classId, {bool remove = false}) {
+    final subSelection = selectedCategories[categoryId] ?? [];
+    List<int> value = [];
+    if (remove) {
+      value = subSelection.where((e) => e != classId).toList();
+    } else {
+      value = [...subSelection, classId];
+    }
+    selectedCategories[categoryId] = value;
+  }
+
+  @action
+  void clearClassSelections() {
+    selectedClassIds.clear();
+  }
+
+  @computed
+  int get totalClassSelections => selectedClassIds.length;
+
   @computed
   List<CountryDto> get filteredCountries {
     final query = countriesSearchQuery.trim().toLowerCase();
@@ -57,19 +95,21 @@ abstract class _UtilStore with Store {
       return List<CountryDto>.from(countries);
     }
     return countries
-        .where((c) =>
-            (c.name ?? '').toLowerCase().contains(query))
+        .where((c) => (c.name ?? '').toLowerCase().contains(query))
         .toList();
   }
 
   @action
-  Future<void> fetchCourses() async {
+  Future<void> fetchClassCategories() async {
+    if (coursesStatus.isSuccess) {
+      return;
+    }
     errorMessage = null;
     final cached = await _storageService.get(StorageKeys.utilCourses);
     if (cached != null) {
       try {
         final data = GetCoursesDataDto.fromJson(cached);
-        courses = ObservableList.of(data.courses);
+        classCategory = ObservableList.of(data.courses);
         coursesStatus = Status.success;
 
         return;
@@ -83,7 +123,7 @@ abstract class _UtilStore with Store {
       final result = await _utilRepository.getCourses();
       result.when(
         onSuccess: (data) async {
-          courses
+          classCategory
             ..clear()
             ..addAll(data);
           coursesStatus = Status.success;
@@ -112,8 +152,7 @@ abstract class _UtilStore with Store {
         countries = ObservableList.of(data.countries);
         countriesStatus = Status.success;
         return;
-      } catch (_) {
-      }
+      } catch (_) {}
     }
 
     if (countriesStatus != Status.success) {

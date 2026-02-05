@@ -5,7 +5,17 @@ import 'course_class_dto.dart';
 part 'course_dto.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class CourseDto {
+class ClassCategoryDto {
+
+  const ClassCategoryDto({
+    required this.id,
+    required this.name,
+    required this.categorizeByTerm,
+    required this.classes,
+  });
+
+  factory ClassCategoryDto.fromJson(Map<String, dynamic> json) =>
+      _$ClassCategoryDtoFromJson(json);
   final int id;
   final String name;
 
@@ -14,15 +24,5 @@ class CourseDto {
 
   final List<CourseClassDto> classes;
 
-  const CourseDto({
-    required this.id,
-    required this.name,
-    required this.categorizeByTerm,
-    required this.classes,
-  });
-
-  factory CourseDto.fromJson(Map<String, dynamic> json) =>
-      _$CourseDtoFromJson(json);
-
-  Map<String, dynamic> toJson() => _$CourseDtoToJson(this);
+  Map<String, dynamic> toJson() => _$ClassCategoryDtoToJson(this);
 }

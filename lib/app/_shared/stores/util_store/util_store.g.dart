@@ -9,6 +9,14 @@ part of 'util_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$UtilStore on _UtilStore, Store {
+  Computed<int>? _$totalClassSelectionsComputed;
+
+  @override
+  int get totalClassSelections =>
+      (_$totalClassSelectionsComputed ??= Computed<int>(
+        () => super.totalClassSelections,
+        name: '_UtilStore.totalClassSelections',
+      )).value;
   Computed<List<CountryDto>>? _$filteredCountriesComputed;
 
   @override
@@ -18,18 +26,57 @@ mixin _$UtilStore on _UtilStore, Store {
         name: '_UtilStore.filteredCountries',
       )).value;
 
-  late final _$coursesAtom = Atom(name: '_UtilStore.courses', context: context);
+  late final _$classCategoryAtom = Atom(
+    name: '_UtilStore.classCategory',
+    context: context,
+  );
 
   @override
-  ObservableList<CourseDto> get courses {
-    _$coursesAtom.reportRead();
-    return super.courses;
+  ObservableList<ClassCategoryDto> get classCategory {
+    _$classCategoryAtom.reportRead();
+    return super.classCategory;
   }
 
   @override
-  set courses(ObservableList<CourseDto> value) {
-    _$coursesAtom.reportWrite(value, super.courses, () {
-      super.courses = value;
+  set classCategory(ObservableList<ClassCategoryDto> value) {
+    _$classCategoryAtom.reportWrite(value, super.classCategory, () {
+      super.classCategory = value;
+    });
+  }
+
+  late final _$selectedClassIdsAtom = Atom(
+    name: '_UtilStore.selectedClassIds',
+    context: context,
+  );
+
+  @override
+  ObservableSet<int> get selectedClassIds {
+    _$selectedClassIdsAtom.reportRead();
+    return super.selectedClassIds;
+  }
+
+  @override
+  set selectedClassIds(ObservableSet<int> value) {
+    _$selectedClassIdsAtom.reportWrite(value, super.selectedClassIds, () {
+      super.selectedClassIds = value;
+    });
+  }
+
+  late final _$selectedTermAtom = Atom(
+    name: '_UtilStore.selectedTerm',
+    context: context,
+  );
+
+  @override
+  Term? get selectedTerm {
+    _$selectedTermAtom.reportRead();
+    return super.selectedTerm;
+  }
+
+  @override
+  set selectedTerm(Term? value) {
+    _$selectedTermAtom.reportWrite(value, super.selectedTerm, () {
+      super.selectedTerm = value;
     });
   }
 
@@ -127,14 +174,34 @@ mixin _$UtilStore on _UtilStore, Store {
     });
   }
 
-  late final _$fetchCoursesAsyncAction = AsyncAction(
-    '_UtilStore.fetchCourses',
+  late final _$selectedCategoriesAtom = Atom(
+    name: '_UtilStore.selectedCategories',
     context: context,
   );
 
   @override
-  Future<void> fetchCourses() {
-    return _$fetchCoursesAsyncAction.run(() => super.fetchCourses());
+  ObservableMap<int, List<int>?> get selectedCategories {
+    _$selectedCategoriesAtom.reportRead();
+    return super.selectedCategories;
+  }
+
+  @override
+  set selectedCategories(ObservableMap<int, List<int>?> value) {
+    _$selectedCategoriesAtom.reportWrite(value, super.selectedCategories, () {
+      super.selectedCategories = value;
+    });
+  }
+
+  late final _$fetchClassCategoriesAsyncAction = AsyncAction(
+    '_UtilStore.fetchClassCategories',
+    context: context,
+  );
+
+  @override
+  Future<void> fetchClassCategories() {
+    return _$fetchClassCategoriesAsyncAction.run(
+      () => super.fetchClassCategories(),
+    );
   }
 
   late final _$fetchCountriesAsyncAction = AsyncAction(
@@ -177,14 +244,46 @@ mixin _$UtilStore on _UtilStore, Store {
   }
 
   @override
+  void toggleCategorySelection(
+    int categoryId,
+    int classId, {
+    bool remove = false,
+  }) {
+    final _$actionInfo = _$_UtilStoreActionController.startAction(
+      name: '_UtilStore.toggleCategorySelection',
+    );
+    try {
+      return super.toggleCategorySelection(categoryId, classId, remove: remove);
+    } finally {
+      _$_UtilStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearClassSelections() {
+    final _$actionInfo = _$_UtilStoreActionController.startAction(
+      name: '_UtilStore.clearClassSelections',
+    );
+    try {
+      return super.clearClassSelections();
+    } finally {
+      _$_UtilStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-courses: ${courses},
+classCategory: ${classCategory},
+selectedClassIds: ${selectedClassIds},
+selectedTerm: ${selectedTerm},
 countries: ${countries},
 countriesSearchQuery: ${countriesSearchQuery},
 coursesStatus: ${coursesStatus},
 countriesStatus: ${countriesStatus},
 errorMessage: ${errorMessage},
+selectedCategories: ${selectedCategories},
+totalClassSelections: ${totalClassSelections},
 filteredCountries: ${filteredCountries}
     ''';
   }
