@@ -29,7 +29,7 @@ class ReferralStatItem extends StatelessWidget {
             formatNumber(value),
             textAlign: TextAlign.center,
             style: AppTypography.titleSmall.copyWith(
-              color: AppColors.textModalSecondary,
+              color: AppColors.color0A0A0A,
               fontWeight: FontWeight.w700,
             ),
           ),

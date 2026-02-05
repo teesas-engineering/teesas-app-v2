@@ -22,7 +22,7 @@ class ChangePasswordField extends StatelessWidget {
       hintText: hintText,
       obscureText: true,
       backgroundColor: AppColors.white,
-      borderColor: AppColors.borderPrimary,
+      borderColor: AppColors.colorE2E8F0,
     );
   }
 }

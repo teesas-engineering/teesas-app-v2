@@ -27,18 +27,13 @@ class AppChip extends StatelessWidget {
         height: 52,
         padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.white : AppColors.borderPrimaryChip,
+          color: isActive ? AppColors.white : AppColors.colorE2E8F0,
           borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius),
           border: isActive
-              ? const Border(
-            bottom: BorderSide(color: AppColors.borderBrandLargeLight),
-          )
-              : Border.all(color: AppColors.borderChip, width: 2),
+              ? const Border(bottom: BorderSide(color: AppColors.color93D6AF))
+              : Border.all(color: AppColors.colorEFF1F5, width: 2),
           boxShadow: const [
-            BoxShadow(
-              color: AppColors.borderBrandLargeLight,
-              offset: Offset(0, 4),
-            ),
+            BoxShadow(color: AppColors.color93D6AF, offset: Offset(0, 4)),
           ],
         ),
         child: Row(
@@ -48,7 +43,7 @@ class AppChip extends StatelessWidget {
                 text,
                 style: AppTypography.titleSmall.copyWith(
                   color: isActive
-                      ? AppColors.textButtonPrimary
+                      ? AppColors.color1E1C1C
                       : AppColors.textTertiary,
                   fontWeight: isActive ? FontWeight.w700 : FontWeight.w400,
                 ),

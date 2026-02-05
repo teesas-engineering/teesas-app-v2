@@ -72,8 +72,8 @@ class AppInputField extends StatelessWidget {
           vertical: Dimens.buttonPadding,
         );
 
-    final unfocusedBorderColor = borderColor ?? AppColors.borderPrimary;
-    final focusedBorder = focusedBorderColor ?? AppColors.borderBrand;
+    final unfocusedBorderColor = borderColor ?? AppColors.colorE2E8F0;
+    final focusedBorder = focusedBorderColor ?? AppColors.color16A34A;
 
     return TextFormField(
       controller: controller,
@@ -119,15 +119,15 @@ class AppInputField extends StatelessWidget {
         ),
         disabledBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: AppColors.borderDisabled),
+          borderSide: BorderSide(color: AppColors.colorF1F5F9),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: AppColors.borderNegative),
+          borderSide: BorderSide(color: AppColors.colorE12F4F),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: inputBorderRadius,
-          borderSide: BorderSide(color: AppColors.borderNegative),
+          borderSide: BorderSide(color: AppColors.colorE12F4F),
         ),
         suffixIcon: keyboardType == TextInputType.emailAddress
             ? IconButton(

@@ -11,13 +11,13 @@ class SubscriptionCategoryTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLeaderInMe = category.toLowerCase().contains('leader');
-    final bgColor = isLeaderInMe ? AppColors.badgeBgRed : AppColors.badgeBgBlue;
+    final bgColor = isLeaderInMe ? AppColors.colorFFF5F3 : AppColors.colorF5F9FB;
     final textColor = isLeaderInMe
-        ? AppColors.badgeTextRed
-        : AppColors.badgeTextBlue;
+        ? AppColors.color846058
+        : AppColors.color51666F;
     final borderColor = isLeaderInMe
-        ? AppColors.bgBorderRed
-        : AppColors.bgBorderBlue;
+        ? AppColors.colorE9DCD9
+        : AppColors.colorD6E2E8;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),

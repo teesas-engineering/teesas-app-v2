@@ -61,7 +61,7 @@ class _AppAppBarState extends State<AppAppBar> {
                 IconButton(
                   icon: const Icon(
                     Icons.arrow_back,
-                    color: AppColors.iconsPrimary,
+                    color: AppColors.color808080,
                   ),
                   onPressed: widget.onLeadingIconPressed ?? () => context.pop(),
                 )

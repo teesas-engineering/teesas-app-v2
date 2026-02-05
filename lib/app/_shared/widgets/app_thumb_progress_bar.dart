@@ -33,7 +33,7 @@ class AppThumbProgressBar extends StatelessWidget {
                 width: progressWidth,
                 height: 8.h,
                 decoration: BoxDecoration(
-                  color: AppColors.bgAccent,
+                  color: AppColors.colorFF9F1C,
                   borderRadius: BorderRadius.circular(4.r),
                 ),
               ),

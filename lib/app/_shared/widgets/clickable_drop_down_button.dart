@@ -46,7 +46,7 @@ class ClickableDropdownButton extends StatelessWidget {
               style:
                   textStyle ??
                   AppTypography.titleSmall.copyWith(
-                    color: AppColors.textButtonPrimary,
+                    color: AppColors.color1E1C1C,
                   ),
             ),
             if (showEndIcon) ...[

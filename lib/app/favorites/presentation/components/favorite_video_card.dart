@@ -75,7 +75,7 @@ class FavoriteVideoCard extends StatelessWidget {
                 Text(
                   subject,
                   style: AppTypography.bodySmall.copyWith(
-                    color: AppColors.textWarning,
+                    color: AppColors.colorD97706,
                   ),
                 ),
               ],

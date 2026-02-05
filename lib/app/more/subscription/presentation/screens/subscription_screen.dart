@@ -58,7 +58,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
               Text(
                 'View the following details below.',
                 style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.textModalSecondary,
+                  color: AppColors.color0A0A0A,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -125,7 +125,7 @@ class _SubscriptionScreenState extends State<SubscriptionScreen> {
                   );
                 },
               ),
-              Divider(color: AppColors.dividerColor, height: 32.h),
+              Divider(color: AppColors.colorC7C7C7, height: 32.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

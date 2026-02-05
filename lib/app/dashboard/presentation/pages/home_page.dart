@@ -57,8 +57,8 @@ class _HomePageContent extends StatelessWidget {
                       Expanded(
                         child: HomeCardOptionCard(
                           onclick: () {},
-                          backgroundColor: AppColors.homeCardBorderColor1,
-                          boarderColor: AppColors.homeCardBackgroundColor1,
+                          backgroundColor: AppColors.colorF5F9FB,
+                          boarderColor: AppColors.color60A9FF,
                           asset: AppAssets.videoImage,
                           name: 'Video Tutorial',
                         ),
@@ -67,8 +67,8 @@ class _HomePageContent extends StatelessWidget {
                       Expanded(
                         child: HomeCardOptionCard(
                           onclick: () {},
-                          backgroundColor: AppColors.homeCardBorderColor2,
-                          boarderColor: AppColors.homeCardBackgroundColor2,
+                          backgroundColor: AppColors.colorFFF2E2,
+                          boarderColor: AppColors.colorF5C78D,
                           asset: AppAssets.testImage,
                           name: 'Mock Practice',
                         ),
@@ -119,8 +119,8 @@ class _HomePageContent extends StatelessWidget {
                           height: 8,
                           decoration: BoxDecoration(
                             color: isActive
-                                ? AppColors.bgAccent
-                                : AppColors.onboardingIndicatorInActive,
+                                ? AppColors.colorFF9F1C
+                                : AppColors.colorE4E4E4,
                             borderRadius: BorderRadius.circular(4),
                           ),
                         );

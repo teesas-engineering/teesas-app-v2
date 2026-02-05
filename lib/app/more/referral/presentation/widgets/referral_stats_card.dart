@@ -50,7 +50,7 @@ class ReferralStatsCard extends StatelessWidget {
             onPressed: () async => onWithdraw(),
             backgroundColor: AppColors.white,
             borderColor: AppColors.bgBrand,
-            textColor: AppColors.textModalSecondary,
+            textColor: AppColors.color0A0A0A,
             isFullWidth: false,
           ),
         ],

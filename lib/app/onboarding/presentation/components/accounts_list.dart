@@ -79,7 +79,7 @@ class AccountsList extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: AppColors.borderPrimary,
+                              color: AppColors.colorE2E8F0,
                               width: 2,
                             ),
                           ),

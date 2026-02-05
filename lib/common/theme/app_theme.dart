@@ -33,7 +33,7 @@ class _AppThemeState extends State<AppTheme> {
     colorScheme: const ColorScheme.light(),
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.bgPrimary,
-    iconTheme: const IconThemeData(size: 24, color: AppColors.iconsPrimary),
+    iconTheme: const IconThemeData(size: 24, color: AppColors.color808080),
     highlightColor: Colors.transparent,
     appBarTheme: AppBarTheme(
       elevation: 0,
@@ -44,7 +44,7 @@ class _AppThemeState extends State<AppTheme> {
         color: AppColors.textPrimary,
       ),
     ),
-    dividerColor: AppColors.borderPrimary,
+    dividerColor: AppColors.colorE2E8F0,
     primaryColor: AppColors.bgBrand,
     fontFamily: AppTypography.fontFamilyUI,
   );

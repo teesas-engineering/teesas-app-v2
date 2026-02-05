@@ -48,7 +48,7 @@ class MoreTab extends StatelessWidget {
                 _MenuItem(
                   icon: AppAssets.icTeesasPortal,
                   title: 'Teesas Portal',
-                  iconColor: AppColors.iconsInfo,
+                  iconColor: AppColors.color0284C7,
                   onTap: () {},
                 ),
                 _MenuItem(
@@ -76,7 +76,7 @@ class MoreTab extends StatelessWidget {
                   },
                 ),
                 8.height,
-                const Divider(height: 1, color: AppColors.dividerColor),
+                const Divider(height: 1, color: AppColors.colorC7C7C7),
                 16.height,
                 _MenuItem(
                   icon: AppAssets.icSettings,
@@ -158,7 +158,7 @@ class _ProfileSection extends StatelessWidget {
           ),
         ),
         16.height,
-        const Divider(height: 1, color: AppColors.dividerColor),
+        const Divider(height: 1, color: AppColors.colorC7C7C7),
       ],
     );
   }

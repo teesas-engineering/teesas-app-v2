@@ -13,10 +13,7 @@ class AccountModal extends StatelessWidget {
   const AccountModal({super.key});
 
   static Future<void> show(BuildContext context) async {
-    await ModalHelper.show(
-      context,
-      child: const AccountModal(),
-    );
+    await ModalHelper.show(context, child: const AccountModal());
   }
 
   @override
@@ -57,18 +54,20 @@ class AccountModal extends StatelessWidget {
             ),
           ),
           16.height,
-          ...accounts.map((account) => Padding(
-                padding: EdgeInsets.only(
-                  bottom: account == accounts.last ? 0 : 12,
-                ),
-                child: _AccountCard(
-                  account: account,
-                  onTap: () {
-                    // Handle account selection
-                    Navigator.pop(context);
-                  },
-                ),
-              )),
+          ...accounts.map(
+            (account) => Padding(
+              padding: EdgeInsets.only(
+                bottom: account == accounts.last ? 0 : 12,
+              ),
+              child: _AccountCard(
+                account: account,
+                onTap: () {
+                  // Handle account selection
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ),
           24.height,
         ],
       ),
@@ -77,10 +76,7 @@ class AccountModal extends StatelessWidget {
 }
 
 class _AccountCard extends StatelessWidget {
-  const _AccountCard({
-    required this.account,
-    required this.onTap,
-  });
+  const _AccountCard({required this.account, required this.onTap});
 
   final _AccountData account;
   final VoidCallback onTap;
@@ -89,8 +85,8 @@ class _AccountCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final isSelected = account.isSelected;
     final roleColor = account.role == 'Student'
-        ? AppColors.bgAccentOrchid
-        : AppColors.bgAccentRosewood;
+        ? AppColors.color9333EA
+        : AppColors.colorEA580C;
 
     return InkWell(
       onTap: onTap,
@@ -98,7 +94,7 @@ class _AccountCard extends StatelessWidget {
       child: AppCard.primary(
         borderColor: isSelected
             ? AppColors.bgBrandSecondary
-            : AppColors.cardBorder,
+            : AppColors.colorD9E8E8,
         borderBottomWidth: isSelected ? 2 : 5,
         child: Stack(
           children: [
@@ -145,7 +141,7 @@ class _AccountCard extends StatelessWidget {
                     shape: BoxShape.circle,
                     color: AppColors.bgBrandSecondary,
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.check,
                     size: 16,
                     color: AppColors.white,

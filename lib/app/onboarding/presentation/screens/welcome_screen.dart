@@ -110,8 +110,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       margin: EdgeInsets.zero,
                       decoration: BoxDecoration(
                         color: index == _currentPage
-                            ? AppColors.bgAccent
-                            : AppColors.onboardingIndicatorInActive,
+                            ? AppColors.colorFF9F1C
+                            : AppColors.colorE4E4E4,
                         borderRadius: BorderRadius.circular(
                           index == _currentPage ? 8 : 0,
                         ),

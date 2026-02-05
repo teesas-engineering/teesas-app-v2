@@ -34,7 +34,7 @@ class WithdrawSuccessScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: AppTypography.displaySmall.copyWith(
                   fontSize: 24.sp,
-                  color: AppColors.textInfoDark,
+                  color: AppColors.color0284C7,
                   fontWeight: FontWeight.w700,
                 ),
               ),
@@ -43,14 +43,14 @@ class WithdrawSuccessScreen extends StatelessWidget {
                 'Processing Request! You should receive your earnings in the next 24 hours.',
                 textAlign: TextAlign.center,
                 style: AppTypography.bodyLarge.copyWith(
-                  color: AppColors.textModalSecondary,
+                  color: AppColors.color0A0A0A,
                   height: 1.5,
                 ),
               ),
               const Spacer(),
               AppButton(
                 text: 'Back To Home',
-                textColor: AppColors.textModalSecondary,
+                textColor: AppColors.color0A0A0A,
                 onPressed: () async {
                   context.go(
                     MainRouter.homeShell,

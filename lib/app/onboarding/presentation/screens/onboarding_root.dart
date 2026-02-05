@@ -34,7 +34,7 @@ class OnboardingRoot extends StatelessWidget {
         backgroundColor: AppColors.bgPrimary,
         appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: AppColors.iconsPrimary),
+            icon: const Icon(Icons.arrow_back, color: AppColors.color808080),
             onPressed: () async {
               final shouldPop = await store.handleBackPress();
               if (shouldPop) {
@@ -46,8 +46,8 @@ class OnboardingRoot extends StatelessWidget {
             builder: (_) => AppProgressBar(
               value: store.progress,
               height: 6,
-              backgroundColor: AppColors.borderPrimary,
-              progressColor: AppColors.bgAccent,
+              backgroundColor: AppColors.colorE2E8F0,
+              progressColor: AppColors.colorFF9F1C,
             ),
           ),
           actions: const [SizedBox(width: 8)],

@@ -53,7 +53,7 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
                   Text(
                     'Select an options from your chosen category.',
                     style: AppTypography.bodyMedium.copyWith(
-                      color: AppColors.textModalSecondary,
+                      color: AppColors.color0A0A0A,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -73,13 +73,11 @@ class _AddSubscriptionScreenState extends State<AddSubscriptionScreen> {
               ),
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(Dimens.pagePadding),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              border: const Border(
-                top: BorderSide(color: AppColors.borderPrimary),
-              ),
+          Padding(
+            padding: EdgeInsets.only(
+              left: Dimens.pagePadding,
+              right: Dimens.pagePadding,
+              bottom: MediaQuery.of(context).viewPadding.bottom + 16.h,
             ),
             child: AppButton(text: 'Make Payment', onPressed: () async {}),
           ),

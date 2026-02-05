@@ -43,7 +43,7 @@ class LoginScreen extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
-                        splashColor: AppColors.borderBrandLargeLight.withValues(
+                        splashColor: AppColors.color93D6AF.withValues(
                           alpha: .5,
                         ),
                         onTap: () {
@@ -77,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                         TextSpan(
                           text: "I don't have an account? ",
                           style: AppTypography.bodyLarge.copyWith(
-                            color: AppColors.textButtonSecondary,
+                            color: AppColors.color171818,
                           ),
                           children: [
                             TextSpan(

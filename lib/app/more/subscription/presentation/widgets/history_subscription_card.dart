@@ -19,7 +19,7 @@ class HistorySubscriptionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.white,
         borderRadius: BorderRadius.circular(8.r),
-        border: Border.all(color: AppColors.cardBorder),
+        border: Border.all(color: AppColors.colorD9E8E8),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

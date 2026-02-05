@@ -53,7 +53,7 @@ class ForgotPasswordEmailScreen extends StatelessWidget {
               TextSpan(
                 text: 'Remember Password?\t',
                 style: AppTypography.bodyLarge.copyWith(
-                  color: AppColors.textButtonSecondary,
+                  color: AppColors.color171818,
                 ),
                 children: [
                   TextSpan(

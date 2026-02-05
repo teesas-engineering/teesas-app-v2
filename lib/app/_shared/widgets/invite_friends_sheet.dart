@@ -171,7 +171,7 @@ class _ShareButton extends StatelessWidget {
           border: isGradient
               ? null
               : Border.all(
-                  color: borderColor ?? AppColors.cardBorder,
+                  color: borderColor ?? AppColors.colorD9E8E8,
                   width: 1.5,
                 ),
           gradient: isGradient

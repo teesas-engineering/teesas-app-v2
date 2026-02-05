@@ -29,7 +29,7 @@ class AppSecondaryChip extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.bgSecondary,
           borderRadius: BorderRadius.circular(Dimens.defaultBorderRadius / 2),
-          border: Border.all(color: AppColors.borderTertiary, width: .5),
+          border: Border.all(color: AppColors.colorD0D5DD, width: .5),
         ),
         duration: const Duration(milliseconds: 800),
         child: Row(
@@ -43,7 +43,7 @@ class AppSecondaryChip extends StatelessWidget {
             Text(
               text,
               style: AppTypography.titleSmall.copyWith(
-                color: AppColors.textButtonSecondary,
+                color: AppColors.color171818,
                 fontWeight: FontWeight.w400,
               ),
             ),

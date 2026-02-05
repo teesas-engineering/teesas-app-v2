@@ -11,7 +11,7 @@ class SubscriptionComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       margin: const EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
@@ -21,11 +21,7 @@ class SubscriptionComponent extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            child: Image.asset(
-              AppAssets.clipVideo,
-              width: 40,
-              height: 40,
-            ),
+            child: Image.asset(AppAssets.clipVideo, width: 40, height: 40),
           ),
           16.width,
           Expanded(

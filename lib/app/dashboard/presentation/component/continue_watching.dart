@@ -12,7 +12,7 @@ class ContinueWatching extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  PagePadding(
+    return PagePadding(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,7 +51,7 @@ class ContinueWatching extends StatelessWidget {
                       height: 56,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
-                        color: AppColors.borderPrimary,
+                        color: AppColors.colorE2E8F0,
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
@@ -106,10 +106,7 @@ class ContinueWatching extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.chevron_right,
-                  color: AppColors.iconsSecondary,
-                ),
+                const Icon(Icons.chevron_right, color: AppColors.color475569),
               ],
             ),
           ),

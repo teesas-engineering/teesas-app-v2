@@ -51,7 +51,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Text(
                 'View the following details below.',
                 style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.textModalSecondary,
+                  color: AppColors.color0A0A0A,
                 ),
               ),
               24.height,
@@ -94,10 +94,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      const Divider(height: 1, color: AppColors.dividerColor),
+                      const Divider(height: 1, color: AppColors.colorC7C7C7),
                       ExpandableSettingsSection(
                         iconPath: AppAssets.icVideo,
-                        iconColor: AppColors.iconsWarning,
+                        iconColor: AppColors.colorD97706,
                         title: 'Video Resolution',
                         isExpanded:
                             _store.expandedSections['videoResolution'] ?? false,
@@ -128,7 +128,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      const Divider(height: 1, color: AppColors.dividerColor),
+                      const Divider(height: 1, color: AppColors.colorC7C7C7),
                       ExpandableSettingsSection(
                         iconPath: AppAssets.icPushNotification,
                         iconColor: AppColors.textSecondary,
@@ -171,7 +171,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      const Divider(height: 1, color: AppColors.dividerColor),
+                      const Divider(height: 1, color: AppColors.colorC7C7C7),
                       SettingsItem(
                         iconPath: AppAssets.icDarkMode,
                         iconColor: AppColors.textSecondary,
@@ -180,10 +180,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         toggleValue: _store.isDarkMode,
                         onToggleChanged: (_) => _store.toggleDarkMode(),
                       ),
-                      const Divider(height: 1, color: AppColors.dividerColor),
+                      const Divider(height: 1, color: AppColors.colorC7C7C7),
                       ExpandableSettingsSection(
                         iconPath: AppAssets.icContactUs,
-                        iconColor: AppColors.iconsWarning,
+                        iconColor: AppColors.colorD97706,
                         title: 'Contact Us',
                         isExpanded:
                             _store.expandedSections['contactUs'] ?? false,
@@ -209,10 +209,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           ),
                         ],
                       ),
-                      const Divider(height: 1, color: AppColors.dividerColor),
+                      const Divider(height: 1, color: AppColors.colorC7C7C7),
                       SettingsItem(
                         iconPath: AppAssets.icTerms,
-                        iconColor: AppColors.iconsWarning,
+                        iconColor: AppColors.colorD97706,
                         title: 'Terms & Conditions',
                         trailingType: SettingsItemTrailingType.chevron,
                         onTap: () =>

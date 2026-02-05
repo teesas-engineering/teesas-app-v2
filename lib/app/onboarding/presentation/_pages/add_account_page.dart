@@ -20,7 +20,7 @@ class AddAccountPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.white,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: AppColors.iconsPrimary),
+          icon: const Icon(Icons.arrow_back, color: AppColors.color808080),
           onPressed: () => context.pop(),
         ),
       ),
