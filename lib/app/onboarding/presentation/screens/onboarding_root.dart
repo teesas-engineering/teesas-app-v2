@@ -34,9 +34,9 @@ class OnboardingRoot extends StatelessWidget {
         builder: (_) {
           return Scaffold(
             backgroundColor:store.currentPage >= 2?AppColors.white: AppColors.bgPrimary,
-            appBar:store.currentPage >= 2?null: AppBar(
+            appBar:store.currentPage > 2?null: AppBar(
               automaticallyImplyLeading: false,
-              leading: IconButton(
+              leading:store.currentPage>=2?null: IconButton(
                 icon: const Icon(
                   Icons.arrow_back,
                   color: AppColors.iconsPrimary,

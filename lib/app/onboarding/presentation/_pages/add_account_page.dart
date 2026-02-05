@@ -47,7 +47,9 @@ class _AccountPageImpl extends StatelessWidget {
                       color: AppColors.iconsPrimary,
                     ),
                     onPressed: () async {
-                      store.userAction = AccountManagementAction.viewList;
+                      store.userAction = store.pendingAccounts.isEmpty
+                          ? AccountManagementAction.add
+                          : AccountManagementAction.viewList;
                     },
                   )
                 : null,

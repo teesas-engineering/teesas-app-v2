@@ -61,7 +61,6 @@ class _HomePageContent extends StatelessWidget {
                       Expanded(
                         child: HomeCardOptionCard(
                           onclick: () {
-                            print('tear down');
                             getIt<SecureStorageService>().tearDown();
                           },
                           backgroundColor: AppColors.homeCardBorderColor1,
@@ -101,7 +100,6 @@ class _HomePageContent extends StatelessWidget {
                   items: bannerSlides.map((e) {
                     return SizedBox(
                       width: double.infinity,
-
                       child: Image.asset(
                         e,
                         fit: BoxFit.cover,
