@@ -48,14 +48,14 @@ class CountryModalItem extends StatelessWidget {
                   height: 16,
                   child: isSelected
                       ? const DecoratedBox(
-                    decoration: BoxDecoration(
+                    decoration:  BoxDecoration(
                       color: AppColors.bgBrandSecondary,
                       shape: BoxShape.circle,
                     ),
                     child: Icon(
                       Icons.check,
                       size: 16,
-                      color: AppColors.textInvert,
+                      color: AppColors.white,
                     ),
                   )
                       : Container(

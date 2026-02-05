@@ -1,12 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/services/secured_storage_service.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../../dependency_manager/injectable.dart';
+import '../../../../router/main_router.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/stores/tab_store/index_store.dart';
 import '../component/continue_watching.dart';
@@ -71,7 +73,8 @@ class _HomePageContent extends StatelessWidget {
                       16.width,
                       Expanded(
                         child: HomeCardOptionCard(
-                          onclick: () {      context.push(MainRouter.assessmentRules);
+                          onclick: () {
+                            context.push(MainRouter.assessmentRules);
                           },
                           backgroundColor: AppColors.homeCardBorderColor2,
                           boarderColor: AppColors.homeCardBackgroundColor2,
