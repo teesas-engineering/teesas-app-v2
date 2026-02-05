@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -8,7 +7,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
-import '../../../../router/main_router.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/app_divider.dart';
 import '../../../_shared/widgets/app_progress_header.dart';
@@ -17,45 +15,51 @@ import '../components/option_card.dart';
 import '../components/question_progress_indicator.dart';
 import '../stores/assessment_store.dart';
 
-class AssessmentQuestionScreen extends StatefulWidget {
-  const AssessmentQuestionScreen({super.key});
+class AssessmentSolutionScreen extends StatefulWidget {
+  const AssessmentSolutionScreen({super.key});
 
   @override
-  State<AssessmentQuestionScreen> createState() =>
-      _AssessmentQuestionScreenState();
+  State<AssessmentSolutionScreen> createState() =>
+      _AssessmentSolutionScreenState();
 }
 
-class _AssessmentQuestionScreenState extends State<AssessmentQuestionScreen> {
+class _AssessmentSolutionScreenState extends State<AssessmentSolutionScreen> {
   late final AssessmentStore _store;
 
   @override
   void initState() {
     super.initState();
     _store = AssessmentStore();
+    _setupReviewState();
+  }
+
+  // TODO: Till Impld
+  void _setupReviewState() {
+    // Simulate a reviewed state for the current question
+    // In a real app, this would fetch the user's answer from a repository
+    _store.isAnswerSubmitted = true;
+    _store.selectedOptionIndex = 1; // Dummy user selection
+    _store.correctOptionIndex = 0; // Dummy correct answer
   }
 
   void _handleNext() {
-    if (_store.selectedOptionIndex == null) {
+    if (_store.isLastQuestion) {
+      context.pop();
       return;
     }
 
-    if (!_store.isAnswerSubmitted) {
-      _store.submitAnswer();
-    } else {
-      // Check if it's the last question
-      if (_store.isLastQuestion) {
-        // Navigate to assessment results screen
-        unawaited(context.push(MainRouter.assessmentResult));
-      } else {
-        // Go to next question
-        _store.nextQuestion();
-      }
-    }
+    // TODO: Till Impld
+    // Manually handle logic to prevent resetting state to "unsubmitted"
+    // Since AssessmentStore.nextQuestion() resets state, we might need to override it
+    // or just manipulate the index and setup review state again.
+    _store.currentQuestionIndex++;
+    _setupReviewState();
   }
 
   void _handlePrevious() {
     if (_store.currentQuestionIndex > 0) {
-      _store.previousQuestion();
+      _store.currentQuestionIndex--;
+      _setupReviewState();
     } else {
       context.pop();
     }
@@ -178,7 +182,7 @@ class _AssessmentQuestionScreenState extends State<AssessmentQuestionScreen> {
                                       isWrong: isWrong,
                                       shouldHighlightCorrect:
                                           shouldHighlightCorrect,
-                                      onTap: () => _store.selectOption(index),
+                                      onTap: () {},
                                     );
                                   },
                                 ),
@@ -209,9 +213,7 @@ class _AssessmentQuestionScreenState extends State<AssessmentQuestionScreen> {
                                 AppDivider(height: 16.h),
                                 Observer(
                                   builder: (_) {
-                                    if (!_store.isAnswerSubmitted) {
-                                      return const SizedBox.shrink();
-                                    }
+                                    // Always demonstrate explanation in solution view
                                     return Column(
                                       children: [
                                         24.verticalSpace,
@@ -242,7 +244,7 @@ class _AssessmentQuestionScreenState extends State<AssessmentQuestionScreen> {
                                               8.verticalSpace,
                                               RichText(
                                                 text: TextSpan(
-                                                  text: 'Option D',
+                                                  text: 'Option A',
                                                   style: AppTypography
                                                       .bodyMedium
                                                       .copyWith(
@@ -311,9 +313,11 @@ class _AssessmentQuestionScreenState extends State<AssessmentQuestionScreen> {
                 child: Observer(
                   builder: (_) {
                     return AppButton(
-                      text: 'Next',
+                      text: _store.isLastQuestion ? 'Done' : 'Next',
                       onPressed: () async => _handleNext(),
-                      trailingIcon: Icons.arrow_forward_ios_rounded,
+                      trailingIcon: _store.isLastQuestion
+                          ? null
+                          : Icons.arrow_forward_ios_rounded,
                     );
                   },
                 ),

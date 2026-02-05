@@ -2,7 +2,9 @@ import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
 
 import '../app/assessment/presentation/screens/assessment_question_screen.dart';
+import '../app/assessment/presentation/screens/assessment_result_screen.dart';
 import '../app/assessment/presentation/screens/assessment_rules_screen.dart';
+import '../app/assessment/presentation/screens/assessment_solution_screen.dart';
 import '../app/home/presentation/screens/home_shell_screen.dart';
 import '../app/home/presentation/screens/manage_accounts_screen.dart';
 import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
@@ -49,6 +51,8 @@ class MainRouter {
   static const String subscriptionSummary = '/subscription/summary';
   static const String assessmentRules = '/assessment-rules';
   static const String assessmentQuestion = '/assessment-question';
+  static const String assessmentResult = '/assessment-result';
+  static const String assessmentSolution = '/assessment-solution';
 
   GoRouter get router => _router;
 
@@ -148,6 +152,16 @@ class MainRouter {
         path: assessmentQuestion,
         name: assessmentQuestion,
         builder: (context, state) => const AssessmentQuestionScreen(),
+      ),
+      GoRoute(
+        path: assessmentResult,
+        name: assessmentResult,
+        builder: (context, state) => const AssessmentResultScreen(),
+      ),
+      GoRoute(
+        path: assessmentSolution,
+        name: assessmentSolution,
+        builder: (context, state) => const AssessmentSolutionScreen(),
       ),
     ],
   );
