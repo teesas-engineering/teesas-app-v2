@@ -1,10 +1,13 @@
 import 'package:go_router/go_router.dart';
 import 'package:injectable/injectable.dart';
-
+import '../app/_shared/screen/manage_account/manage_accounts_screen.dart';
+import '../app/assessment/presentation/screens/assessment_question_screen.dart';
+import '../app/assessment/presentation/screens/assessment_rules_screen.dart';
+import '../app/dashboard/presentation/screens/dashboard_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_confirmation_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_email_screen.dart';
+import '../app/forgot_password/presentation/screens/forgot_password_otp_screen.dart';
 import '../app/more/downloads/presentation/screens/downloaded_videos_screen.dart';
-import '../app/home/presentation/screens/home_shell_screen.dart';
-import '../app/home/presentation/screens/manage_accounts_screen.dart';
-import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/more/referral/presentation/screens/invite_list_screen.dart';
 import '../app/more/referral/presentation/screens/refer_and_earn_screen.dart';
 import '../app/more/referral/presentation/screens/withdraw_earnings_screen.dart';
@@ -12,9 +15,14 @@ import '../app/more/referral/presentation/screens/withdraw_success_screen.dart';
 import '../app/more/settings/presentation/screens/change_password_screen.dart';
 import '../app/more/settings/presentation/screens/settings_screen.dart';
 import '../app/more/settings/presentation/screens/terms_and_conditions_screen.dart';
+import '../app/more/subscription/data/model/subscription_checkout_item.dart';
 import '../app/more/subscription/presentation/screens/add_subscription_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
+import '../app/more/subscription/presentation/screens/subscription_summary_screen.dart';
+import '../app/onboarding/presentation/screens/onboarding_root.dart';
+import '../app/onboarding/presentation/screens/welcome_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
+import '../app/signin/presentation/screens/select_account_screen.dart';
 import 'app_router_wrapper.dart';
 
 @singleton
@@ -42,6 +50,15 @@ class MainRouter {
   static const String termsAndConditions = '/settings/terms-and-conditions';
   static const String subscription = '/subscription';
   static const String addSubscription = '/subscription/add';
+  static const String subscriptionSummary = '/subscription/summary';
+  static const String assessmentRules = '/assessment-rules';
+  static const String assessmentQuestion = '/assessment-question';
+  static const String forgotPasswordEmail = '/forgot-password-email';
+  static const String forgotPasswordOtp = '/forgot-password-otp';
+  static const String forgotPasswordConfirmation =
+      '/forgot-password-confirmation';
+  static const String welcomeScreen = '/welcome-screen';
+  static const String selectAccountScreen = '/select-account';
 
   GoRouter get router => _router;
 
@@ -67,7 +84,7 @@ class MainRouter {
       GoRoute(
         path: homeShell,
         name: homeShell,
-        builder: (context, state) => const HomeShellScreen(),
+        builder: (context, state) => const DashboardScreen(),
       ),
       GoRoute(
         path: manageAccounts,
@@ -123,6 +140,51 @@ class MainRouter {
         path: addSubscription,
         name: addSubscription,
         builder: (context, state) => const AddSubscriptionScreen(),
+      ),
+      GoRoute(
+        path: subscriptionSummary,
+        name: subscriptionSummary,
+        builder: (context, state) {
+          final items = state.extra as List<SubscriptionCheckoutItem>;
+          return SubscriptionSummaryScreen(checkoutItems: items);
+        },
+      ),
+      GoRoute(
+        path: assessmentRules,
+        name: assessmentRules,
+        builder: (context, state) => const AssessmentRulesScreen(),
+      ),
+      GoRoute(
+        path: assessmentQuestion,
+        name: assessmentQuestion,
+        builder: (context, state) => const AssessmentQuestionScreen(),
+      ),
+
+      GoRoute(
+        path: forgotPasswordEmail,
+        name: forgotPasswordEmail,
+        builder: (context, state) => const ForgotPasswordEmailScreen(),
+      ),
+      GoRoute(
+        path: forgotPasswordOtp,
+        name: forgotPasswordOtp,
+        builder: (context, state) => const ForgotPasswordOtpScreen(),
+      ),
+      GoRoute(
+        path: forgotPasswordConfirmation,
+        name: forgotPasswordConfirmation,
+        builder: (context, state) =>
+        const ForgotPasswordConfirmationScreen(),
+      ),
+      GoRoute(
+        path: welcomeScreen,
+        name: welcomeScreen,
+        builder: (context, state) => const WelcomeScreen(),
+      ),
+      GoRoute(
+        path: selectAccountScreen,
+        name: selectAccountScreen,
+        builder: (context, state) => const SelectAccountScreen(),
       ),
     ],
   );

@@ -20,19 +20,61 @@ class RouteHelper {
     mainRouter.router.go(MainRouter.splashScreen);
   }
 
-  void showOnboardingRoot({bool replace = false}) {
+  Future<void> showOnboardingRoot({bool replace = false}) async {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.onboardingRoot);
+      await mainRouter.router.replaceNamed(MainRouter.onboardingRoot);
     } else {
-      mainRouter.router.pushNamed(MainRouter.onboardingRoot);
+      await mainRouter.router.pushNamed(MainRouter.onboardingRoot);
+    }
+  }
+
+  void showWelcomeScreen() {
+    mainRouter.router.goNamed(MainRouter.welcomeScreen);
+  }
+
+  void showSelectAccountScreen({bool replace = false}) {
+    if (replace) {
+      mainRouter.router.replaceNamed(MainRouter.selectAccountScreen);
+    } else {
+      mainRouter.router.pushNamed(MainRouter.selectAccountScreen);
     }
   }
 
   void showLoginScreen({bool replace = false}) {
     if (replace) {
-      mainRouter.router.replaceNamed(MainRouter.loginScreen);
+      unawaited(mainRouter.router.replaceNamed(MainRouter.loginScreen));
     } else {
-      mainRouter.router.pushNamed(MainRouter.loginScreen);
+      unawaited(mainRouter.router.pushNamed(MainRouter.loginScreen));
+    }
+  }
+
+  void showForgotPasswordEmailScreen({bool replace = false}) {
+    if (replace) {
+      unawaited(mainRouter.router.replaceNamed(MainRouter.forgotPasswordEmail));
+    } else {
+      unawaited(mainRouter.router.pushNamed(MainRouter.forgotPasswordEmail));
+    }
+  }
+
+  void showForgotPasswordOtpScreen({bool replace = false}) {
+    if (replace) {
+      unawaited(mainRouter.router.replaceNamed(MainRouter.forgotPasswordOtp));
+    } else {
+      unawaited(mainRouter.router.pushNamed(MainRouter.forgotPasswordOtp));
+    }
+  }
+
+  Future<void> showForgotPasswordConfirmationScreen({
+    bool replace = false,
+  }) async {
+    if (replace) {
+      unawaited(
+        mainRouter.router.replaceNamed(MainRouter.forgotPasswordConfirmation),
+      );
+    } else {
+      unawaited(
+        mainRouter.router.pushNamed(MainRouter.forgotPasswordConfirmation),
+      );
     }
   }
 

@@ -1,0 +1,72 @@
+{
+  "status": 200,
+  "data": {
+    "user": [
+      {
+        "id": 461,
+        "auth_type": "BASIC",
+        "auth_provider": null,
+        "sso_id": null,
+        "name": "Davids",
+        "user_score": 0,
+        "phone": "8023426971",
+        "gender": "MALE",
+        "address": "Test",
+        "deviceId": "device_123456",
+        "relationship": null,
+        "date_of_birth": "2008-02-28",
+        "email": "tighalo@gmail.com",
+        "parent_fcm_token": "parent_fcm_token",
+        "profile_pic": "profiles/1747222756158-321684072.png",
+        "user_type": "USER",
+        "suspended": false,
+        "active": true,
+        "is_verified": true,
+        "is_mainProfile": false,
+        "is_temp_password": false,
+        "referral_code": null,
+        "country_id": 87,
+        "socket_id": null,
+        "referred_by": null,
+        "main_userId": 459,
+        "organization_id": null,
+        "country": {
+          "id": 87,
+          "name": "Nigeria",
+          "region": "Africa",
+          "code": "NGN",
+          "dial_code": "+234",
+          "symbol": "₦",
+          "price_rate": "380",
+          "emoji": "🇳🇬",
+          "image": "https://cdn.jsdelivr.net/npm/country-flag-emoji-json@2.0.0/dist/images/NG.svg"
+        },
+        "user_courses": [
+          {
+            "course_id": 163,
+            "user_classes": [
+              {
+                "class_id": 80
+              },
+              {
+                "class_id": 79
+              },
+              {
+                "class_id": 78
+              }
+            ]
+          },
+          {
+            "course_id": 157,
+            "user_classes": [
+              {
+                "class_id": 62
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "message": "User profiles"
+}

@@ -1,28 +1,22 @@
 import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
+import '../../../common/enum/state_type.dart';
 import '../../../common/extensions/num_extension.dart';
 import '../../../common/style_guide/colors.dart';
 import '../../../common/style_guide/style_guide.dart';
 import '../../../common/utils/app_config.dart';
-import '../../../common/utils/notify_helper.dart';
 import '../components/page_padding.dart';
-import '../widgets/app_bar.dart';
+import '../stores/otp_store/otp_store.dart';
 import '../widgets/app_button.dart';
 import '../widgets/otp_field.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({
-    required this.controller,
-    super.key,
-    this.formKey,
-    this.onResend,
-    this.onComplete,
-  });
+  const OtpScreen({super.key,  this.onResend, this.onComplete});
 
-  final TextEditingController controller;
   final VoidCallback? onResend;
-  final GlobalKey<FormState>? formKey;
   final void Function(String)? onComplete;
 
   @override
@@ -33,6 +27,8 @@ class _OtpScreenState extends State<OtpScreen> {
   Timer? _timer;
   int _currentCountdown = AppConfig.otpCountDownLimitInSeconds;
 
+  TextEditingController controller = TextEditingController();
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   void initState() {
     super.initState();
@@ -57,78 +53,86 @@ class _OtpScreenState extends State<OtpScreen> {
     });
   }
 
+  String pin = '';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: const AppAppBar(),
-      body: Form(
-        key: widget.formKey,
-        child: PagePadding(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Verify Account',
-                style: AppTypography.titleLarge.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+    final store = context.read<OtpStore>();
+    return Form(
+      key:formKey,
+      child: PagePadding(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Verify Account',
+              style: AppTypography.titleLarge.copyWith(
+                color: AppColors.textSecondary,
               ),
-              8.height,
-              Text(
-                'Enter the verification code we just sent on your email address.',
-                style: AppTypography.bodyMedium.copyWith(
-                  color: AppColors.textPrimary,
-                ),
-              ),
-              40.height,
-              OtpField(
-                controller: widget.controller,
-                onCompleted: (value) => widget.onComplete?.call(value),
-                onChanged: (value) {},
-              ),
-              20.height,
-            ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Column(
-        children: [
-          Center(
-            child: Text.rich(
-              TextSpan(
-                children: [
-                  if (waiting) ...[
-                    TextSpan(
-                      text: '${_formatCountdown(_currentCountdown)} ',
-                      style: AppTypography.titleSmall.copyWith(
-                        color: AppColors.colorFF9F1C,
-                      ),
-                    ),
-                    TextSpan(
-                      text: 'before you can request another OTP',
-                      style: AppTypography.titleSmall.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                  ] else ...[
-                    TextSpan(
-                      text: 'Resend OTP',
-                      style: AppTypography.titleSmall.copyWith(
-                        color: AppColors.textPrimary,
-                      ),
-                      recognizer: TapGestureRecognizer()..onTap = _restartTimer,
-                    ),
-                  ],
-                ],
-              ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          24.height,
-          PagePadding(
-            child: AppButton(text: 'Verify', onPressed: () async {}),
-          ),
-        ],
+            8.height,
+            Text(
+              'Enter the verification code we just sent on your email address.',
+              style: AppTypography.bodyMedium.copyWith(
+                color: AppColors.textPrimary,
+              ),
+            ),
+            40.height,
+            OtpField(
+              controller: controller,
+              onCompleted: (value) => widget.onComplete?.call(value),
+              onChanged: (value) {},
+            ),
+            20.height,
+
+            Center(
+              child: Text.rich(
+                TextSpan(
+                  children: [
+                    if (waiting) ...[
+                      TextSpan(
+                        text: '${_formatCountdown(_currentCountdown)} ',
+                        style: AppTypography.titleSmall.copyWith(
+                          color: AppColors.bgAccent,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'before you can request another OTP',
+                        style: AppTypography.titleSmall.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
+                      ),
+                    ] else ...[
+                      TextSpan(
+                        text: 'Resend OTP',
+                        style: AppTypography.titleSmall.copyWith(
+                          color: AppColors.textPrimary,
+                        ),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = _restartTimer,
+                      ),
+                    ],
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            24.height,
+            Observer(
+              builder: (_) {
+                return AppButton(
+                  text: 'Verify',
+                  isLoading: store.verifyOtpStatus.isLoading,
+                  isDisabled: pin.length!=4,
+                  onPressed: () async {
+                    if(formKey.currentState!.validate()) {
+                      store.submit(controller.text);
+                    }
+                  },
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -140,7 +144,6 @@ class _OtpScreenState extends State<OtpScreen> {
   }
 
   void _restartTimer() {
-    NotifyHelper.showToast('Otp sent');
     setState(() {
       waiting = true;
       if (_currentCountdown <= 0) {

@@ -1,41 +1,46 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
+import '../../../../common/constants/app_constants.dart';
+import '../../../../common/enum/account_management_action.dart';
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
 import '../../../../common/utils/form_mixin.dart';
 import '../../../_shared/components/page_padding.dart';
-import '../../../_shared/enum/button_type.dart';
+import '../../../_shared/data/dto/get_countries_dto/get_countries_country_dto.dart';
 import '../../../_shared/enum/gender.dart';
-import '../../../_shared/enum/input_type.dart';
+import '../../../_shared/modal/countries_modal.dart';
+import '../../../_shared/stores/account_management_store/account_management_store.dart';
 import '../../../_shared/widgets/app_button.dart';
 import '../../../_shared/widgets/app_input_field.dart';
-import '../../../_shared/widgets/password_input_field.dart';
-import '../../../_shared/widgets/phone_email_input_field.dart';
 import '../../../_shared/widgets/secondary_chip.dart';
-import '../stores/onboarding_store.dart';
 
 class AddUserForm extends StatelessWidget with FormMixin {
-  const AddUserForm({required this.store, super.key});
-
-  final OnboardingStore store;
+  const AddUserForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: store.formKey,
-      child: SingleChildScrollView(
-        child: PagePadding(
+    final store = context.read<AccountManagementStore>();
+    return SingleChildScrollView(
+      child: PagePadding(
+        child: Form(
+          key: store.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              24.height,
+              16.verticalSpace,
               Text(
-                'Add User',
-                style: AppTypography.headlineMedium.copyWith(
-                  color: AppColors.textPrimary,
+                '${store.userAction == AccountManagementAction.edit ? 'Edit' : 'Add'} User',
+                style: AppTypography.titleLarge.copyWith(
+                  color: AppColors.textSecondary,
                   fontWeight: FontWeight.bold,
+                  fontSize: 20,
                 ),
               ),
               24.height,
@@ -46,29 +51,36 @@ class AddUserForm extends StatelessWidget with FormMixin {
                 validator: isRequired,
               ),
               16.height,
-              PhoneEmailInputField(
-                controller: store.phoneController,
-                inputType: InputType.phone,
-                labelText: 'Phone Number',
-                hintText: 'Phone Number',
-                onChange: (value, type) {},
-              ),
-              16.height,
-              GestureDetector(
-                onTap: () => store.selectCountry(context),
-                child: Observer(
-                  builder: (_) => AppInputField(
-                    controller: TextEditingController(
-                      text: store.countryDisplayText,
-                    ),
-                    labelText: 'Country',
-                    hintText: 'Country',
-                    readOnly: true,
-                    validator: isRequired,
-                    suffixIcon: const Icon(
-                      Icons.arrow_drop_down,
-                      color: AppColors.color475569,
-                    ),
+              Observer(
+                builder: (_) => AppInputField(
+                  onTap: () async {
+                    final CountryDto? selected = await CountriesModal.show(
+                      context,
+                      selectedCountryName: store.selectedCountry?.name,
+                    );
+                    store.selectedCountry = selected;
+                  },
+                  controller: TextEditingController(
+                    text: store.selectedCountry?.name ?? '',
+                  ),
+                  labelText: 'Country',
+                  hintText: 'Country',
+                  readOnly: true,
+                  prefixIcon: store.selectedCountry != null
+                      ? IconButton(
+                          onPressed: () {},
+                          icon: SvgPicture.network(
+                            store.selectedCountry!.image ??
+                                AppConstant.defaultCountryFlag,
+                            width: 24,
+                            height: 24,
+                          ),
+                        )
+                      : null,
+                  validator: isRequired,
+                  suffixIcon: const Icon(
+                    Icons.arrow_drop_down,
+                    color: AppColors.iconsSecondary,
                   ),
                 ),
               ),
@@ -82,6 +94,7 @@ class AddUserForm extends StatelessWidget with FormMixin {
                     ),
                     labelText: 'Date of Birth',
                     hintText: 'Date of Birth',
+                    onTap: () => unawaited(store.selectDate(context)),
                     readOnly: true,
                     validator: isRequired,
                   ),
@@ -93,14 +106,16 @@ class AddUserForm extends StatelessWidget with FormMixin {
                     .map(
                       (gender) => Observer(
                         builder: (_) {
-                          return Padding(
-                            padding: EdgeInsets.only(
-                              left: gender == Gender.values.first ? 0 : 8,
-                            ),
-                            child: AppSecondaryChip(
-                              text: gender.displayName,
-                              isActive: store.selectedGender == gender,
-                              onTap: () => store.setGender(gender),
+                          return Expanded(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: gender == Gender.values.first ? 0 : 8,
+                              ),
+                              child: AppSecondaryChip(
+                                text: gender.displayName,
+                                isActive: store.selectedGender == gender,
+                                onTap: () => store.selectedGender = gender,
+                              ),
                             ),
                           );
                         },
@@ -108,24 +123,10 @@ class AddUserForm extends StatelessWidget with FormMixin {
                     )
                     .toList(),
               ),
-              16.height,
-              PhoneEmailInputField(
-                controller: store.emailController,
-                inputType: InputType.email,
-                labelText: 'Email Address',
-                hintText: 'Email Address',
-                onChange: (value, type) {},
-              ),
-              16.height,
-              PasswordInputField(
-                controller: store.passwordController,
-                validator: isRequired,
-              ),
               32.height,
               AppButton(
                 text: 'Save & Continue',
-                onPressed: store.handleSaveAndContinue,
-                buttonType: ButtonType.secondary,
+                onPressed: store.saveAndContinue
               ),
               32.height,
             ],

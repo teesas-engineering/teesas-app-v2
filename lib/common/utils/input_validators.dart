@@ -32,24 +32,24 @@ class InputValidators {
     }
 
     // Check for uppercase letter
-    if (!value.contains(RegExp('[A-Z]'))) {
-      return 'Password must contain at least one uppercase letter';
-    }
-
-    // Check for lowercase letter
-    if (!value.contains(RegExp('[a-z]'))) {
-      return 'Password must contain at least one lowercase letter';
-    }
-
-    // Check for number
-    if (!value.contains(RegExp('[0-9]'))) {
-      return 'Password must contain at least one number';
-    }
-
-    // Check for special character
-    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
-      return 'Password must contain at least one special character';
-    }
+    // if (!value.contains(RegExp('[A-Z]'))) {
+    //   return 'Password must contain at least one uppercase letter';
+    // }
+    //
+    // // Check for lowercase letter
+    // if (!value.contains(RegExp('[a-z]'))) {
+    //   return 'Password must contain at least one lowercase letter';
+    // }
+    //
+    // // Check for number
+    // if (!value.contains(RegExp('[0-9]'))) {
+    //   return 'Password must contain at least one number';
+    // }
+    //
+    // // Check for special character
+    // if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+    //   return 'Password must contain at least one special character';
+    // }
 
     return null;
   }

@@ -29,8 +29,7 @@ class _AppThemeState extends State<AppTheme> {
 
   ThemeData get lightTheme => ThemeData(
     useMaterial3: true,
-
-    colorScheme: const ColorScheme.light(),
+    colorScheme:  ColorScheme.fromSeed(seedColor: AppColors.bgBrand,primary: AppColors.bgBrandSecondary),
     brightness: Brightness.light,
     scaffoldBackgroundColor: AppColors.bgPrimary,
     iconTheme: const IconThemeData(size: 24, color: AppColors.color808080),
@@ -39,6 +38,7 @@ class _AppThemeState extends State<AppTheme> {
       elevation: 0,
       centerTitle: false,
       backgroundColor: const Color(0xfff8F8F8),
+      surfaceTintColor: AppColors.bgBrandLight,
       titleSpacing: 0,
       titleTextStyle: AppTypography.titleLarge.copyWith(
         color: AppColors.textPrimary,

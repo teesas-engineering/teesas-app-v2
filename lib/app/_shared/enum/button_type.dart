@@ -18,9 +18,9 @@ extension ButtonTypeExtension on ButtonType {
   Color getTextColor(BuildContext context) {
     switch (this) {
       case ButtonType.primary:
-        return AppColors.color1E1C1C;
+        return AppColors.textButtonPrimary;
       case ButtonType.secondary:
-        return AppColors.color171818;
+        return AppColors.textButtonSecondary;
     }
   }
 
@@ -28,7 +28,7 @@ extension ButtonTypeExtension on ButtonType {
     switch (this) {
       case ButtonType.primary:
       case ButtonType.secondary:
-        return AppColors.color0F172A;
+        return AppColors.iconsButtonSecondary;
     }
   }
 
@@ -61,12 +61,12 @@ extension ButtonTypeExtension on ButtonType {
   Border? getBorder(BuildContext context, {Color? borderColor}) {
     if (this == ButtonType.secondary) {
       return Border.all(
-        color: borderColor ?? AppColors.color0F172A,
+        color: borderColor ?? AppColors.borderButtonSecondary,
         width: .25,
       );
     }
-    final otherBorder = BorderSide(color: AppColors.bgButtonPrimary, width: .5);
-    return Border(
+    const otherBorder = BorderSide(color: AppColors.bgButtonPrimary, width: .5);
+    return const Border(
       bottom: BorderSide(color: AppColors.bgButtonPrimary, width: 5),
       top: otherBorder,
       left: otherBorder,

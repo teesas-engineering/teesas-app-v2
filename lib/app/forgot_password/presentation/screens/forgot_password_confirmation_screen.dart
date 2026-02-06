@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '../../../../common/extensions/num_extension.dart';
 import '../../../../common/style_guide/colors.dart';
 import '../../../../common/style_guide/style_guide.dart';
+import '../../../../router/route_helper.dart';
 import '../../../_shared/components/page_padding.dart';
 import '../../../_shared/widgets/app_bar.dart';
 import '../../../_shared/widgets/app_button.dart';
@@ -41,7 +44,12 @@ class ForgotPasswordConfirmationScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: PagePadding(
-        child: AppButton(text: 'Go Back', onPressed: () async {}),
+        child: AppButton(
+          text: 'Go Back',
+          onPressed: () async {
+            context.read<RouteHelper>().showLoginScreen(replace: true);
+          },
+        ),
       ),
     );
   }
