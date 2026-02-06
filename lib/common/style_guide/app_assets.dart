@@ -110,5 +110,11 @@ class AppAssets {
   static const String thumbnailSample = '$_pngsDir/thumbnail-sample.png';
   static const String shareIcon = '$_pngsDir/shareIcon.png';
 
+  static const String assessmentSuccessBadge =
+      '$_pngsDir/assessment_success_badge.png';
+
   static const String imgReferralBanner = '$_pngsDir/img_referral_banner.png';
+
+  static const String icCaution = '$_svgsDir/ic_caution.svg';
+  static const String icBookmark = '$_svgsDir/ic_bookmark.svg';
 }

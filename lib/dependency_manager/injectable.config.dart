@@ -19,6 +19,8 @@ import 'package:teesas/app/_shared/stores/category_store/category_store.dart'
     as _i440;
 import 'package:teesas/app/_shared/stores/dashboard_store/dashboard_store.dart'
     as _i161;
+import 'package:teesas/app/assessment/presentation/stores/assessment_store.dart'
+    as _i567;
 import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i49;
 import 'package:teesas/app/more/referral/store/referral_store.dart' as _i691;
 import 'package:teesas/app/more/subscription/store/subscription_store.dart'
@@ -37,6 +39,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
+    gh.factory<_i567.AssessmentStore>(() => _i567.AssessmentStore());
     gh.factory<_i49.DownloadsStore>(() => _i49.DownloadsStore());
     gh.factory<_i691.ReferralStore>(() => _i691.ReferralStore());
     gh.factory<_i135.SubscriptionStore>(() => _i135.SubscriptionStore());

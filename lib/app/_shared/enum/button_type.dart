@@ -65,9 +65,10 @@ extension ButtonTypeExtension on ButtonType {
         width: .25,
       );
     }
-    final otherBorder = BorderSide(color: AppColors.bgButtonPrimary, width: .5);
+    final color = borderColor ?? AppColors.bgButtonPrimary;
+    final otherBorder = BorderSide(color: color, width: .5);
     return Border(
-      bottom: BorderSide(color: AppColors.bgButtonPrimary, width: 5),
+      bottom: BorderSide(color: color, width: 5),
       top: otherBorder,
       left: otherBorder,
       right: otherBorder,
