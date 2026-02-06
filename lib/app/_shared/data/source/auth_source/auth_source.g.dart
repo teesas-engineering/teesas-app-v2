@@ -12,7 +12,7 @@ part of 'auth_source.dart';
 
 class _AuthSource implements AuthSource {
   _AuthSource(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://api-teesas-staging.teesas.com/v1/auth/';
+    baseUrl ??= 'https://teesas-staging.teesas.com//auth/';
   }
 
   final Dio _dio;

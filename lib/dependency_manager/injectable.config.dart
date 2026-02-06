@@ -30,8 +30,16 @@ import 'package:teesas/app/_shared/stores/dashboard_store/dashboard_store.dart'
     as _i161;
 import 'package:teesas/app/_shared/stores/otp_store/otp_store.dart' as _i596;
 import 'package:teesas/app/_shared/stores/util_store/util_store.dart' as _i715;
+import 'package:teesas/app/assessment/presentation/stores/assessment_store.dart'
+    as _i567;
 import 'package:teesas/app/more/downloads/store/downloads_store.dart' as _i49;
 import 'package:teesas/app/more/referral/store/referral_store.dart' as _i691;
+import 'package:teesas/app/more/subscription/data/repository/subscription_repository.dart'
+    as _i440;
+import 'package:teesas/app/more/subscription/data/source/subscription_source.dart'
+    as _i401;
+import 'package:teesas/app/more/subscription/store/add_subscription_store.dart'
+    as _i1000;
 import 'package:teesas/app/more/subscription/store/subscription_store.dart'
     as _i135;
 import 'package:teesas/app/onboarding/presentation/stores/onboarding_store.dart'
@@ -53,6 +61,7 @@ extension GetItInjectableX on _i174.GetIt {
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final appModule = _$AppModule();
+    gh.factory<_i567.AssessmentStore>(() => _i567.AssessmentStore());
     gh.factory<_i49.DownloadsStore>(() => _i49.DownloadsStore());
     gh.factory<_i691.ReferralStore>(() => _i691.ReferralStore());
     gh.factory<_i135.SubscriptionStore>(() => _i135.SubscriptionStore());
@@ -79,8 +88,17 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i168.ProfileSource>(
       () => appModule.getProfileSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i401.SubscriptionSource>(
+      () => appModule.getSubscriptionSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i440.SubscriptionRepository>(
+      () => _i440.SubscriptionRepository(gh<_i401.SubscriptionSource>()),
+    );
     gh.lazySingleton<_i993.UtilRepository>(
       () => _i993.UtilRepository(gh<_i217.UtilSource>()),
+    );
+    gh.lazySingleton<_i1000.AddSubscriptionStore>(
+      () => _i1000.AddSubscriptionStore(gh<_i440.SubscriptionRepository>()),
     );
     gh.lazySingleton<_i139.ProfileRepository>(
       () => _i139.ProfileRepository(gh<_i168.ProfileSource>()),

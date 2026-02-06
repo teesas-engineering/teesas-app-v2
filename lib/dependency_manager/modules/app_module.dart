@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../app/_shared/data/source/auth_source/auth_source.dart';
 import '../../app/_shared/data/source/profile_source/profile_source.dart';
 import '../../app/_shared/data/source/util_source/util_source.dart';
+import '../../app/more/subscription/data/source/subscription_source.dart';
 import '../../common/network/network_interceptor.dart';
 import '../../common/utils/app_config.dart';
 
@@ -20,7 +21,7 @@ abstract class AppModule {
       receiveTimeout: Duration(seconds: AppConfig.connectionTimeout),
       persistentConnection: true,
     );
-    dio.interceptors.add(LogInterceptor(responseBody: true,requestBody: true));
+    dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
     return dio;
   }
 
@@ -32,4 +33,7 @@ abstract class AppModule {
 
   @lazySingleton
   ProfileSource getProfileSource(Dio dio) => ProfileSource(dio);
+
+  @lazySingleton
+  SubscriptionSource getSubscriptionSource(Dio dio) => SubscriptionSource(dio);
 }

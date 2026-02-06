@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'util_source.dart';
+part of 'subscription_source.dart';
 
 // dart format off
 
@@ -10,9 +10,9 @@ part of 'util_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _UtilSource implements UtilSource {
-  _UtilSource(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://teesas-staging.teesas.com//utils/';
+class _SubscriptionSource implements SubscriptionSource {
+  _SubscriptionSource(this._dio, {this.baseUrl, this.errorLogger}) {
+    baseUrl ??= 'https://teesas-staging.teesas.com//';
   }
 
   final Dio _dio;
@@ -22,7 +22,7 @@ class _UtilSource implements UtilSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseDto> getCourses() async {
+  Future<BaseDto> getSubscriptions() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -31,34 +31,7 @@ class _UtilSource implements UtilSource {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'get-courses',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseDto _value;
-    try {
-      _value = BaseDto.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<BaseDto> getCountries() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseDto>(
-      Options(method: 'GET', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            'get-countries',
+            'v1/subscriptions/list',
             queryParameters: queryParameters,
             data: _data,
           )

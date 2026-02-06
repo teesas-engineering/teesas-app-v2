@@ -1,5 +1,10 @@
+import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
+import '../../../../common/enum/state_type.dart';
+import '../../../../common/utils/api_result.dart';
+import '../../../../common/utils/notify_helper.dart';
 import '../data/model/subscription_checkout_item.dart';
+import '../data/repository/subscription_repository.dart';
 
 part 'add_subscription_store.g.dart';
 
@@ -29,55 +34,67 @@ class SubscriptionGroup {
   final List<SubscriptionOption> options;
 }
 
+@lazySingleton
 class AddSubscriptionStore = _AddSubscriptionStore with _$AddSubscriptionStore;
 
 abstract class _AddSubscriptionStore with Store {
+  _AddSubscriptionStore(this._repository);
+
+  final SubscriptionRepository _repository;
+
+  @observable
+  Status status = Status.initial;
+
+  @observable
+  String? errorMessage;
+
+  @computed
+  bool get isLoading => status == Status.loading;
+
   @observable
   ObservableMap<String, String> selectedPlanIds =
       ObservableMap<String, String>();
 
-  // Mock data
-  final List<SubscriptionGroup> groups = [
-    SubscriptionGroup(
-      id: 'g1',
-      categoryTag: 'Primary',
-      title: 'Grade 1',
-      options: [
-        SubscriptionOption(
-          id: 'p1_1',
-          duration: '1 Month Subscriptions',
-          amount: 12000,
-        ),
-        SubscriptionOption(
-          id: 'p1_3',
-          duration: '3 Months Subscriptions',
-          amount: 12000,
-        ),
-        SubscriptionOption(
-          id: 'p1_12',
-          duration: '1 Year Subscriptions',
-          amount: 12000,
-        ),
-      ],
-    ),
-    SubscriptionGroup(
-      id: 'g2',
-      categoryTag: 'Leader In Me',
-      title: '7 Habits of a Parent',
-      options: [
-        SubscriptionOption(
-          id: 'p2_1',
-          duration: '1 Month Subscriptions',
-          amount: 5000,
-        ),
-        SubscriptionOption(
-          id: 'p2_3',
-          duration: '3 Months Subscriptions',
-          amount: 14000,
-        ),
-      ],
-    ),
-  ];
+  @observable
+  ObservableList<SubscriptionGroup> groups =
+      ObservableList<SubscriptionGroup>();
+
+  @action
+  Future<void> fetchSubscriptions() async {
+    status = Status.loading;
+    errorMessage = null;
+
+    final result = await _repository.fetchSubscriptions();
+
+    result.when(
+      onSuccess: (data) {
+        final newGroups = data.subscriptionList.map((groupDto) {
+          return SubscriptionGroup(
+            // Generating a unique ID for the group since API doesn't provide one for the group itself
+            id: '${groupDto.course}_${groupDto.className}',
+            categoryTag: groupDto.course,
+            title: groupDto.className,
+            options: groupDto.subscription.map((itemDto) {
+              return SubscriptionOption(
+                id: itemDto.planId,
+                duration: itemDto
+                    .description, // Or parse 'time' if needed to show "1 Month" etc properly
+                amount: itemDto.amount,
+              );
+            }).toList(),
+          );
+        }).toList();
+
+        groups = ObservableList.of(newGroups);
+        status = Status.success;
+      },
+      onError: (message) {
+        errorMessage = message;
+        status = Status.error;
+        NotifyHelper.showErrorToast(message);
+      },
+    );
+  }
 
   @action
   void selectPlan(String groupId, String planId) {
