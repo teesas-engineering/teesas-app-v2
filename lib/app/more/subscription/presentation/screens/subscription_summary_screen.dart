@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:go_router/go_router.dart'; // Will use when wiring up
-
 import '../../../../../common/dimens/app_dimens.dart';
 import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
+import '../../../../../common/utils/modal_helper.dart';
 import '../../../../_shared/widgets/app_button.dart';
 import '../../../../_shared/widgets/app_card.dart';
 import '../../../../_shared/widgets/app_divider.dart';
@@ -13,8 +12,9 @@ import '../../../../_shared/widgets/app_input_field.dart';
 import '../../../../_shared/widgets/app_progress_header.dart';
 import '../../data/model/subscription_checkout_item.dart';
 import '../widgets/history_subscription_card.dart';
+import '../widgets/payment_method_sheet.dart';
 
-class SubscriptionSummaryScreen extends StatelessWidget {
+class SubscriptionSummaryScreen extends StatefulWidget {
   const SubscriptionSummaryScreen({required this.checkoutItems, super.key});
 
   final List<SubscriptionCheckoutItem> checkoutItems;
@@ -22,8 +22,18 @@ class SubscriptionSummaryScreen extends StatelessWidget {
   static const String route = '/subscription-summary';
 
   @override
+  State<SubscriptionSummaryScreen> createState() =>
+      _SubscriptionSummaryScreenState();
+}
+
+class _SubscriptionSummaryScreenState extends State<SubscriptionSummaryScreen> {
+  String? _selectedPaymentMethod;
+
+  final List<String> _paymentMethods = ['Transfer', 'Card'];
+
+  @override
   Widget build(BuildContext context) {
-    final double totalAmount = checkoutItems.fold(
+    final double totalAmount = widget.checkoutItems.fold(
       0,
       (sum, item) => sum + item.amount,
     );
@@ -76,10 +86,10 @@ class SubscriptionSummaryScreen extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: checkoutItems.length,
+                      itemCount: widget.checkoutItems.length,
                       separatorBuilder: (_, _) => 16.height,
                       itemBuilder: (context, index) {
-                        final item = checkoutItems[index];
+                        final item = widget.checkoutItems[index];
 
                         return HistorySubscriptionCard(
                           subscription: item.toSubscription(),
@@ -117,36 +127,39 @@ class SubscriptionSummaryScreen extends StatelessWidget {
                     labelText: "Apply Promocode/Referral/Reseller's Code",
                   ),
                   32.height,
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 16.w,
-                      vertical: 14.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: BorderRadius.circular(8.r),
-                      border: Border.all(color: AppColors.colorE2E8F0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Choose Payment Method',
-                          style: AppTypography.bodyMedium.copyWith(
-                            color: AppColors.textSecondary,
-                            fontWeight: FontWeight.w400,
+                  GestureDetector(
+                    onTap: () => _showPaymentMethodBottomSheet(context),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 14.h,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: BorderRadius.circular(8.r),
+                        border: Border.all(color: AppColors.colorE2E8F0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            _selectedPaymentMethod ?? 'Choose Payment Method',
+                            style: AppTypography.bodyMedium.copyWith(
+                              color: AppColors.textSecondary,
+                              fontWeight: FontWeight.w400,
+                            ),
                           ),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_down,
-                          color: AppColors.textSecondary,
-                          size: 24.sp,
-                        ),
-                      ],
+                          Icon(
+                            Icons.keyboard_arrow_down,
+                            color: AppColors.textSecondary,
+                            size: 24.sp,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   32.height,
-                  AppButton(text: 'Finish', onPressed: () async {}),
+                  AppButton(text: 'Next', onPressed: () async {}),
                   SizedBox(
                     height: MediaQuery.viewPaddingOf(context).bottom + 16.h,
                   ),
@@ -155,6 +168,22 @@ class SubscriptionSummaryScreen extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Future<void> _showPaymentMethodBottomSheet(BuildContext context) async {
+    await ModalHelper.show(
+      context,
+      child: PaymentMethodSheet(
+        selectedMethod: _selectedPaymentMethod,
+        methods: _paymentMethods,
+        onSelect: (method) {
+          setState(() {
+            _selectedPaymentMethod = method;
+          });
+          Navigator.pop(context);
+        },
       ),
     );
   }

@@ -114,4 +114,5 @@ class AppAssets {
 
   static const String icCaution = '$_svgsDir/ic_caution.svg';
   static const String icBookmark = '$_svgsDir/ic_bookmark.svg';
+  static const String icCloseBordered = '$_svgsDir/ic_close_bordered.svg';
 }

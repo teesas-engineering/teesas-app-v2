@@ -35,4 +35,5 @@ SubscriptionItemDto _$SubscriptionItemDtoFromJson(Map<String, dynamic> json) =>
       planIdInapp: json['plan_id_inapp'] as String,
       description: json['description'] as String,
       amount: (json['amount'] as num).toDouble(),
+      time: (json['time'] as num).toInt(),
     );

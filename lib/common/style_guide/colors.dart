@@ -71,7 +71,6 @@ class AppColors {
   static const color8A5206 = Color(0xFF8A5206);
   static const bgInvert = Color(0xFF0F172A); // Space Navy (Text on Light)
 
-
   // Semantic Backgrounds
   static const bgNegative = Color(0xFFFEF2F2); //#
   static const bgWarning = Color(0xFFFFFBEB);
@@ -179,5 +178,4 @@ class AppColors {
   static const badgeBgBlue = Color(0xFFF5F9FB);
   static const badgeTextBlue = Color(0xFF51666F);
   static const bgBorderBlue = Color(0xFFD6E2E8);
-
 }

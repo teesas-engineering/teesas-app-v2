@@ -90,6 +90,14 @@ class AppTypography {
   // TITLE STYLES (bold weight)
   // ===========================================================================
 
+  static const title14 = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    height: 1.43,
+    letterSpacing: 0.25,
+    fontFamily: fontFamilyUI,
+  );
+
   static const title16 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,

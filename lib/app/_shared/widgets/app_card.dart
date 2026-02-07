@@ -20,12 +20,14 @@ class AppCard extends StatelessWidget {
     Color? borderColor,
     EdgeInsets? padding,
     double? borderBottomWidth,
+    double? borderRadius,
   }) {
     return AppCard._(
       padding: padding,
       backgroundColor: backgroundColor,
       borderBottomWidth: borderBottomWidth ?? 5,
       borderColor: borderColor,
+      borderRadius: borderRadius,
       child: child,
     );
   }

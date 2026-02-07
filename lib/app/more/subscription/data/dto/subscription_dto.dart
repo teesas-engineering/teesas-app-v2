@@ -37,6 +37,7 @@ class SubscriptionItemDto {
     required this.planIdInapp,
     required this.description,
     required this.amount,
+    required this.time,
   });
 
   factory SubscriptionItemDto.fromJson(Map<String, dynamic> json) =>
@@ -49,4 +50,5 @@ class SubscriptionItemDto {
   final String planIdInapp;
   final String description;
   final double amount;
+  final int time;
 }

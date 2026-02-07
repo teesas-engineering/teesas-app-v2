@@ -1,7 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import '../../../../common/enum/state_type.dart';
-import '../../../../common/utils/api_result.dart';
 import '../../../../common/utils/notify_helper.dart';
 import '../data/model/subscription_checkout_item.dart';
 import '../data/repository/subscription_repository.dart';
@@ -77,8 +76,7 @@ abstract class _AddSubscriptionStore with Store {
             options: groupDto.subscription.map((itemDto) {
               return SubscriptionOption(
                 id: itemDto.planId,
-                duration: itemDto
-                    .description, // Or parse 'time' if needed to show "1 Month" etc properly
+                duration: _formatDuration(itemDto.time),
                 amount: itemDto.amount,
               );
             }).toList(),
@@ -98,7 +96,11 @@ abstract class _AddSubscriptionStore with Store {
 
   @action
   void selectPlan(String groupId, String planId) {
-    selectedPlanIds[groupId] = planId;
+    if (selectedPlanIds[groupId] == planId) {
+      selectedPlanIds.remove(groupId);
+    } else {
+      selectedPlanIds[groupId] = planId;
+    }
   }
 
   bool isSelected(String groupId, String planId) {
@@ -121,5 +123,17 @@ abstract class _AddSubscriptionStore with Store {
       );
     });
     return items;
+  }
+
+  String _formatDuration(int days) {
+    if (days >= 365) {
+      return '1 year subscription';
+    } else if (days >= 90) {
+      return '3 months subscription';
+    } else if (days >= 30) {
+      return '1 month subscription';
+    } else {
+      return '$days days subscription';
+    }
   }
 }
