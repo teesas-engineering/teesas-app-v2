@@ -1,10 +1,15 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+
 import '../../../../../common/dimens/app_dimens.dart';
 import '../../../../../common/extensions/num_extension.dart';
 import '../../../../../common/style_guide/colors.dart';
 import '../../../../../common/style_guide/style_guide.dart';
 import '../../../../../common/utils/modal_helper.dart';
+import '../../../../../router/main_router.dart';
 import '../../../../_shared/widgets/app_button.dart';
 import '../../../../_shared/widgets/app_card.dart';
 import '../../../../_shared/widgets/app_divider.dart';
@@ -159,7 +164,20 @@ class _SubscriptionSummaryScreenState extends State<SubscriptionSummaryScreen> {
                     ),
                   ),
                   32.height,
-                  AppButton(text: 'Next', onPressed: () async {}),
+                  AppButton(
+                    text: 'Next',
+                    onPressed: () async {
+                      if (_selectedPaymentMethod == 'Transfer') {
+                        unawaited(
+                          context.push(
+                            MainRouter.transferPayment,
+                            extra: totalAmount,
+                          ),
+                        );
+                      }
+                      // Handle 'Card' or other cases
+                    },
+                  ),
                   SizedBox(
                     height: MediaQuery.viewPaddingOf(context).bottom + 16.h,
                   ),

@@ -19,6 +19,7 @@ import '../app/more/subscription/data/model/subscription_checkout_item.dart';
 import '../app/more/subscription/presentation/screens/add_subscription_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_screen.dart';
 import '../app/more/subscription/presentation/screens/subscription_summary_screen.dart';
+import '../app/more/subscription/presentation/screens/transfer_payment_screen.dart';
 import '../app/onboarding/presentation/screens/onboarding_root.dart';
 import '../app/onboarding/presentation/screens/welcome_screen.dart';
 import '../app/signin/presentation/screens/login_screen.dart';
@@ -59,6 +60,7 @@ class MainRouter {
       '/forgot-password-confirmation';
   static const String welcomeScreen = '/welcome-screen';
   static const String selectAccountScreen = '/select-account';
+  static const String transferPayment = '/subscription/transfer';
 
   GoRouter get router => _router;
 
@@ -173,8 +175,7 @@ class MainRouter {
       GoRoute(
         path: forgotPasswordConfirmation,
         name: forgotPasswordConfirmation,
-        builder: (context, state) =>
-        const ForgotPasswordConfirmationScreen(),
+        builder: (context, state) => const ForgotPasswordConfirmationScreen(),
       ),
       GoRoute(
         path: welcomeScreen,
@@ -185,6 +186,14 @@ class MainRouter {
         path: selectAccountScreen,
         name: selectAccountScreen,
         builder: (context, state) => const SelectAccountScreen(),
+      ),
+      GoRoute(
+        path: transferPayment,
+        name: transferPayment,
+        builder: (context, state) {
+          final amount = state.extra as double;
+          return TransferPaymentScreen(amount: amount);
+        },
       ),
     ],
   );
